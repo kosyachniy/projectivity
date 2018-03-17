@@ -1,2 +1,2 @@
 from pymongo import MongoClient
-db = MongoClient()['crypto']
+db = MongoClient()['proj']

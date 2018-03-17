@@ -7,5 +7,5 @@ def hello():
 	x = request.json
 	if x['cm'] == 'reg':
 		del x['cm']
-		db.insert(x)
+		db['users'].insert(x)
 	return 'Yep'
