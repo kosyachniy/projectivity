@@ -1,3 +1,2 @@
-import sqlite3
-
-db=sqlite3.connect('data/users.db')
+from pymongo import MongoClient
+db = MongoClient()['crypto']
