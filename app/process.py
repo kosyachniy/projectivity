@@ -18,11 +18,11 @@ def hello():
 				return '3'
 
 			#Логин существует
-			if not len(list(db['users'].find({'login': x['login']}))):
+			if len(list(db['users'].find({'login': x['login']}))):
 				return '5'
 
 			#Почта зарегистрирована
-			if not len(list(db['users'].find({'mail': x['mail']}))):
+			if len(list(db['users'].find({'mail': x['mail']}))):
 				return '8'
 
 			del x['cm']
@@ -31,7 +31,19 @@ def hello():
 
 #Авторизация
 		elif x['cm'] == 'auth':
-			pass
+			#Не все поля заполнены
+			if all([i in x for i in ('login', 'pass')]):
+				return '3'
+
+			#Логин существует
+			if not len(list(db['users'].find({'login': x['login']}))):
+				return '4'
+
+			#Логин существует
+			if not len(list(db['users'].find({'login': x['login'], 'pass': x['pass']}))):
+				return '5'
+
+			return '0'
 
 		else:
 			return '2'
