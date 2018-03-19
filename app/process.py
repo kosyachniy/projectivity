@@ -14,7 +14,7 @@ def hello():
 #Регистрация
 		if x['cm'] == 'reg':
 			#Не все поля заполнены
-			if all([i in x for i in ('login', 'pass', 'mail')]):
+			if not all([i in x for i in ('login', 'pass', 'mail')]):
 				return '3'
 
 			#Логин существует
@@ -25,21 +25,24 @@ def hello():
 			if len(list(db['users'].find({'mail': x['mail']}))):
 				return '8'
 
-			del x['cm']
-			db['users'].insert(x)
+			db['users'].insert({
+				'login': x['login'],
+				'password': x['pass'],
+				'mail': x['mail'],
+			})
 			return '0'
 
 #Авторизация
 		elif x['cm'] == 'auth':
 			#Не все поля заполнены
-			if all([i in x for i in ('login', 'pass')]):
+			if not all([i in x for i in ('login', 'pass')]):
 				return '3'
 
-			#Логин существует
+			#Логин не существует
 			if not len(list(db['users'].find({'login': x['login']}))):
 				return '4'
 
-			#Логин существует
+			#Неправильный пароль
 			if not len(list(db['users'].find({'login': x['login'], 'pass': x['pass']}))):
 				return '5'
 
