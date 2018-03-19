@@ -40,11 +40,12 @@ def hello():
 			if match('.+@.+\..+', x['mail']) == None:
 				return '7'
 
-			db['users'].insert({
+			query = db['users'].insert({
 				'login': x['login'],
 				'password': x['pass'],
 				'mail': x['mail'],
 			})
+			print(query)
 			return '0'
 
 #Авторизация
@@ -60,10 +61,16 @@ def hello():
 				return '4'
 
 			#Неправильный пароль
-			if not len(list(db['users'].find({'login': x['login'], 'password': x['pass']}))):
+			query = list(db['users'].find({'login': x['login'], 'password': x['pass']}))
+			if not len(query):
 				return '5'
 
+			print(query[0]['_id'])
 			return '0'
+
+#Изменение личной информации
+		elif x['cm'] == 'profile':
+			pass
 
 		else:
 			return '2'
