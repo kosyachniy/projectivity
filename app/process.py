@@ -43,7 +43,7 @@ def hello():
 				return '4'
 
 			#Неправильный пароль
-			if not len(list(db['users'].find({'login': x['login'], 'pass': x['pass']}))):
+			if not len(list(db['users'].find({'login': x['login'], 'password': x['pass']}))):
 				return '5'
 
 			return '0'
