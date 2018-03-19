@@ -2,6 +2,7 @@ from flask import render_template, request, jsonify
 from app import app
 from mongodb import *
 from re import findall, match
+from hashlib import md5
 
 @app.route('/', methods=['POST'])
 def hello():
@@ -42,10 +43,10 @@ def hello():
 
 			query = db['users'].insert({
 				'login': x['login'],
-				'password': x['pass'],
+				'password': md5(bytes(x['pass'], 'utf-8')).hexdigest(),
 				'mail': x['mail'],
 			})
-			print(query)
+			#print(query)
 			return '0'
 
 #Авторизация
@@ -61,11 +62,11 @@ def hello():
 				return '4'
 
 			#Неправильный пароль
-			query = list(db['users'].find({'login': x['login'], 'password': x['pass']}))
+			query = list(db['users'].find({'login': x['login'], 'password': md5(bytes(x['pass'], 'utf-8')).hexdigest(),}))
 			if not len(query):
 				return '5'
 
-			print(query[0]['_id'])
+			#print(query[0]['_id'])
 			return '0'
 
 #Изменение личной информации
