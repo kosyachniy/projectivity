@@ -14,11 +14,11 @@ def hello():
 	try:
 #Регистрация
 		if x['cm'] == 'reg':
-			x['login'] = x['login'].lower()
-
 			#Не все поля заполнены
 			if not all([i in x for i in ('login', 'pass', 'mail')]):
 				return '3'
+
+			x['login'] = x['login'].lower()
 
 			#Логин существует
 			if len(list(db['users'].find({'login': x['login']}))):
@@ -49,11 +49,11 @@ def hello():
 
 #Авторизация
 		elif x['cm'] == 'auth':
-			x['login'] = x['login'].lower()
-
 			#Не все поля заполнены
 			if not all([i in x for i in ('login', 'pass')]):
 				return '3'
+
+			x['login'] = x['login'].lower()
 
 			#Логин не существует
 			if not len(list(db['users'].find({'login': x['login']}))):
