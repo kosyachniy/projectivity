@@ -14,6 +14,8 @@ def hello():
 	try:
 #Регистрация
 		if x['cm'] == 'reg':
+			x['login'] = x['login'].lower()
+
 			#Не все поля заполнены
 			if not all([i in x for i in ('login', 'pass', 'mail')]):
 				return '3'
@@ -23,7 +25,7 @@ def hello():
 				return '5'
 
 			#Недопустимый логин
-			if not 3 <= len(x['login']) <= 20 or len(findall('[^a-zA-Z0-9]', x['login'])):
+			if not 3 <= len(x['login']) <= 20 or len(findall('[^a-z0-9]', x['login'])):
 				return '4'
 
 			#Почта зарегистрирована
@@ -39,7 +41,7 @@ def hello():
 				return '7'
 
 			db['users'].insert({
-				'login': x['login'].lower(),
+				'login': x['login'],
 				'password': x['pass'],
 				'mail': x['mail'],
 			})
@@ -47,6 +49,8 @@ def hello():
 
 #Авторизация
 		elif x['cm'] == 'auth':
+			x['login'] = x['login'].lower()
+
 			#Не все поля заполнены
 			if not all([i in x for i in ('login', 'pass')]):
 				return '3'
