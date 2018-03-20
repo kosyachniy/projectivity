@@ -1,0 +1,27 @@
+{% extends "main.html" %}
+{% block cont %}
+
+<h1>
+
+{% if user.login %}
+<a>{{user.login}}</a> &nbsp; <a>Выйти</a>
+{% else %}
+Гость &nbsp; <a>Войти</a>
+{% endif %}
+
+</h1>
+Соревнования
+<hr>
+
+{% for i in competions %}
+<div{{i.name}}<br>{{i.author}}</div>
+{% endfor %}
+
+Участники
+<hr>
+
+{% for i in users %}
+<div{{i.name}} {{i.surname}}<br>{{i.login}}</div>
+{% endfor %}
+
+{% endblock %}

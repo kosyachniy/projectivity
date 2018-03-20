@@ -1,0 +1,14 @@
+<html>
+<head>
+	{% if title %}
+	<title>{{title}} - Projectivity</title>
+	{% else %}
+	<title>Projectivity</title>
+	{% endif %}
+</head>
+<body>
+	<div>Projectivity: <a href="/index">Home</a></div>
+	<hr>
+	{% block cont %}{% endblock %}
+</body>
+</html>

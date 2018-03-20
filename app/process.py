@@ -1,11 +1,12 @@
-from flask import render_template, request, jsonify
+from flask import request, jsonify
 from app import app
+
 from mongodb import *
 from re import findall, match
 from hashlib import md5
 
 @app.route('/', methods=['POST'])
-def hello():
+def process():
 	x = request.json
 	print(x)
 
