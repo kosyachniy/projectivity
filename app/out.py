@@ -1,8 +1,8 @@
-from flask import redirect
+from flask import redirect, request
 from app import app
 
 @app.route('/out')
 def out():
-	user = {login: None}
+	user = {'login': None}
 
-	return '<script>document.location.href = document.referrer</script>' #redirect('')
+	return redirect(request.url, code=302)
