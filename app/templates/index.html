@@ -22,8 +22,7 @@
 <h1>Участники</h1>
 <div class="notes">
 
-{% for i in users %}
-<a href="{{i.login}}">
+{% for i in users %}<a href="{{i.login}}">
 	<div style="background-image: url(data/users/{{i.photo}}.jpg);">
 		<div class="back">
 			<div class="title">
@@ -32,8 +31,7 @@
 			</div>
 		</div>
 	</div>
-</a>
-{% endfor %}
+</a>{% endfor %}
 
 </div>
 
