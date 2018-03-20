@@ -6,7 +6,7 @@ from re import findall, match
 from hashlib import md5
 
 import rsa
-pubkey, privkey = rsa.newkeys(512)
+(pubkey, privkey) = rsa.newkeys(512)
 
 @app.route('/', methods=['POST'])
 def process():
@@ -19,7 +19,8 @@ def process():
 	try:
 #Получение публичного ключа
 		if x['cm'] == 'key':
-			return pubkey
+			print(pubkey)
+			return str(pubkey)
 
 #Регистрация
 		if x['cm'] == 'reg':
