@@ -2,17 +2,39 @@
 {% block cont %}
 
 <h1>Соревнования</h1>
-<hr>
+<div class="notes">
 
 {% for i in competions %}
-<div{{i.name}}<br>{{i.author}}</div>
+<a href="{{i.id}}">
+	<div style="background-image: url(data/competions/{{i.id}}.jpg);">
+		<div class="back">
+			<div class="title">
+				{{i.name}}
+				<div>{{i.author}}</div>
+			</div>
+		</div>
+	</div>
+</a>
 {% endfor %}
+
+</div>
 
 <h1>Участники</h1>
-<hr>
+<div class="notes">
 
 {% for i in users %}
-<div{{i.name}} {{i.surname}}<br>{{i.login}}</div>
+<a href="{{i.login}}">
+	<div style="background-image: url(data/users/{{i.photo}}.jpg);">
+		<div class="back">
+			<div class="title">
+				{{i.name}} {{i.surname}}
+				<div>{{i.login}}</div>
+			</div>
+		</div>
+	</div>
+</a>
 {% endfor %}
+
+</div>
 
 {% endblock %}
