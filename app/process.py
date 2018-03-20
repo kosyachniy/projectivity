@@ -19,8 +19,7 @@ def process():
 	try:
 #Получение публичного ключа
 		if x['cm'] == 'key':
-			print(pubkey)
-			return str(pubkey)
+			return str(str(pubkey.n) + ',' + str(pubkey.e))
 
 #Регистрация
 		if x['cm'] == 'reg':
