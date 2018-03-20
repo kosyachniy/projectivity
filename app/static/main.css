@@ -211,6 +211,10 @@ input[type="file"] {border: 0;}
 	background: rgba(0, 0, 0, 0.6);
 }
 
+.title-notes {
+	margin-left: 2.5vw;
+}
+
 .notes a > div {
 	width: 50%;
 	height: 22vw;

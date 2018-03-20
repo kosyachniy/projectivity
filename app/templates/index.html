@@ -1,37 +1,30 @@
 {% extends "main.html" %}
 {% block cont %}
 
-<h1>Соревнования</h1>
+<h1 class="title-notes">Соревнования</h1>
 <div class="notes">
 
-{% for i in competions %}
-<a href="{{i.id}}">
-	<div style="background-image: url(static/data/competions/{{i.id}}.jpg);">
-		<div class="back">
-			<div class="title">
-				{{i.name}}
-				<div>{{i.author}}</div>
-			</div>
+{% for i in competions %}<a href="{{i.id}}"><div style="background-image: url(static/data/competions/{{i.id}}.jpg);">
+	<div class="back">
+		<div class="title">
+			{{i.name}}
+			<div>{{i.author}}</div>
 		</div>
 	</div>
-</a>
-{% endfor %}
+</div></a>{% endfor %}
 
 </div>
 
-<h1>Участники</h1>
+<h1 class="title-notes">Участники</h1>
 <div class="notes">
 
-{% for i in users %}
-<a href="{{i.login}}"><div style="background-image: url(static/data/users/{{i.photo}}.jpg);">
-	<div class="back">
+{% for i in users %}<a href="{{i.login}}"><div style="background-image: url(static/data/users/{{i.photo}}.jpg);"><div class="back">
 		<div class="title">
 			{{i.name}} {{i.surname}}
 			<div>{{i.login}}</div>
 		</div>
 	</div>
-</div></a>
-{% endfor %}
+</div></a>{% endfor %}
 
 </div>
 
