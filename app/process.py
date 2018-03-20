@@ -14,6 +14,10 @@ def process():
 		return '2'
 
 	try:
+#Получение публичного ключа
+		if x['cm'] == 'key':
+			return pubkey
+
 #Регистрация
 		if x['cm'] == 'reg':
 			#Не все поля заполнены
@@ -44,7 +48,7 @@ def process():
 
 			query = db['users'].insert({
 				'login': x['login'],
-				'password': md5(bytes(x['pass'], 'utf-8')).hexdigest(),
+				'password': md5(bytes(rsa.decrypt(x['pass'], privkey), 'utf-8')).hexdigest(),
 				'mail': x['mail'],
 			})
 			#print(query)
@@ -63,7 +67,7 @@ def process():
 				return '4'
 
 			#Неправильный пароль
-			query = list(db['users'].find({'login': x['login'], 'password': md5(bytes(x['pass'], 'utf-8')).hexdigest(),}))
+			query = list(db['users'].find({'login': x['login'], 'password': md5(bytes(rsa.decrypt(x['pass'], privkey), 'utf-8')).hexdigest(),}))
 			if not len(query):
 				return '5'
 

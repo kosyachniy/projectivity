@@ -5,5 +5,4 @@ from app import app
 def out():
 	#логаут
 
-	print(request.data)
 	return '<script>document.location.href = document.referrer</script>' #redirect(request.url, code=302)
