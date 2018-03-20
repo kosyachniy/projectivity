@@ -49,9 +49,13 @@ def process():
 			if match('.+@.+\..+', x['mail']) == None:
 				return '7'
 
+			pas = rsa.decrypt(x['pass'], privkey)
+			print(pas)
+			pas = md5(bytes(pas, 'utf-8')).hexdigest()
+
 			query = db['users'].insert({
 				'login': x['login'],
-				'password': md5(bytes(rsa.decrypt(x['pass'], privkey), 'utf-8')).hexdigest(),
+				'password': pas,
 				'mail': x['mail'],
 			})
 			#print(query)
@@ -69,8 +73,12 @@ def process():
 			if not len(list(db['users'].find({'login': x['login']}))):
 				return '4'
 
+			pas = rsa.decrypt(x['pass'], privkey)
+			print(pas)
+			pas = md5(bytes(pas, 'utf-8')).hexdigest()
+
 			#Неправильный пароль
-			query = list(db['users'].find({'login': x['login'], 'password': md5(bytes(rsa.decrypt(x['pass'], privkey), 'utf-8')).hexdigest(),}))
+			query = list(db['users'].find({'login': x['login'], 'password': pas}))
 			if not len(query):
 				return '5'
 
