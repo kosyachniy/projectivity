@@ -1,14 +1,72 @@
+<!Doctype html>
 <html>
 <head>
-	{% if title %}
-	<title>{{title}} - Projectivity</title>
-	{% else %}
-	<title>Projectivity</title>
-	{% endif %}
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<link rel="stylesheet" type="text/css" href="/app/static/main.css">
+
+	<title>
+
+{% if title %}
+{{title}} - Projectivity
+{% else %}
+Projectivity
+{% endif %}
+
+	</title>
+	<link rel ="shortcut icon" type="images/png" href="../static/favicon.png">
+	<meta name="author" content="Poloz Alexey">
+
+{% if description %}
+<meta name="keywords" content="{{description}}">
+<meta name="description" content="{{description}}">
+{% else %}
+<meta name="keywords" content="Сервис поиска сокомандников на конкурсы, стартапы и конференции">
+<meta name="description" content="Сервис поиска сокомандников на конкурсы, стартапы и конференции">
+{% endif %}
+
 </head>
 <body>
-	<div>Projectivity: <a href="/index">Home</a></div>
-	<hr>
-	{% block cont %}{% endblock %}
+	<script type="text/javascript">
+function change() {
+	if (document.getElementById('menu').style.display == 'block')
+		document.getElementById('menu').style.display = 'none';
+	else
+		document.getElementById('menu').style.display = 'block';
+}
+	</script>
+
+	<div class="header" onclick="change(this);">
+		<img src="/sys/logo.png" >
+		<a href="/"><div>Главная</div></a>
+		<a href="/notes"><div>Статьи</div></a>
+		<a href="/services"><div>Услуги</div></a>
+
+	</div>
+
+	<div class="expand" id="menu">
+		<form action="/sys/search.php" method="post">
+			<input placeholder="Поиск" name="search">
+		</form>
+		<div>
+
+
+
+
+{% if user.login %}
+<a href="/cabinet">{{user.login}}</a> &nbsp;<a href="/out" class="del">Выйти</a>
+{% else %}
+<a class="del">Гость &nbsp;</a><a href="/login">Войти</a>
+{% endif %}
+
+		</div>
+		<a href="/">Главная</a>
+		<a href="/notes">Статьи</a>
+		<a href="/services">Услуги</a>
+	</div>
+
+{% block cont %}{% endblock %}
+
 </body>
 </html>

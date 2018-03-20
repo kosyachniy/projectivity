@@ -1,23 +1,14 @@
 {% extends "main.html" %}
 {% block cont %}
 
-<h1>
-
-{% if user.login %}
-<a>{{user.login}}</a> &nbsp; <a>Выйти</a>
-{% else %}
-Гость &nbsp; <a>Войти</a>
-{% endif %}
-
-</h1>
-Соревнования
+<h1>Соревнования</h1>
 <hr>
 
 {% for i in competions %}
 <div{{i.name}}<br>{{i.author}}</div>
 {% endfor %}
 
-Участники
+<h1>Участники</h1>
 <hr>
 
 {% for i in users %}

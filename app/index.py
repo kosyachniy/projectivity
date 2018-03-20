@@ -19,7 +19,8 @@ def index():
 	}
 
 	return render_template('index.html',
-		title = 'Main',
+		#title = 'Main',
+		#description = '',
 		competions = competions,
 		users = users,
 		user = user,
