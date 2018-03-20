@@ -5,6 +5,9 @@ from mongodb import *
 from re import findall, match
 from hashlib import md5
 
+import rsa
+pubkey, privkey = rsa.newkeys(512)
+
 @app.route('/', methods=['POST'])
 def process():
 	x = request.json
