@@ -19,7 +19,7 @@ def index():
 	}
 
 	return render_template('index.html',
-		#title = 'Main',
+		#title = 'Главная',
 		#description = '',
 		competions = competions,
 		users = users,

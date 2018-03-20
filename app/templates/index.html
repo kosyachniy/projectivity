@@ -17,7 +17,7 @@
 
 <div class="info" onclick="change(this);">↑ Нажми на лого ↑</div>
 
-<h1 class="title-notes">Соревнования</h1>
+<h2 class="title-notes">Соревнования</h1>
 <div class="notes">
 
 {% for i in competions %}<a href="{{i.id}}"><div style="background-image: url(static/load/competions/{{i.id}}.jpg);">
@@ -31,7 +31,7 @@
 
 </div>
 
-<h1 class="title-notes">Участники</h1>
+<h2 class="title-notes">Участники</h1>
 <div class="notes">
 
 {% for i in users %}<a href="{{i.login}}"><div style="background-image: url(static/load/users/{{i.photo}}.jpg);"><div class="back">
