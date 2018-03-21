@@ -34,24 +34,24 @@ def process():
 				return '5'
 
 			#Недопустимый логин
-			if not 3 <= len(x['login']) <= 20 or len(findall('[^a-z0-9]', x['login'])):
+			if not 3 <= len(x['login']) <= 20 or len(findall('[^a-z0-9]', x['login'])) or not len(findall('[a-z]', x['login'])):
 				return '4'
 
 			#Почта зарегистрирована
 			if len(list(db['users'].find({'mail': x['mail']}))):
 				return '8'
 
+			pas = rsa.decrypt(x['pass'], privkey)
+			print(pas)
+			pas = md5(bytes(pas, 'utf-8')).hexdigest()
+
 			#Недопустимый пароль
-			if not 6 <= len(x['pass']) <= 40 or len(findall('[^a-zA-z0-9!@#$%^&*()-_+=;:,./?\|`~\[\]{}]', x['pass'])):
+			if not 6 <= len(x['pass']) <= 40 or len(findall('[^a-zA-z0-9!@#$%^&*()-_+=;:,./?\|`~\[\]{}]', x['pass'])) or not len(findall('[a-zA-Z]', x['pass'])) or not len(findall('[0-9]', x['pass'])):
 				return '6'
 
 			#Это не почта
 			if match('.+@.+\..+', x['mail']) == None:
 				return '7'
-
-			pas = rsa.decrypt(x['pass'], privkey)
-			print(pas)
-			pas = md5(bytes(pas, 'utf-8')).hexdigest()
 
 			query = db['users'].insert({
 				'login': x['login'],
