@@ -5,8 +5,10 @@ from mongodb import *
 from re import findall, match
 from hashlib import md5
 
+'''
 import rsa
 (pubkey, privkey) = rsa.newkeys(512)
+'''
 
 @app.route('/', methods=['POST'])
 def process():
@@ -44,7 +46,6 @@ def process():
 			'''
 			x['pass'], = rsa.decrypt(x['pass'], privkey)
 			print(x['pass'],)
-			x['pass'], = bytes(x['pass'],, 'utf-8')
 			'''
 
 			#Недопустимый пароль
@@ -57,7 +58,7 @@ def process():
 
 			query = db['users'].insert({
 				'login': x['login'],
-				'password': md5(x['pass']).hexdigest(),
+				'password': md5(bytes(x['pass'], 'utf-8')).hexdigest(),
 				'mail': x['mail'],
 			})
 			#print(query)
@@ -78,11 +79,10 @@ def process():
 			'''
 			x['pass'] = rsa.decrypt(x['pass'], privkey)
 			print(x['pass'])
-			x['pass'] = bytes(x['pass'], 'utf-8')).hexdigest()
 			'''
 
 			#Неправильный пароль
-			query = list(db['users'].find({'login': x['login'], 'password': md5(x['pass']).hexdigest()}))
+			query = list(db['users'].find({'login': x['login'], 'password': md5(bytes(x['pass'], 'utf-8')).hexdigest()}))
 			if not len(query):
 				return '5'
 
