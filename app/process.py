@@ -41,9 +41,11 @@ def process():
 			if len(list(db['users'].find({'mail': x['mail']}))):
 				return '8'
 
-			pas = rsa.decrypt(x['pass'], privkey)
-			print(pas)
-			pas = md5(bytes(pas, 'utf-8')).hexdigest()
+			'''
+			x['pass'], = rsa.decrypt(x['pass'], privkey)
+			print(x['pass'],)
+			x['pass'], = md5(bytes(x['pass'],, 'utf-8')).hexdigest()
+			'''
 
 			#Недопустимый пароль
 			if not 6 <= len(x['pass']) <= 40 or len(findall('[^a-zA-z0-9!@#$%^&*()-_+=;:,./?\|`~\[\]{}]', x['pass'])) or not len(findall('[a-zA-Z]', x['pass'])) or not len(findall('[0-9]', x['pass'])):
@@ -55,7 +57,7 @@ def process():
 
 			query = db['users'].insert({
 				'login': x['login'],
-				'password': pas,
+				'password': x['pass'],
 				'mail': x['mail'],
 			})
 			#print(query)
@@ -73,12 +75,14 @@ def process():
 			if not len(list(db['users'].find({'login': x['login']}))):
 				return '4'
 
-			pas = rsa.decrypt(x['pass'], privkey)
-			print(pas)
-			pas = md5(bytes(pas, 'utf-8')).hexdigest()
+			'''
+			x['pass'] = rsa.decrypt(x['pass'], privkey)
+			print(x['pass'])
+			x['pass'] = md5(bytes(x['pass'], 'utf-8')).hexdigest()
+			'''
 
 			#Неправильный пароль
-			query = list(db['users'].find({'login': x['login'], 'password': pas}))
+			query = list(db['users'].find({'login': x['login'], 'password': x['pass']}))
 			if not len(query):
 				return '5'
 
