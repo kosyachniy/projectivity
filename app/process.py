@@ -4,6 +4,7 @@ from app import app
 from mongodb import *
 from re import findall, match
 from hashlib import md5
+from json import dumps
 
 '''
 import rsa
@@ -117,14 +118,13 @@ def process():
 				'geo': x['geo'] if 'geo' in x else None,
 				'stage': x['stage'] if 'stage' in x else None,
 			})
-			print(query, query['_id'])
+			print(query)
+			print(query['_id'])
 			return query
 
 #Получить соревнования
 		elif x['cm'] == 'competions.gets':
-			x = [i['_id'] for i in db['competions'].find()]
-			print(x)
-			return x
+			return dumps([str(i['_id']) for i in db['competions'].find()])
 
 #Получить соревнование
 		elif x['cm'] == 'competions.get':
@@ -132,7 +132,7 @@ def process():
 			if not all([i in x for i in ('id',)]):
 				return '3'
 
-			x = db['competions'].find_one({'_id': x['id']})
+			x = db['competions'].find_one({'id': x['id']})
 			print(x)
 			return x
 
