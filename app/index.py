@@ -1,13 +1,11 @@
 from flask import render_template
 from app import app
+from requests import get
 
 @app.route('/', methods=['GET'])
 @app.route('/index')
 def index():
-	competions = [
-		{'id': 1, 'name': 'VK Cup', 'author': 'ВКонтакте', 'time': 84931981},
-		{'id': 2, 'name': 'Школа анализа данных', 'author': 'Яндекс', 'time': 59257233},
-	]
+	competions = json.loads(get(src).text)
 
 	users = [
 		{'name': 'Иван', 'surname': 'Тюрин', 'login': 'ivantt', 'photo': 1},

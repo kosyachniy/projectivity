@@ -106,7 +106,7 @@ def process():
 			query = db['competions'].insert({
 				'name': x['name'],
 				'description': x['description'],
-				'cont': x['cont']
+				'cont': x['cont'],
 				'time': x['time'],
 				'durability': x['durability'],
 				'author': x['author'],
@@ -122,7 +122,8 @@ def process():
 
 #Получить соревнования
 		elif x['cm'] == 'competions.gets':
-			return db['competions']
+			x = db['competions']
+			return x
 
 #Получить соревнование
 		elif x['cm'] == 'competions.get':
@@ -130,7 +131,9 @@ def process():
 			if not all([i in x for i in ('id')]):
 				return '3'
 
-			return db['competions'].find_one({'_id': x['id']})
+			x = db['competions'].find_one({'_id': x['id']})
+			print(x)
+			return x
 
 		else:
 			return '2'
