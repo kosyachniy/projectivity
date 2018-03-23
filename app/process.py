@@ -20,9 +20,11 @@ def process():
 		return '2'
 
 	try:
+'''
 #Получение публичного ключа
 		if x['cm'] == 'key':
 			return str(str(pubkey.n) + ',' + str(pubkey.e))
+'''
 
 #Регистрация
 		if x['cm'] == 'reg':
@@ -57,7 +59,13 @@ def process():
 			if match('.+@.+\..+', x['mail']) == None:
 				return '7'
 
+			try:
+				id = db['users'].find().sort('id', -1)[0]['id'] + 1
+			except:
+				id = 1
+
 			query = db['users'].insert({
+				'id': id,
 				'login': x['login'],
 				'password': md5(bytes(x['pass'], 'utf-8')).hexdigest(),
 				'mail': x['mail'],
@@ -88,7 +96,7 @@ def process():
 				return '5'
 
 			#print(query[0]['_id'])
-			return '0'
+			return '0' #сессионный код
 
 #Изменение личной информации
 		elif x['cm'] == 'profile':
@@ -104,7 +112,13 @@ def process():
 			if not all([i in x for i in ('name',)]):
 				return '3'
 
+			try:
+				id = db['competions'].find().sort('id', -1)[0]['id'] + 1
+			except:
+				id = 1
+
 			query = db['competions'].insert({
+				'id': x['id'],
 				'name': x['name'],
 				'description': x['description'] if 'description' in x else None,
 				'cont': x['cont'] if 'cont' in x else None,
@@ -118,13 +132,11 @@ def process():
 				'geo': x['geo'] if 'geo' in x else None,
 				'stage': x['stage'] if 'stage' in x else None,
 			})
-			print(query)
-			print(query['_id'])
 			return query
 
 #Получить соревнования
 		elif x['cm'] == 'competions.gets':
-			return dumps([str(i['_id']) for i in db['competions'].find()])
+			return dumps([str(i['id']) for i in db['competions'].find()])
 
 #Получить соревнование
 		elif x['cm'] == 'competions.get':
