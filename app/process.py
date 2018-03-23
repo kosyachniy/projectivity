@@ -100,7 +100,7 @@ def process():
 #Добавление соревнований
 		elif x['cm'] == 'competions.add':
 			#Не все поля заполнены
-			if not all([i in x for i in ('name')]):
+			if not all([i in x for i in ('name',)]):
 				return '3'
 
 			query = db['competions'].insert({
@@ -122,13 +122,14 @@ def process():
 
 #Получить соревнования
 		elif x['cm'] == 'competions.gets':
-			x = db['competions']
+			x = db['competions'].find()
+			print(x)
 			return x
 
 #Получить соревнование
 		elif x['cm'] == 'competions.get':
 			#Не все поля заполнены
-			if not all([i in x for i in ('id')]):
+			if not all([i in x for i in ('id',)]):
 				return '3'
 
 			x = db['competions'].find_one({'_id': x['id']})
