@@ -105,24 +105,24 @@ def process():
 
 			query = db['competions'].insert({
 				'name': x['name'],
-				'description': x['description'],
-				'cont': x['cont'],
-				'time': x['time'],
-				'durability': x['durability'],
-				'author': x['author'],
-				'quantity': x['quantity'],
-				'type': x['type'],
-				'prize': x['prize'],
-				'url': x['url'],
-				'geo': x['geo'],
-				'stage': x['stage'],
+				'description': x['description'] if x['description'] else None,
+				'cont': x['cont'] if x['cont'] else None,
+				'time': x['time'] if x['time'] else None,
+				'durability': x['durability'] if x['durability'] else None,
+				'author': x['author'] if x['author'] else None,
+				'quantity': x['quantity'] if x['quantity'] else None,
+				'type': x['type'] if x['type'] else None,
+				'prize': x['prize'] if x['prize'] else None,
+				'url': x['url'] if x['url'] else None,
+				'geo': x['geo'] if x['geo'] else None,
+				'stage': x['stage'] if x['stage'] else None,
 			})
 			print(query, query['_id'])
 			return query
 
 #Получить соревнования
 		elif x['cm'] == 'competions.gets':
-			x = db['competions'].find()
+			x = [i['_id'] for i in db['competions'].find()]
 			print(x)
 			return x
 
