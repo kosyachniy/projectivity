@@ -91,7 +91,33 @@ def process():
 
 #Изменение личной информации
 		elif x['cm'] == 'profile':
-			pass
+			#Не все поля заполнены
+			if not all([i in x for i in ('name', 'surname')]):
+				return '3'
+
+		pass
+
+#Добавление соревнований
+		elif x['cm'] == 'competions.add':
+			#Не все поля заполнены
+			if not all([i in x for i in ('name')]):
+				return '3'
+
+			query = db['competions'].insert({
+				'name': x['name'],
+				'description': x['description'],
+				'cont': x['cont']
+				'time': x['time'],
+				'durability': x['durability'],
+				'author': x['author'],
+				'quantity': x['quantity'],
+				'type': x['type'],
+				'prize': x['prize'],
+				'url': x['url'],
+				'geo': x['geo'],
+				'stage': x['stage'],
+			})
+			return query
 
 		else:
 			return '2'
