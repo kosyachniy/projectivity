@@ -95,7 +95,7 @@ def process():
 			if not all([i in x for i in ('name', 'surname')]):
 				return '3'
 
-		pass
+			pass
 
 #Добавление соревнований
 		elif x['cm'] == 'competions.add':
@@ -117,7 +117,20 @@ def process():
 				'geo': x['geo'],
 				'stage': x['stage'],
 			})
+			print(query, query['_id'])
 			return query
+
+#Получить соревнования
+		elif x['cm'] == 'competions.gets':
+			return db['competions']
+
+#Получить соревнование
+		elif x['cm'] == 'competions.get':
+			#Не все поля заполнены
+			if not all([i in x for i in ('id')]):
+				return '3'
+
+			return db['competions'].find_one({'_id': x['id']})
 
 		else:
 			return '2'
