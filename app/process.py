@@ -105,17 +105,17 @@ def process():
 
 			query = db['competions'].insert({
 				'name': x['name'],
-				'description': x['description'] if x['description'] else None,
-				'cont': x['cont'] if x['cont'] else None,
-				'time': x['time'] if x['time'] else None,
-				'durability': x['durability'] if x['durability'] else None,
-				'author': x['author'] if x['author'] else None,
-				'quantity': x['quantity'] if x['quantity'] else None,
-				'type': x['type'] if x['type'] else None,
-				'prize': x['prize'] if x['prize'] else None,
-				'url': x['url'] if x['url'] else None,
-				'geo': x['geo'] if x['geo'] else None,
-				'stage': x['stage'] if x['stage'] else None,
+				'description': x['description'] if 'description' in x else None,
+				'cont': x['cont'] if 'cont' in x else None,
+				'time': x['time'] if 'time' in x else None,
+				'durability': x['durability'] if 'durability' in x else None,
+				'author': x['author'] if 'author' in x else None,
+				'quantity': x['quantity'] if 'quantity' in x else None,
+				'type': x['type'] if 'type' in x else None,
+				'prize': x['prize'] if 'prize' in x else None,
+				'url': x['url'] if 'url' in x else None,
+				'geo': x['geo'] if 'geo' in x else None,
+				'stage': x['stage'] if 'stage' in x else None,
 			})
 			print(query, query['_id'])
 			return query
