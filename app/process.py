@@ -132,7 +132,7 @@ def process():
 				'geo': x['geo'] if 'geo' in x else None,
 				'stage': x['stage'] if 'stage' in x else None,
 			})
-			return query
+			return str(id)
 
 #Получить соревнования
 		elif x['cm'] == 'competions.gets':
