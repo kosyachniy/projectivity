@@ -20,11 +20,11 @@ def process():
 		return '2'
 
 	try:
-'''
+		'''
 #Получение публичного ключа
 		if x['cm'] == 'key':
 			return str(str(pubkey.n) + ',' + str(pubkey.e))
-'''
+		'''
 
 #Регистрация
 		if x['cm'] == 'reg':
@@ -136,7 +136,8 @@ def process():
 
 #Получить соревнования
 		elif x['cm'] == 'competions.gets':
-			return dumps([str(i['id']) for i in db['competions'].find()])
+			num = x['num'] if 'num' in x else None
+			return dumps([str(i['id']) for i in db['competions'].sort('id', -1)[0:num]])
 
 #Получить соревнование
 		elif x['cm'] == 'competions.get':
