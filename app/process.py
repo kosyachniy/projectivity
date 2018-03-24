@@ -70,8 +70,7 @@ def process():
 				'password': md5(bytes(x['pass'], 'utf-8')).hexdigest(),
 				'mail': x['mail'],
 			})
-			#print(query)
-			return '0'
+			return 'id%d' % id #сессионный код
 
 #Авторизация
 		elif x['cm'] == 'auth':
@@ -91,12 +90,11 @@ def process():
 			'''
 
 			#Неправильный пароль
-			query = list(db['users'].find({'login': x['login'], 'password': md5(bytes(x['pass'], 'utf-8')).hexdigest()}))
-			if not len(query):
+			query = db['users'].find_one({'login': x['login'], 'password': md5(bytes(x['pass'], 'utf-8')).hexdigest()})
+			if not query:
 				return '5'
 
-			#print(query[0]['_id'])
-			return '0' #сессионный код
+			return 'id%d' % query['id'] #сессионный код
 
 #Изменение личной информации
 		elif x['cm'] == 'profile':
@@ -132,7 +130,7 @@ def process():
 				'geo': x['geo'] if 'geo' in x else None,
 				'stage': x['stage'] if 'stage' in x else None,
 			})
-			return str(id)
+			return 'id%d' % id
 
 #Получить соревнования
 		elif x['cm'] == 'competions.gets':
