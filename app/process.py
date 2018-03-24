@@ -118,7 +118,7 @@ def process():
 				id = 1
 
 			query = db['competions'].insert({
-				'id': x['id'],
+				'id': id,
 				'name': x['name'],
 				'description': x['description'] if 'description' in x else None,
 				'cont': x['cont'] if 'cont' in x else None,
