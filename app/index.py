@@ -10,6 +10,8 @@ def index():
 	x = post('/', json={'cm': 'competions.gets'}).text
 	print(x)
 	competions = json.loads(x)
+	print(competions)
+	return '123'
 
 	'''
 	x = post('/', json={'cm': 'users.gets'}).text

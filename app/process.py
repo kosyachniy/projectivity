@@ -135,7 +135,7 @@ def process():
 #Получить соревнования
 		elif x['cm'] == 'competions.gets':
 			num = x['num'] if 'num' in x else None
-			return dumps([str(i['id']) for i in db['competions'].sort('id', -1)[0:num]])
+			return dumps([str(i['id']) for i in db['competions'].find().sort('id', -1)[0:num]])
 
 #Получить соревнование
 		elif x['cm'] == 'competions.get':
