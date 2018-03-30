@@ -11,10 +11,10 @@ LINK = 'http://167.99.128.56/'
 def index():
 	x = post(LINK, json={'cm': 'competions.gets'}).text
 	print(x)
-	competions = json.loads(x)
+	competions = loads(x)
 	print(competions)
 
-	users = json.loads(post(LINK, json={'cm': 'users.gets'}).text)
+	users = loads(post(LINK, json={'cm': 'users.gets'}).text)
 
 	user = {
 		'login': None,
