@@ -4,24 +4,17 @@ from app import app
 from requests import post
 from json import loads
 
+LINK = 'http://167.99.128.56/'
+
 @app.route('/', methods=['GET'])
 @app.route('/index')
 def index():
-	x = post('/', json={'cm': 'competions.gets'}).text
+	x = post(LINK, json={'cm': 'competions.gets'}).text
 	print(x)
 	competions = json.loads(x)
 	print(competions)
-	return '123'
 
-	'''
-	x = post('/', json={'cm': 'users.gets'}).text
-	print(x)
-	competions = json.loads(x)
-	'''
-	users = [
-		{'name': 'Иван', 'surname': 'Тюрин', 'login': 'ivantt', 'photo': 1},
-		{'name': 'Алексей', 'surname': 'Полоз', 'login': 'kosyachniy', 'photo': 2},
-	]
+	users = json.loads(post(LINK, json={'cm': 'users.gets'}).text)
 
 	user = {
 		'login': None,
