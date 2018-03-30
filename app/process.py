@@ -147,13 +147,13 @@ def process():
 			print(x)
 			return x
 
-		else:
-			return '2'
-
 #Список пользователей
 		elif x['cm'] == 'users.gets':
 			num = x['num'] if 'num' in x else None
-			return dumps([i for i in db['userss'].find().sort('id', -1)[0:num]])
+			return dumps([i for i in db['users'].find().sort('id', -1)[0:num]])
+
+		else:
+			return '2'
 
 	#Серверная ошибка
 	except:
