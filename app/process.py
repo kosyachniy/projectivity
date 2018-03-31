@@ -11,6 +11,10 @@ import rsa
 (pubkey, privkey) = rsa.newkeys(512)
 '''
 
+def del_key(dic, key='_id'):
+	del dic[key]
+	return dic
+
 @app.route('/', methods=['POST'])
 def process():
 	x = request.json
@@ -20,14 +24,8 @@ def process():
 		return '2'
 
 	try:
-		'''
-#Получение публичного ключа
-		if x['cm'] == 'key':
-			return str(str(pubkey.n) + ',' + str(pubkey.e))
-		'''
-
 #Регистрация
-		if x['cm'] == 'reg':
+		if x['cm'] == 'personal.reg':
 			#Не все поля заполнены
 			if not all([i in x for i in ('login', 'pass', 'mail')]):
 				return '3'
@@ -73,7 +71,7 @@ def process():
 			return 'id%d' % id #сессионный код
 
 #Авторизация
-		elif x['cm'] == 'auth':
+		elif x['cm'] == 'personal.auth':
 			#Не все поля заполнены
 			if not all([i in x for i in ('login', 'pass')]):
 				return '3'
@@ -97,7 +95,7 @@ def process():
 			return 'id%d' % query['id'] #сессионный код
 
 #Изменение личной информации
-		elif x['cm'] == 'profile':
+		elif x['cm'] == 'personal.settings':
 			#Не все поля заполнены
 			if not all([i in x for i in ('name', 'surname')]):
 				return '3'
@@ -135,7 +133,7 @@ def process():
 #Получить соревнования
 		elif x['cm'] == 'competions.gets':
 			num = x['num'] if 'num' in x else None
-			return dumps([i for i in db['competions'].find().sort('id', -1)[0:num]]) #str(i['id'])
+			return dumps([del_key(i) for i in db['competions'].find().sort('id', -1)[0:num]]) #str(i['id'])
 
 #Получить соревнование
 		elif x['cm'] == 'competions.get':
@@ -150,7 +148,10 @@ def process():
 #Список пользователей
 		elif x['cm'] == 'users.gets':
 			num = x['num'] if 'num' in x else None
-			return dumps([i for i in db['users'].find().sort('id', -1)[0:num]])
+			return dumps([del_key(i) for i in db['users'].find().sort('id', -1)[0:num]])
+
+#news
+#search
 
 		else:
 			return '2'
