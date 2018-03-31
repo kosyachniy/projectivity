@@ -25,7 +25,7 @@ def process():
 
 	try:
 #Регистрация
-		if x['cm'] == 'personal.reg':
+		if x['cm'] == 'profile.reg':
 			#Не все поля заполнены
 			if not all([i in x for i in ('login', 'pass', 'mail')]):
 				return '3'
@@ -71,7 +71,7 @@ def process():
 			return 'id%d' % id #сессионный код
 
 #Авторизация
-		elif x['cm'] == 'personal.auth':
+		elif x['cm'] == 'profile.auth':
 			#Не все поля заполнены
 			if not all([i in x for i in ('login', 'pass')]):
 				return '3'
@@ -95,7 +95,7 @@ def process():
 			return 'id%d' % query['id'] #сессионный код
 
 #Изменение личной информации
-		elif x['cm'] == 'personal.settings':
+		elif x['cm'] == 'profile.settings':
 			#Не все поля заполнены
 			if not all([i in x for i in ('name', 'surname')]):
 				return '3'
