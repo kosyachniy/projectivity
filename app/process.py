@@ -5,6 +5,7 @@ from mongodb import *
 from re import findall, match
 from hashlib import md5
 from json import dumps
+from random import randint
 
 '''
 import rsa
@@ -14,6 +15,8 @@ import rsa
 def del_key(dic, key='_id'):
 	del dic[key]
 	return dic
+
+generate = lambda length=32: ''.join([chr(randint(48, 123)) for i in range(length)])
 
 @app.route('/', methods=['POST'])
 def process():
@@ -68,7 +71,7 @@ def process():
 				'password': md5(bytes(x['pass'], 'utf-8')).hexdigest(),
 				'mail': x['mail'],
 			})
-			return 'id%d' % id #сессионный код
+			return generate()
 
 #Авторизация
 		elif x['cm'] == 'profile.auth':
@@ -92,7 +95,7 @@ def process():
 			if not query:
 				return '5'
 
-			return 'id%d' % query['id'] #сессионный код
+			return generate()
 
 #Изменение личной информации
 		elif x['cm'] == 'profile.settings':
