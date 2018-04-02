@@ -1,5 +1,5 @@
-from flask import session, request, redirect
-from app import app, LINK
+from flask import session, request, render_template
+from app import app, LINK, get_url
 
 from requests import post
 from time import sleep
@@ -19,6 +19,4 @@ def signin():
 	session['token'] = req
 	session['login'] = x['login']
 
-	x = request.args.get('url')
-	if not x: x = 'competions'
-	return redirect(LINK + x)
+	return get_url(request.args.get('url'))
