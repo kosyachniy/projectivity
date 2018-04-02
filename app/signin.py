@@ -1,7 +1,7 @@
 from flask import session, request
 from app import app
 
-from reqs import post
+from requests import post
 
 LINK = 'http://167.99.128.56/'
 
