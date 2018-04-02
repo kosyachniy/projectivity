@@ -144,7 +144,8 @@ def process():
 			if 'photo' in x:
 				y = max_image('app/static/load/users')
 				file = open('app/static/load/users/%d.jpg' % y, 'wb')
-				file.write(x['photo'].decode('base64'))
+				l = x['photo'].decode('base64')
+				file.write(l)
 				file.close()
 				i['photo'] = y
 
