@@ -26,6 +26,7 @@ font {
 	<form action="signup" method="post">
 		<input type="text" name="name" placeholder="Имя" required>
 		<input type="text" name="surname" placeholder="Фамилия" required>
+		<input type="email" name="login" placeholder="Ник" readonly onfocus="this.removeAttribute('readonly')" required>
 		<input type="email" name="mail" placeholder="Почта" readonly onfocus="this.removeAttribute('readonly')" required>
 		<input type="password" name="pas" placeholder="Пароль" readonly onfocus="this.removeAttribute('readonly')" required>
 		<input type="submit" value="Зарегистрироваться">
@@ -35,8 +36,8 @@ font {
 </div><div class="login">
 	<font>Войти</font>
 	<form action="signin" method="post">
-		<input placeholder="Почта" name="user" required>
-		<input type="password" placeholder="Пароль" name="pas" required>
+		<input placeholder="Логин" name="login" required>
+		<input type="password" placeholder="Пароль" name="pass" required>
 		<input type="submit" value="Войти">
 	</form>
 	<br><br>

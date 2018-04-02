@@ -1,4 +1,4 @@
-from flask import request, jsonify
+from flask import request
 from app import app
 
 import time
@@ -51,6 +51,14 @@ def process():
 			if match('.+@.+\..+', x['mail']) == None:
 				return '7'
 
+			#Неправильное имя
+			if 'name' in x and not x['name'].isalpha():
+				return '9'
+
+			#Неправильная фамилия
+			if 'surname' in x and not x['surname'].isalpha():
+				return '10'
+
 			try:
 				id = db['users'].find().sort('id', -1)[0]['id'] + 1
 			except:
@@ -61,6 +69,8 @@ def process():
 				'login': x['login'],
 				'password': md5(bytes(x['pass'], 'utf-8')).hexdigest(),
 				'mail': x['mail'],
+				'name': x['name'].title() if 'name' in x else None,
+				'surname': x['surname'].title() if 'surname' in x else None,
 			})
 
 			token = generate()
@@ -117,8 +127,8 @@ def process():
 
 			i = db['users'].find_one({'id': id})
 
-			i['name'] = x['name']
-			i['surname'] = x['surname']
+			i['name'] = x['name'].title()
+			i['surname'] = x['surname'].title()
 			i['description'] = x['description'] if 'description' in x else None
 
 			db['users'].save(i)
