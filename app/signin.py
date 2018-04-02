@@ -1,4 +1,4 @@
-from flask import session, request
+from flask import session, request, redirect, url_for
 from app import app
 
 from requests import post
@@ -8,16 +8,17 @@ LINK = 'http://167.99.128.56/'
 
 @app.route('/signin', methods=['POST'])
 def out():
-	x = request.json
-	print(dir(request), request.form.login)
-	sleep(4)
+	x = request.form
+
+	if not all([i in x for i in ('login', 'pass')]):
+		return render_template('message.html', cont='3')
+
 	req = post(LINK, json={'cm': 'profile.auth', 'login': x['login'], 'pass': x['pass']}).text
 
-	if len(req) > 2:
-		session['token'] = req
-		session['login'] = x['login']
+	if len(req) < 3:
+		return render_template('message.html', cont=req)
 
-		return '<script>document.location.href = document.referrer</script>'
+	session['token'] = req
+	session['login'] = x['login']
 
-	else:
-		return req
+	return redirect(url_for('competions')) #'<script>document.location.href = document.referrer</script>'
