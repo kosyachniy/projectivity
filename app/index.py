@@ -1,5 +1,5 @@
 from flask import render_template, session
-from app import app, LINK
+from app import app, LINK, get_user
 
 from requests import post
 from json import loads
@@ -7,13 +7,8 @@ from json import loads
 @app.route('/', methods=['GET'])
 @app.route('/index')
 def index():
-	competions = loads(post(LINK, json={'cm': 'competions.gets'}).text)
-	users = loads(post(LINK, json={'cm': 'users.gets'}).text)
-
-	if 'token' in session:
-		user = {'login': session['login']}
-	else:
-		user = {'login': None}
+	competions = loads(post(LINK, json={'cm': 'competions.gets', 'num': 2}).text)
+	users = loads(post(LINK, json={'cm': 'users.gets', 'num': 2}).text)
 
 	return render_template('index.html',
 		title = 'Главная',
@@ -21,5 +16,5 @@ def index():
 		url = 'index',
 		competions = competions,
 		users = users,
-		user = user,
+		user = get_user(),
 	)

@@ -130,6 +130,10 @@ def process():
 			i['name'] = x['name'].title()
 			i['surname'] = x['surname'].title()
 			i['description'] = x['description'] if 'description' in x else None
+			if 'photo' in x:
+				file = open('app/static/load/users/%d.png' % id, 'wb')
+				file.write(x['photo'])
+				file.close()
 
 			db['users'].save(i)
 			return '0'
@@ -176,6 +180,22 @@ def process():
 				'stage': x['stage'] if 'stage' in x else None,
 			})
 			return 'id%d' % id
+
+#Изменение соревнования
+		elif x['cm'] == 'competions.edit':
+			#Не все поля заполнены
+			if not all([i in x for i in ('token',)]):
+				return '3'
+
+			i = db['tokens'].find_one({'token': x['token']})
+			if i:
+				id = i['id']
+
+			#Несуществует токен
+			else:
+				return '4'
+
+			pass
 
 #Получить соревнования
 		elif x['cm'] == 'competions.gets':
