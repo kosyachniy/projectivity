@@ -1,6 +1,7 @@
 from flask import request, jsonify
 from app import app
 
+import time
 from mongodb import *
 from re import findall, match
 from hashlib import md5
@@ -71,7 +72,11 @@ def process():
 				'password': md5(bytes(x['pass'], 'utf-8')).hexdigest(),
 				'mail': x['mail'],
 			})
-			return generate()
+
+			token = generate()
+			db['tokens'].insert({'login': x['login'], 'token': token, 'time': time.time()})
+
+			return token
 
 #Авторизация
 		elif x['cm'] == 'profile.auth':
@@ -95,15 +100,33 @@ def process():
 			if not query:
 				return '5'
 
-			return generate()
+			token = generate()
+			db['tokens'].insert({'login': x['login'], 'token': token, 'time': time.time()})
+
+			return token
 
 #Изменение личной информации
 		elif x['cm'] == 'profile.settings':
 			#Не все поля заполнены
-			if not all([i in x for i in ('name', 'surname')]):
+			if not all([i in x for i in ('token', 'name', 'surname')]):
 				return '3'
 
 			pass
+
+#Закрытие сесии
+		elif x['cm'] == 'profile.exit':
+			#Не все поля заполнены
+			if not all([i in x for i in ('token')]):
+				return '3'
+
+			i = db['tokens'].find_one({'token': x['token']})
+			if i:
+				db['tokens'].remove(i)
+				return '0'
+
+			#Несуществующий токен ?
+			else:
+				return '4'
 
 #Добавление соревнований
 		elif x['cm'] == 'competions.add':
