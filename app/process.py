@@ -7,12 +7,23 @@ from re import findall, match
 from hashlib import md5
 from json import dumps
 from random import randint
+from os import listdir
 
 def del_key(dic, key='_id'):
 	del dic[key]
 	return dic
 
 generate = lambda length=32: ''.join([chr(randint(48, 123)) for i in range(length)])
+
+def max_image(url):
+	x = listdir(url)
+	i = 0
+	for i in x:
+		if '.jpg' in i:
+			j = int(i.split('.')[0])
+			if j > i:
+				i = j
+	return i+1
 
 @app.route('/', methods=['POST'])
 def process():
@@ -131,9 +142,11 @@ def process():
 			i['surname'] = x['surname'].title()
 			i['description'] = x['description'] if 'description' in x else None
 			if 'photo' in x:
-				file = open('app/static/load/users/%d.png' % id, 'wb')
+				x = max_image('app/static/load/users')
+				file = open('app/static/load/users/%d.jpg' % x, 'wb')
 				file.write(x['photo'])
 				file.close()
+				i['photo'] = x
 
 			db['users'].save(i)
 			return '0'

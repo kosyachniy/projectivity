@@ -10,5 +10,5 @@ def login():
 		title = 'Логин', #Аккаунт
 		description = 'Регистрация / авторизация',
 		url = request.args.get('url'),
-		user = user,
+		user = get_user(),
 	)
