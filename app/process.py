@@ -142,11 +142,11 @@ def process():
 			i['surname'] = x['surname'].title()
 			i['description'] = x['description'] if 'description' in x else None
 			if 'photo' in x:
-				x = max_image('app/static/load/users')
-				file = open('app/static/load/users/%d.jpg' % x, 'wb')
+				y = max_image('app/static/load/users')
+				file = open('app/static/load/users/%d.jpg' % y, 'wb')
 				file.write(x['photo'])
 				file.close()
-				i['photo'] = x
+				i['photo'] = y
 
 			db['users'].save(i)
 			return '0'
