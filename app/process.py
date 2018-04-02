@@ -74,7 +74,7 @@ def process():
 			})
 
 			token = generate()
-			db['tokens'].insert({'token': token, 'id': x['id'], 'time': time.time()})
+			db['tokens'].insert({'token': token, 'id': id, 'time': time.time()})
 
 			return token
 
