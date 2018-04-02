@@ -8,11 +8,6 @@ from hashlib import md5
 from json import dumps
 from random import randint
 
-'''
-import rsa
-(pubkey, privkey) = rsa.newkeys(512)
-'''
-
 def del_key(dic, key='_id'):
 	del dic[key]
 	return dic
@@ -47,11 +42,6 @@ def process():
 			#Почта зарегистрирована
 			if len(list(db['users'].find({'mail': x['mail']}))):
 				return '8'
-
-			'''
-			x['pass'], = rsa.decrypt(x['pass'], privkey)
-			print(x['pass'],)
-			'''
 
 			#Недопустимый пароль
 			if not 6 <= len(x['pass']) <= 40 or len(findall('[^a-zA-z0-9!@#$%^&*()-_+=;:,./?\|`~\[\]{}]', x['pass'])) or not len(findall('[a-zA-Z]', x['pass'])) or not len(findall('[0-9]', x['pass'])):
@@ -89,11 +79,6 @@ def process():
 			#Логин не существует
 			if not len(list(db['users'].find({'login': x['login']}))):
 				return '4'
-
-			'''
-			x['pass'] = rsa.decrypt(x['pass'], privkey)
-			print(x['pass'])
-			'''
 
 			i = db['users'].find_one({'login': x['login'], 'password': md5(bytes(x['pass'], 'utf-8')).hexdigest()})
 			if i:

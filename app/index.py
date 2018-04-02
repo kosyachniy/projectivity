@@ -1,4 +1,4 @@
-from flask import render_template
+from flask import render_template, session
 from app import app
 
 from requests import post
@@ -9,16 +9,13 @@ LINK = 'http://167.99.128.56/'
 @app.route('/', methods=['GET'])
 @app.route('/index')
 def index():
-	x = post(LINK, json={'cm': 'competions.gets'}).text
-	print(x)
-	competions = loads(x)
-	print(competions)
-
+	competions = loads(post(LINK, json={'cm': 'competions.gets'}).text)
 	users = loads(post(LINK, json={'cm': 'users.gets'}).text)
 
-	user = {
-		'login': None,
-	}
+	if 'token' in session:
+		user = {'login': session['login']}
+	else:
+		user = {'login': None}
 
 	return render_template('index.html',
 		#title = 'Главная',
