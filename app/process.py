@@ -74,7 +74,7 @@ def process():
 			})
 
 			token = generate()
-			db['tokens'].insert({'login': x['login'], 'token': token, 'time': time.time()})
+			db['tokens'].insert({'token': token, 'id': x['id'], 'time': time.time()})
 
 			return token
 
@@ -95,13 +95,16 @@ def process():
 			print(x['pass'])
 			'''
 
+			i = db['users'].find_one({'login': x['login'], 'password': md5(bytes(x['pass'], 'utf-8')).hexdigest()})
+			if i:
+				id = i['id']
+
 			#Неправильный пароль
-			query = db['users'].find_one({'login': x['login'], 'password': md5(bytes(x['pass'], 'utf-8')).hexdigest()})
-			if not query:
+			else:
 				return '5'
 
 			token = generate()
-			db['tokens'].insert({'login': x['login'], 'token': token, 'time': time.time()})
+			db['tokens'].insert({'token': token, 'id': id, 'time': time.time()})
 
 			return token
 
@@ -111,12 +114,35 @@ def process():
 			if not all([i in x for i in ('token', 'name', 'surname')]):
 				return '3'
 
-			pass
+			i = db['tokens'].find_one({'token': x['token']})
+			if i:
+				id = i['id']
+
+			#Несуществует токен
+			else:
+				return '4'
+
+			#Неправильное имя
+			if not x['name'].isalpha():
+				return '5'
+
+			#Неправильная фамилия
+			if not x['surname'].isalpha():
+				return '6'
+
+			i = db['users'].find_one({'id': id})
+
+			i['name'] = x['name']
+			i['surname'] = x['surname']
+			i['description'] = x['description'] if 'description' in x else None
+
+			db['users'].save(i)
+			return '0'
 
 #Закрытие сесии
 		elif x['cm'] == 'profile.exit':
 			#Не все поля заполнены
-			if not all([i in x for i in ('token')]):
+			if not all([i in x for i in ('token',)]):
 				return '3'
 
 			i = db['tokens'].find_one({'token': x['token']})
