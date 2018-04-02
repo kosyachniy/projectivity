@@ -1,14 +1,13 @@
 from flask import request
 from app import app
 
-import time
+import time, base64
 from mongodb import *
 from re import findall, match
 from hashlib import md5
 from json import dumps
 from random import randint
 from os import listdir
-import re
 
 def del_key(dic, key='_id'):
 	del dic[key]
@@ -145,11 +144,7 @@ def process():
 			if 'photo' in x:
 				y = max_image('app/static/load/users')
 				file = open('app/static/load/users/%d.jpg' % y, 'wb')
-
-				l = re.search(r'base64,(.*)',x['photo']).group(1)
-				l = l.decode('base64')
-				print(l)
-				file.write(l)
+				file.write(base64.b64decode(x['photo']))
 				file.close()
 				i['photo'] = y
 
