@@ -54,7 +54,7 @@ function change() {
 {% if user.login %}
 <a href="/cabinet">{{user.login}}</a> &nbsp;<a href="/out" class="del">Выйти</a>
 {% else %}
-<a class="del">Гость &nbsp;</a><a href="/login">Войти</a>
+<a class="del">Гость &nbsp;</a><a href="/login{% if url %}?url={{ url }}{% endif %}">Войти</a>
 {% endif %}
 
 		</div>

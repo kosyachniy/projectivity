@@ -1,10 +1,8 @@
-from flask import session, request, redirect, url_for
-from app import app
+from flask import session, request, redirect
+from app import app, LINK
 
 from requests import post
 from time import sleep
-
-LINK = 'http://167.99.128.56/'
 
 @app.route('/signin', methods=['POST'])
 def signin():
@@ -21,4 +19,6 @@ def signin():
 	session['token'] = req
 	session['login'] = x['login']
 
-	return redirect(url_for('competions')) #'<script>document.location.href = document.referrer</script>'
+	x = request.args.get('url')
+	if not x: x = 'competions'
+	return redirect(LINK + x)

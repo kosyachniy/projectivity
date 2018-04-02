@@ -1,10 +1,8 @@
 from flask import render_template, session
-from app import app
+from app import app, LINK
 
 from requests import post
 from json import loads
-
-LINK = 'http://167.99.128.56/'
 
 @app.route('/', methods=['GET'])
 @app.route('/index')
@@ -18,8 +16,9 @@ def index():
 		user = {'login': None}
 
 	return render_template('index.html',
-		#title = 'Главная',
-		#description = '',
+		title = 'Главная',
+		description = '',
+		url = 'index',
 		competions = competions,
 		users = users,
 		user = user,

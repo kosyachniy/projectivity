@@ -23,7 +23,7 @@ font {
 
 <div class="login">
 	<font>Зарегистрироваться</font>
-	<form action="signup" method="post">
+	<form action="signup{% if url %}?url={{ url }}{% endif %}" method="post">
 		<input type="text" name="name" placeholder="Имя" required>
 		<input type="text" name="surname" placeholder="Фамилия" required>
 		<input type="email" name="login" placeholder="Ник" readonly onfocus="this.removeAttribute('readonly')" required>
@@ -35,7 +35,7 @@ font {
 	Нажимая кнопку "Зарегистрироваться", Вы автоматически соглашаетесь с <a href="privacy" style="color: blue;">условиями сайта</a>.
 </div><div class="login">
 	<font>Войти</font>
-	<form action="signin" method="post">
+	<form action="signin{% if url %}?url={{ url }}{% endif %}" method="post">
 		<input placeholder="Логин" name="login" required>
 		<input type="password" placeholder="Пароль" name="pass" required>
 		<input type="submit" value="Войти">

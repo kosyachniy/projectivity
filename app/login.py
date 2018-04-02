@@ -1,10 +1,8 @@
-from flask import render_template, session
-from app import app
+from flask import render_template, session, request
+from app import app, LINK
 
 from requests import post
 from json import loads
-
-LINK = 'http://167.99.128.56/'
 
 @app.route('/login')
 def login():
@@ -18,5 +16,6 @@ def login():
 	return render_template('login.html',
 		title = 'Логин', #Аккаунт
 		description = 'Регистрация / авторизация',
+		url = request.args.get('url'),
 		user = user,
 	)
