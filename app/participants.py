@@ -1,5 +1,5 @@
 from flask import render_template, session
-from app import app, LINK, get_user
+from app import app, LINK
 
 from requests import post
 from json import loads
