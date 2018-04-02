@@ -2,7 +2,7 @@ from flask import session, request
 from app import app
 
 from requests import post
-from toime import sleep
+from time import sleep
 
 LINK = 'http://167.99.128.56/'
 
