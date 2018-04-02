@@ -2,12 +2,15 @@ from flask import session, request
 from app import app
 
 from requests import post
+from toime import sleep
 
 LINK = 'http://167.99.128.56/'
 
 @app.route('/signin', methods=['POST'])
 def out():
 	x = request.json
+	print(request, x)
+	sleep(4)
 	req = post(LINK, json={'cm': 'profile.auth', 'login': x['login'], 'pass': x['pass']}).text
 
 	if len(req) > 2:
