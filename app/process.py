@@ -143,6 +143,10 @@ def process():
 			i['description'] = x['description'] if 'description' in x else None
 			if 'photo' in x:
 				x = max_image('app/static/load/users')
+				print(x)
+				time.sleep(5)
+				print(x[0], x[1], x[2])
+				time.sleep(5)
 				file = open('app/static/load/users/%d.jpg' % x, 'wb')
 				file.write(x['photo'])
 				file.close()
