@@ -7,7 +7,7 @@ from time import sleep
 LINK = 'http://167.99.128.56/'
 
 @app.route('/signup', methods=['POST'])
-def out():
+def signup():
 	x = request.form
 
 	if not all([i in x for i in ('login', 'pass', 'name', 'surname', 'mail')]):
