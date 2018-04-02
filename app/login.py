@@ -1,4 +1,4 @@
-from flask import render_template, request
+from flask import render_template, session, request
 from app import app, get_user
 
 from requests import post
@@ -10,5 +10,5 @@ def login():
 		title = 'Логин', #Аккаунт
 		description = 'Регистрация / авторизация',
 		url = request.args.get('url'),
-		user = get_user(),
+		user = {'login': session['login'] if 'token' in session else None},
 	)

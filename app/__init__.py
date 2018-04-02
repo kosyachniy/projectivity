@@ -1,4 +1,4 @@
-from flask import Flask, session, redirect
+from flask import Flask, redirect
 
 app = Flask(__name__)
 app.config.from_object('config')
@@ -9,12 +9,6 @@ def get_url(url):
 	if not url: url = 'competions'
 	if url == 'index': url = ''
 	return redirect(LINK + url)
-
-def get_user():
-	if 'token' in session:
-		user = {'login': session['login']}
-	else:
-		user = {'login': None}
 
 from app import process
 from app import index

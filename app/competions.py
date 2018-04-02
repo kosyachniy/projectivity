@@ -1,4 +1,4 @@
-from flask import render_template
+from flask import render_template, session
 from app import app, LINK, get_user
 
 from requests import post
@@ -13,5 +13,5 @@ def competions():
 		description = 'Соревнования, хакатоны, стартапы, конкурсы, олимпиады, конференции, проекты',
 		url = 'competions',
 		competions = x,
-		user = get_user(),
+		user = {'login': session['login'] if 'token' in session else None},
 	)

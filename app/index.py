@@ -1,4 +1,4 @@
-from flask import render_template
+from flask import render_template, session
 from app import app, LINK, get_user
 
 from requests import post
@@ -16,5 +16,5 @@ def index():
 		url = 'index',
 		competions = competions,
 		users = users,
-		user = get_user(),
+		user = {'login': session['login'] if 'token' in session else None},
 	)

@@ -1,4 +1,4 @@
-from flask import render_template
+from flask import render_template, session
 from app import app, LINK, get_user
 
 from requests import post
@@ -13,5 +13,5 @@ def participants():
 		description = 'Участники, набор команды, поиск людей в команду',
 		url = 'competions',
 		users = x,
-		user = get_user(),
+		user = {'login': session['login'] if 'token' in session else None},
 	)
