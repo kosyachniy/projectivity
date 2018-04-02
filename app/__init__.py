@@ -24,3 +24,4 @@ from app import signin
 from app import out
 from app import errors
 from app import competions
+from app import participants
