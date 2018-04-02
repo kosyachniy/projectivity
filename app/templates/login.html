@@ -26,7 +26,7 @@ font {
 	<form action="signup{% if url %}?url={{ url }}{% endif %}" method="post">
 		<input type="text" name="name" placeholder="Имя" required>
 		<input type="text" name="surname" placeholder="Фамилия" required>
-		<input type="email" name="login" placeholder="Ник" readonly onfocus="this.removeAttribute('readonly')" required>
+		<input type="text" name="login" placeholder="Ник" readonly onfocus="this.removeAttribute('readonly')" required>
 		<input type="email" name="mail" placeholder="Почта" readonly onfocus="this.removeAttribute('readonly')" required>
 		<input type="password" name="pas" placeholder="Пароль" readonly onfocus="this.removeAttribute('readonly')" required>
 		<input type="submit" value="Зарегистрироваться">
