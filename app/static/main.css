@@ -222,12 +222,6 @@ input[type="file"] {border: 0;}
 	margin: 40px 0 40px 5vw;
 }
 
-.notes1 .back {
-	width: 100%;
-	height: 100%;
-	background: rgba(0, 0, 0, 0.6);
-}
-
 .notes1 a > div {
 	width: 50%;
 	height: 22vw;
@@ -238,6 +232,12 @@ input[type="file"] {border: 0;}
 	-o-background-size: 100%;
 	background-size: 100%;
 	text-align: center;
+}
+
+.notes1 .back {
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.6);
 }
 
 .notes1 .title {
@@ -288,13 +288,6 @@ input[type="file"] {border: 0;}
 	margin: 40px 0 40px 5vw;
 }
 
-.notes2 .back {
-	width: 100%;
-	height: 40%;
-	margin: 60% 0 0 0;
-	background: rgba(0, 0, 0, 0.6);
-}
-
 .notes2 a > div {
 	width: 28vw;
 	height: 15vw;
@@ -304,6 +297,14 @@ input[type="file"] {border: 0;}
 	-o-background-size: 100%;
 	background-size: 100%;
 	margin: 20px 1vw 0 1vw;
+}
+
+.notes2 .back {
+	width: calc(100% - 2vw);
+	height: 40%;
+	margin: 60% 0 0 0;
+	background: rgba(0, 0, 0, 0.6);
+	padding: 10px 1vw 10px 1vw;
 }
 
 .notes2 table {
@@ -318,6 +319,7 @@ input[type="file"] {border: 0;}
 .notes2 td:first-child {
 	width: 90%;
 	font-size: 1.5vw;
+	color: #fff;
 }
 
 .notes2 td:last-child {
@@ -334,8 +336,17 @@ input[type="file"] {border: 0;}
 	}
 
 	.notes2 a > div {
+		margin: 0;
 		width: 100%;
 		height: 38vw;
+	}
+
+	.notes2 td:first-child {
+		font-size: 7vw;
+	}
+
+	.notes2 td:last-child {
+		font-size: 10vw;
 	}
 }
 
