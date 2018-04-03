@@ -215,20 +215,20 @@ input[type="file"] {border: 0;}
 }
 
 
-/* Статьи */
+/* Статьи 1го порядка */
 
-.notes {
+.notes1 {
 	width: 90vw;
 	margin: 40px 0 40px 5vw;
 }
 
-.note-back {
+.notes1 .back {
 	width: 100%;
 	height: 100%;
 	background: rgba(0, 0, 0, 0.6);
 }
 
-.notes a > div {
+.notes1 a > div {
 	width: 50%;
 	height: 22vw;
 	line-height: 22vw;
@@ -240,7 +240,7 @@ input[type="file"] {border: 0;}
 	text-align: center;
 }
 
-.notes .title {
+.notes1 .title {
 	color: #fff;
 	font-size: 3vw;
 	line-height: 3vw;
@@ -249,7 +249,7 @@ input[type="file"] {border: 0;}
 	padding: 0 10px 0 10px;
 }
 
-.notes .title div {
+.notes1 .title div {
 	padding: 0 20px 0 20px;
 	font-size: 1.5vw;
 	line-height: 1.6vw;
@@ -257,24 +257,24 @@ input[type="file"] {border: 0;}
 }
 
 @media all and (max-width: 650px) {
-	.notes {
+	.notes1 {
 		width: 100vw;
 		margin: 0;
 	}
 
-	.notes a > div {
+	.notes1 a > div {
 		width: 100%;
 		height: 56vw;
 		line-height: 56vw;
 	}
 
-	.notes .title {
+	.notes1 .title {
 		font-size: 7vw;
 		line-height: 7vw;
 		font-weight: bold;
 	}
 
-	.notes .title div {
+	.notes1 .title div {
 		font-weight: normal;
 		font-size: 4.5vw;
 		line-height: 4.5vw;
@@ -283,67 +283,59 @@ input[type="file"] {border: 0;}
 
 /* Статьи 2го порядка */
 
-.articles {
+.notes2 {
 	width: 90vw;
 	margin: 40px 0 40px 5vw;
 }
 
-.article-back {
+.notes2 .back {
 	width: 100%;
 	height: 40%;
 	margin: 60% 0 0 0;
 	background: rgba(0, 0, 0, 0.6);
 }
 
-.articles a > div {
+.notes2 a > div {
 	width: 28vw;
 	height: 15vw;
-	line-height: 7vw;
 	background: no-repeat;
 	-moz-background-size: 100%;
 	-webkit-background-size: 100%;
 	-o-background-size: 100%;
 	background-size: 100%;
+	margin: 20px 1vw 0 1vw;
 }
 
-.title {
-	color: #fff;
-	font-size: 3vw;
-	line-height: 3vw;
-	text-align: center;
-	vertical-align: middle;
-	padding: 0 10px 0 10px;
+.notes2 table {
+	width: 100%;
+	border: 0;
 }
 
-.title div {
-	padding: 0 20px 0 20px;
+.notes2 tr, .notes td {
+	border: 0;
+}
+
+.notes2 td:first-child {
+	width: 90%;
 	font-size: 1.5vw;
-	line-height: 1.6vw;
-	display: block;
+}
+
+.notes2 td:last-child {
+	width: 10%;
+	text-align: right;
+	font-size: 4vw;
+	color: #3cc051;
 }
 
 @media all and (max-width: 650px) {
-	.notes {
-		width: 100vw;
+	.notes2 {
+		width: 100%;
 		margin: 0;
 	}
 
-	.notes a > div {
+	.notes2 a > div {
 		width: 100%;
-		height: 56vw;
-		line-height: 56vw;
-	}
-
-	.title {
-		font-size: 7vw;
-		line-height: 7vw;
-		font-weight: bold;
-	}
-
-	.title div {
-		font-weight: normal;
-		font-size: 4.5vw;
-		line-height: 4.5vw;
+		height: 38vw;
 	}
 }
 

@@ -226,7 +226,7 @@ def process():
 			return x
 
 #Список пользователей
-		elif x['cm'] == 'users.gets':
+		elif x['cm'] == 'participants.gets':
 			num = x['num'] if 'num' in x else None
 			return dumps([del_key(i) for i in db['users'].find().sort('id', -1)[0:num]])
 

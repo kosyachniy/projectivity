@@ -4,10 +4,10 @@
 <div class="info" onclick="change(this);">↑ Нажми на лого ↑</div>
 
 <h2 class="title2">Соревнования</h2>
-<div class="notes">
+<div class="notes1">
 
 {% for i in competions %}<a href="{{i.id}}"><div style="background-image: url(static/load/competions/{{i.id}}.jpg);">
-	<div class="note-back">
+	<div class="back">
 		<div class="title">
 			{{i.name}}
 			<div>{{i.author}}</div>

@@ -4,10 +4,10 @@
 <div class="info" onclick="change(this);">↑ Нажми на лого ↑</div>
 
 <h2 class="title2"><a href="competions">Соревнования &nbsp; &nbsp; <font color="blue">Смотреть все ></font></a></h2>
-<div class="notes">
+<div class="notes1">
 
 {% for i in competions %}<a href="{{i.id}}"><div style="background-image: url(static/load/competions/{{i.id}}.jpg);">
-	<div class="note-back">
+	<div class="back">
 		<div class="title">
 			{{i.name}}
 			<div>{{i.author}}</div>
@@ -18,14 +18,16 @@
 </div>
 
 <h2 class="title2"><a href="participants">Участники &nbsp; &nbsp; <font color="blue">Смотреть все ></font></a></h2>
-<div class="notes">
+<div class="notes2">
 
 {% for i in users %}<a href="{{i.login}}"><div style="background-image: url(static/load/users/{{i.photo}}.jpg);">
-	<div class="note-back">
-		<div class="title">
-			{{i.name}} {{i.surname}}
-			<div>{{i.login}}</div>
-		</div>
+	<div class="back">
+		<table>
+			<tr>
+				<td>{{i.name}} {{i.surname}}</td>
+				<td>0</td>
+			</tr>
+		</table>
 	</div>
 </div></a>{% endfor %}
 
