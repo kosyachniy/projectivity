@@ -142,6 +142,8 @@ def process():
 			i['surname'] = x['surname'].title()
 			i['description'] = x['description'] if 'description' in x else None
 			if 'photo' in x:
+				with open('1.txt', 'w') as file:
+					print(x['photo'], file=file)
 				y = max_image('app/static/load/users')
 				file = open('app/static/load/users/%d.jpg' % y, 'wb')
 				file.write(base64.b64decode(x['photo']))
