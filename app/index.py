@@ -8,7 +8,7 @@ from json import loads
 @app.route('/index')
 def index():
 	competions = loads(post(LINK, json={'cm': 'competions.gets', 'num': 2}).text)
-	users = loads(post(LINK, json={'cm': 'users.gets', 'num': 2}).text)
+	users = loads(post(LINK, json={'cm': 'participants.gets', 'num': 2}).text)
 
 	return render_template('index.html',
 		title = 'Главная',

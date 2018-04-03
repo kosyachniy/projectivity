@@ -6,7 +6,7 @@ from json import loads
 
 @app.route('/participants')
 def participants():
-	x = loads(post(LINK, json={'cm': 'users.gets'}).text)
+	x = loads(post(LINK, json={'cm': 'participants.gets'}).text)
 
 	return render_template('participants.html',
 		title = 'Участники',
