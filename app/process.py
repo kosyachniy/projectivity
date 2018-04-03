@@ -138,12 +138,14 @@ def process():
 
 			i = db['users'].find_one({'id': id})
 
-			i['name'] = x['name'].title()
-			i['surname'] = x['surname'].title()
-			i['description'] = x['description'] if 'description' in x else None
+			if 'name' in x: i['name'] = x['name'].title()
+			if 'surname' in x: i['surname'] = x['surname'].title()  
+			if 'description' in x: i['description'] = x['description']
 			if 'photo' in x:
-				with open('1.txt', 'w') as file:
-					print(str(x['photo']), file=file)
+				print(type(x['photo']))
+				time.sleep(5)
+				with open('1.txt', 'wb') as file:
+					print(x['photo'], file=file)
 				y = max_image('app/static/load/users')
 				file = open('app/static/load/users/%d.jpg' % y, 'wb')
 				file.write(base64.b64decode(x['photo']))
