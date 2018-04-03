@@ -20,7 +20,7 @@
 <h2 class="title2"><a href="participants">Участники &nbsp; &nbsp; <font color="blue">Смотреть все ></font></a></h2>
 <div class="notes2">
 
-{% for i in users %}<a href="{{i.login}}"><div style="background-image: url(static/load/users/{{i.photo}}.jpg);">
+{% for i in users %}<a href="{{i.login}}"><div style="background-image: url(static/{% if i.photo %}load/users/{{i.photo}}{% else %}photo{% endif %}.jpg);">
 	<div class="back">
 		<table>
 			<tr>

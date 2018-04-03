@@ -17,13 +17,13 @@ generate = lambda length=32: ''.join([chr(randint(48, 123)) for i in range(lengt
 
 def max_image(url):
 	x = listdir(url)
-	i = 0
+	k = 0
 	for i in x:
 		if '.jpg' in i:
 			j = int(i.split('.')[0])
-			if j > i:
-				i = j
-	return i+1
+			if j > k:
+				k = j
+	return k+1
 
 @app.route('/', methods=['POST'])
 def process():
