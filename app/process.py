@@ -117,7 +117,7 @@ def process():
 #Изменение личной информации
 		elif x['cm'] == 'profile.settings':
 			#Не все поля заполнены
-			if not all([i in x for i in ('token', 'name', 'surname')]):
+			if not all([i in x for i in ('token',)]):
 				return '3'
 
 			i = db['tokens'].find_one({'token': x['token']})
@@ -143,10 +143,6 @@ def process():
 			if 'description' in x: i['description'] = x['description']
 			if 'photo' in x:
 				z = base64.b64decode(x['photo'])
-				print('!', type(z))
-				time.sleep(10)
-				print('!!', z)
-				time.sleep(10)
 				y = max_image('app/static/load/users')
 				with open('app/static/load/users/%d.jpg' % y, 'wb') as file:
 					file.write(z)
