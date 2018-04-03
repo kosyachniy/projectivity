@@ -142,14 +142,14 @@ def process():
 			if 'surname' in x: i['surname'] = x['surname'].title()  
 			if 'description' in x: i['description'] = x['description']
 			if 'photo' in x:
-				print(type(x['photo']))
-				time.sleep(5)
-				with open('app/static/1.txt', 'w') as file:
-					print(str(x['photo']), file=file)
+				z = base64.b64decode(x['photo'])
+				print('!', type(z))
+				time.sleep(10)
+				print('!!', z)
+				time.sleep(10)
 				y = max_image('app/static/load/users')
-				file = open('app/static/load/users/%d.jpg' % y, 'wb')
-				file.write(base64.b64decode(x['photo']))
-				file.close()
+				with open('app/static/load/users/%d.jpg' % y, 'wb') as file:
+					file.write(z)
 				i['photo'] = y
 
 			db['users'].save(i)
