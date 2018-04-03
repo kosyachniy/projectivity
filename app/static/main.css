@@ -198,6 +198,23 @@ input[type="file"] {border: 0;}
 	}
 }
 
+/* Заголовки 2 */
+
+.title2 {
+	margin: 20px 0 0 2.5vmax;
+}
+
+.title2 font {
+	white-space: nowrap;
+}
+
+@media all and (max-width: 650px) {
+	.title2 {
+		margin: 20px 0 20px 20px;
+	}
+}
+
+
 /* Статьи */
 
 .notes {
@@ -205,20 +222,10 @@ input[type="file"] {border: 0;}
 	margin: 40px 0 40px 5vw;
 }
 
-.back {
+.note-back {
 	width: 100%;
 	height: 100%;
 	background: rgba(0, 0, 0, 0.6);
-}
-
-.title-notes {
-	margin: 20px 0 0 2.5vmax;
-}
-
-@media all and (max-width: 650px) {
-	.title-notes {
-		margin: 20px 0 20px 20px;
-	}
 }
 
 .notes a > div {
@@ -231,6 +238,72 @@ input[type="file"] {border: 0;}
 	-o-background-size: 100%;
 	background-size: 100%;
 	text-align: center;
+}
+
+.notes .title {
+	color: #fff;
+	font-size: 3vw;
+	line-height: 3vw;
+	text-align: center;
+	vertical-align: middle;
+	padding: 0 10px 0 10px;
+}
+
+.notes .title div {
+	padding: 0 20px 0 20px;
+	font-size: 1.5vw;
+	line-height: 1.6vw;
+	display: block;
+}
+
+@media all and (max-width: 650px) {
+	.notes {
+		width: 100vw;
+		margin: 0;
+	}
+
+	.notes a > div {
+		width: 100%;
+		height: 56vw;
+		line-height: 56vw;
+	}
+
+	.notes .title {
+		font-size: 7vw;
+		line-height: 7vw;
+		font-weight: bold;
+	}
+
+	.notes .title div {
+		font-weight: normal;
+		font-size: 4.5vw;
+		line-height: 4.5vw;
+	}
+}
+
+/* Статьи 2го порядка */
+
+.articles {
+	width: 90vw;
+	margin: 40px 0 40px 5vw;
+}
+
+.article-back {
+	width: 100%;
+	height: 40%;
+	margin: 60% 0 0 0;
+	background: rgba(0, 0, 0, 0.6);
+}
+
+.articles a > div {
+	width: 28vw;
+	height: 15vw;
+	line-height: 7vw;
+	background: no-repeat;
+	-moz-background-size: 100%;
+	-webkit-background-size: 100%;
+	-o-background-size: 100%;
+	background-size: 100%;
 }
 
 .title {
@@ -272,4 +345,18 @@ input[type="file"] {border: 0;}
 		font-size: 4.5vw;
 		line-height: 4.5vw;
 	}
+}
+
+/* Информационное сообщение */
+
+.info {
+	width: 100vw;
+	color: #505050;
+	font-size: 15px;
+	text-align: center;
+	margin: 10px 0 -10px 0;
+}
+
+@media all and (min-width: 480px) {
+	.info {display: none;}
 }

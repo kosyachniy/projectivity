@@ -1,27 +1,13 @@
 {% extends "main.html" %}
 {% block cont %}
 
-<style type="text/css">
-.info {
-	width: 100vw;
-	color: #505050;
-	font-size: 15px;
-	text-align: center;
-	margin: 10px 0 -10px 0;
-}
-
-@media all and (min-width: 480px) {
-	.info {display: none;}
-}
-</style>
-
 <div class="info" onclick="change(this);">↑ Нажми на лого ↑</div>
 
-<h2 class="title-notes">Соревнования</h2>
+<h2 class="title2">Соревнования</h2>
 <div class="notes">
 
 {% for i in competions %}<a href="{{i.id}}"><div style="background-image: url(static/load/competions/{{i.id}}.jpg);">
-	<div class="back">
+	<div class="note-back">
 		<div class="title">
 			{{i.name}}
 			<div>{{i.author}}</div>
