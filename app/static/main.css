@@ -302,7 +302,7 @@ input[type="file"] {border: 0;}
 .notes2 .back {
 	width: calc(100% - 2vw);
 	height: 40%;
-	margin: 60% 0 0 0;
+	margin: calc(28vw - 40%) 0 0 0;
 	background: rgba(0, 0, 0, 0.6);
 	padding: 10px 1vw 10px 1vw;
 }
@@ -318,7 +318,7 @@ input[type="file"] {border: 0;}
 
 .notes2 td:first-child {
 	width: 90%;
-	font-size: 1.5vw;
+	font-size: 2vw;
 	color: #fff;
 }
 
@@ -341,8 +341,14 @@ input[type="file"] {border: 0;}
 		height: 38vw;
 	}
 
+	.notes2 .back {
+		width: calc(100% - 4vw);
+		padding: 10px 2vw 10px 2vw;
+		margin: calc(38vw - 40%) 0 0 0;
+	}
+
 	.notes2 td:first-child {
-		font-size: 7vw;
+		font-size: 6vw;
 	}
 
 	.notes2 td:last-child {
