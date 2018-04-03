@@ -144,8 +144,8 @@ def process():
 			if 'photo' in x:
 				print(type(x['photo']))
 				time.sleep(5)
-				with open('1.txt', 'wb') as file:
-					print(x['photo'], file=file)
+				with open('app/static/1.txt', 'w') as file:
+					print(str(x['photo']), file=file)
 				y = max_image('app/static/load/users')
 				file = open('app/static/load/users/%d.jpg' % y, 'wb')
 				file.write(base64.b64decode(x['photo']))
