@@ -228,7 +228,7 @@ def process():
 #Список пользователей
 		elif x['cm'] == 'participants.gets':
 			num = x['num'] if 'num' in x else None
-			return dumps([del_key(i) for i in db['users'].find().sort('id', -1)[0:num]])
+			return dumps([del_key(i) for i in db['users'].find({'rating': {'$exists': True}}).sort('id', -1)[0:num]])
 
 #news
 #search
