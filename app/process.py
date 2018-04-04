@@ -14,6 +14,7 @@ def del_key(dic, key='_id'):
 	return dic
 
 generate = lambda length=32: ''.join([chr(randint(48, 123)) for i in range(length)])
+on = lambda x, y: all([i in x for i in y])
 
 def max_image(url):
 	x = listdir(url)
@@ -25,6 +26,8 @@ def max_image(url):
 				k = j
 	return k+1
 
+#! сделать функцию загрузки изображений
+
 @app.route('/', methods=['POST'])
 def process():
 	x = request.json
@@ -33,11 +36,13 @@ def process():
 	if 'cm' not in x:
 		return '2'
 
+	#! вынести определение пользователя
+
 	try:
 #Регистрация
 		if x['cm'] == 'profile.reg':
 			#Не все поля заполнены
-			if not all([i in x for i in ('login', 'pass', 'mail')]):
+			if not on(x, ('login', 'pass', 'mail')):
 				return '3'
 
 			x['login'] = x['login'].lower()
@@ -75,13 +80,14 @@ def process():
 			except:
 				id = 1
 
-			query = db['users'].insert({
+			db['users'].insert({
 				'id': id,
 				'login': x['login'],
 				'password': md5(bytes(x['pass'], 'utf-8')).hexdigest(),
 				'mail': x['mail'],
 				'name': x['name'].title() if 'name' in x else None,
 				'surname': x['surname'].title() if 'surname' in x else None,
+				'rating': 0,
 			})
 
 			token = generate()
@@ -92,7 +98,7 @@ def process():
 #Авторизация
 		elif x['cm'] == 'profile.auth':
 			#Не все поля заполнены
-			if not all([i in x for i in ('login', 'pass')]):
+			if not on(x, ('login', 'pass')):
 				return '3'
 
 			x['login'] = x['login'].lower()
@@ -117,7 +123,7 @@ def process():
 #Изменение личной информации
 		elif x['cm'] == 'profile.settings':
 			#Не все поля заполнены
-			if not all([i in x for i in ('token',)]):
+			if not on(x, ('token',)):
 				return '3'
 
 			i = db['tokens'].find_one({'token': x['token']})
@@ -141,20 +147,30 @@ def process():
 			if 'name' in x: i['name'] = x['name'].title()
 			if 'surname' in x: i['surname'] = x['surname'].title()  
 			if 'description' in x: i['description'] = x['description']
-			if 'photo' in x:
-				z = base64.b64decode(x['photo'])
-				y = max_image('app/static/load/users')
-				with open('app/static/load/users/%d.jpg' % y, 'wb') as file:
-					file.write(z)
-				i['photo'] = y
-
 			db['users'].save(i)
+
+			if 'photo' in x:
+				try:
+					z = base64.b64decode(x['photo'])
+
+				#Ошибка загрузки фотографии
+				except:
+					return '7'
+
+				else:
+					y = max_image('app/static/load/users')
+					with open('app/static/load/users/%d.jpg' % y, 'wb') as file:
+						file.write(z)
+
+					i['photo'] = y
+					db['users'].save(i)
+
 			return '0'
 
-#Закрытие сесии
+#Закрытие сессии
 		elif x['cm'] == 'profile.exit':
 			#Не все поля заполнены
-			if not all([i in x for i in ('token',)]):
+			if not on(x, ('token',)):
 				return '3'
 
 			i = db['tokens'].find_one({'token': x['token']})
@@ -162,14 +178,14 @@ def process():
 				db['tokens'].remove(i)
 				return '0'
 
-			#Несуществующий токен ?
+			#? Несуществующий токен
 			else:
 				return '4'
 
 #Добавление соревнований
 		elif x['cm'] == 'competions.add':
 			#Не все поля заполнены
-			if not all([i in x for i in ('name',)]):
+			if not on(x, ('name',)):
 				return '3'
 
 			try:
@@ -177,7 +193,35 @@ def process():
 			except:
 				id = 1
 
-			query = db['competions'].insert({
+			user = None
+			if 'token' in x:
+				i = db['tokens'].find_one({'token': x['token']})
+				if i: user = [i['id'],]
+
+			#Сделать загрузку фото после сохранения соревнования
+			if 'images' in x:
+				images = []
+				for i in x['images']
+					try:
+						z = base64.b64decode(i)
+
+					#Ошибка загрузки изображения
+					except:
+						return '4'
+
+					else:
+						y = max_image('app/static/load/competions')
+						with open('app/static/load/competions/%d.jpg' % y, 'wb') as file:
+							file.write(z)
+
+						images.append(y)
+			else:
+				images = []
+
+			#! вынести добавление полей в for
+
+
+			db['competions'].insert({
 				'id': id,
 				'name': x['name'],
 				'description': x['description'] if 'description' in x else None,
@@ -191,34 +235,56 @@ def process():
 				'url': x['url'] if 'url' in x else None,
 				'geo': x['geo'] if 'geo' in x else None,
 				'stage': x['stage'] if 'stage' in x else None,
+				'images': images,
+				'owners': user,
 			})
 			return 'id%d' % id
 
 #Изменение соревнования
 		elif x['cm'] == 'competions.edit':
 			#Не все поля заполнены
-			if not all([i in x for i in ('token',)]):
+			if not on(x, ('token', 'id')):
 				return '3'
 
 			i = db['tokens'].find_one({'token': x['token']})
 			if i:
 				id = i['id']
 
+				i = db['users'].find_one({'id': id})
+				admin = i['admin'] if 'admin' in i else 0
+
 			#Несуществует токен
 			else:
 				return '4'
+
+			i = db['competions'].find_one({'id': x['id']})
+			if i:
+				owners = i['owners']
+
+			#Несуществующий конкурс
+			else:
+				return '5'
+
+			#Нет прав на редактирование соревнования
+			if not admin and id not in owners:
+				return '6'
 
 			pass
 
 #Получить соревнования
 		elif x['cm'] == 'competions.gets':
 			num = x['num'] if 'num' in x else None
-			return dumps([del_key(i) for i in db['competions'].find().sort('id', -1)[0:num]]) #str(i['id'])
+
+			competions = []
+			for i in db['competions'].find().sort('id', -1)[0:num]:
+				del i['owners'] #! добавить индикатор есть-нет право на редактирование
+				competions.append(i)
+			return dumps([del_key(i) ]) #str(i['id'])
 
 #Получить соревнование
 		elif x['cm'] == 'competions.get':
 			#Не все поля заполнены
-			if not all([i in x for i in ('id',)]):
+			if not on(x, ('id',)):
 				return '3'
 
 			x = db['competions'].find_one({'id': x['id']})
