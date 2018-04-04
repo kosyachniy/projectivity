@@ -43,7 +43,11 @@ def process():
 	if 'cm' not in x:
 		return '2'
 
-	#! вынести определение пользователя
+	#Определение пользователя
+	if 'token' in x:
+		user = db['tokens'].find_one({'token': x['token']})
+	else:
+		user = None
 
 	try:
 #Регистрация
@@ -196,9 +200,7 @@ def process():
 				id = 1
 
 			if 'owners' in x: del x['owners']
-			if 'token' in x:
-				i = db['tokens'].find_one({'token': x['token']})
-				if i: x['owners'] = [i['id'],]
+			if user: x['owners'] = [user,]
 
 			query = {'id': id}
 			for i in ('name', 'description', 'cont', 'time', 'durability', 'author', 'quantity', 'type', 'prize', 'url', 'geo', 'stage', 'owners'):
@@ -242,9 +244,9 @@ def process():
 			else:
 				return '4'
 
-			i = db['competions'].find_one({'id': x['id']})
-			if i:
-				owners = i['owners']
+			query = db['competions'].find_one({'id': x['id']})
+			if query:
+				owners = query['owners']
 
 			#Несуществующий конкурс
 			else:
@@ -254,8 +256,30 @@ def process():
 			if not admin and id not in owners:
 				return '6'
 
-			#! добавлять пользователей, которые могут редактировать
-			pass
+			#! owners - добавлять пользователей, которые могут редактировать
+
+			for i in ('name', 'description', 'cont', 'time', 'durability', 'author', 'quantity', 'type', 'prize', 'url', 'geo', 'stage'): #, 'owners'
+				if i in x: query[i] = x[i]
+			db['competions'].save(query)
+
+			if 'images' in x:
+				images = []
+
+				for i in x['images']:
+					try:
+						image = load_image('app/static/load/competions', i)
+
+					#Ошибка загрузки изображения
+					except:
+						return '7'
+
+					else:
+						images.append(image)
+
+				query['images'] = images
+				db['competions'].save(query)
+
+			return '0'
 
 #Получить соревнования
 		elif x['cm'] == 'competions.gets':
@@ -264,8 +288,10 @@ def process():
 			competions = []
 			for i in db['competions'].find().sort('id', -1)[0:num]:
 				del i['owners'] #! добавить индикатор есть-нет право на редактирование
+				del i['_id']
+
 				competions.append(i)
-			return dumps([del_key(i) ]) #str(i['id'])
+			return dumps(competions)
 
 #Получить соревнование
 		elif x['cm'] == 'competions.get':
