@@ -6,7 +6,7 @@
 <h2 class="title2"><a href="competions">Соревнования &nbsp; &nbsp; <font color="blue">Смотреть все ></font></a></h2>
 <div class="notes1">
 
-{% for i in competions %}<a href="{{i.id}}"><div style="background-image: url(static/load/competions/{{i.id}}.jpg);">
+{% for i in competions %}<a href="competions/{{i.id}}"><div style="background-image: url(static/load/competions/{{i.id}}.jpg);">
 	<div class="back">
 		<div class="title">
 			{{i.name}}
@@ -20,7 +20,7 @@
 <h2 class="title2"><a href="participants">Участники &nbsp; &nbsp; <font color="blue">Смотреть все ></font></a></h2>
 <div class="notes2">
 
-{% for i in users %}<a href="{{i.login}}"><div style="background-image: url(static/{% if i.photo %}load/users/{{i.photo}}{% else %}photo{% endif %}.jpg);">
+{% for i in users %}<a href="participants/{{i.login}}"><div style="background-image: url(static/{% if i.photo %}load/users/{{i.photo}}{% else %}photo{% endif %}.jpg);">
 	<div class="back">
 		<table>
 			<tr>

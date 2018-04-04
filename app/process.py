@@ -287,7 +287,7 @@ def process():
 
 			competions = []
 			for i in db['competions'].find().sort('id', -1)[0:num]:
-				del i['owners'] #! добавить индикатор есть-нет право на редактирование
+				if 'owners' in i: del i['owners'] #! добавить индикатор есть-нет право на редактирование
 				del i['_id']
 
 				competions.append(i)

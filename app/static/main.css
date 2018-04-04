@@ -305,7 +305,7 @@ input[type="file"] {border: 0;}
 
 .notes2 .back {
 	width: calc(100% - 2vw);
-	height: 4vw;
+	height: calc(6vw - 20px);
 	margin: 9vw 0 0 0;
 	background: rgba(0, 0, 0, 0.6);
 	padding: 10px 1vw 10px 1vw;
@@ -347,9 +347,9 @@ input[type="file"] {border: 0;}
 
 	.notes2 .back {
 		width: calc(100% - 4vw);
-		padding: 10px 2vw 10px 2vw;
+		padding: 20px 2vw 20px 2vw;
 		margin: 24vw 0 0 0;
-		height: 12vw;
+		height: calc(16vw - 40px);
 	}
 
 	.notes2 td:first-child {
