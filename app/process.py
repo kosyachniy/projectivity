@@ -307,8 +307,8 @@ def process():
 			for i in db['users'].find({'rating': {'$exists': True}}).sort('id', -1)[0:num]:
 				del i['password']
 				del i['_id']
-				del i['description']
 				del i['mail']
+				if 'description' in i: del i['description']
 
 				participants.append(i)
 			return dumps(participants)
