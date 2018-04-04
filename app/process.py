@@ -10,10 +10,6 @@ from random import randint
 from os import listdir
 
 
-def del_key(dic, key='_id'):
-	del dic[key]
-	return dic
-
 generate = lambda length=32: ''.join([chr(randint(48, 123)) for i in range(length)])
 on = lambda x, y: all([i in x for i in y])
 
@@ -306,7 +302,16 @@ def process():
 #Список пользователей
 		elif x['cm'] == 'participants.gets':
 			num = x['num'] if 'num' in x else None
-			return dumps([del_key(i) for i in db['users'].find({'rating': {'$exists': True}}).sort('id', -1)[0:num]])
+
+			participants = []
+			for i in db['users'].find({'rating': {'$exists': True}}).sort('id', -1)[0:num]:
+				del i['password']
+				del i['_id']
+				del i['description']
+				del i['mail']
+
+				participants.append(i)
+			return dumps(participants)
 
 #Получить участника
 		elif x['cm'] == 'participants.get':
@@ -321,6 +326,7 @@ def process():
 
 			if 'admin' in query: del query['admin']
 			del query['password']
+			del query['_id']
 
 			return dumps(query)
 
