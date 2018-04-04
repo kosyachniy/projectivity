@@ -4,12 +4,13 @@
 body {
 	margin: 0;
 	padding: 55px 0 0 0;
-	font: 19px Myriad; /* Arsenal-Bold Helvetica Arial Calibri */
+	font: 19px Myriad; /* Arsenal-Bold Helvetica Arial Calibri Avenir Next Regular */
 }
 
-hr {border: 1px solid #000; width: 100% - 2px;}
+hr {border: 1px solid #000; width: 100%;}
 a, a:hover, a:active, a:visited {text-decoration: none; color: #000;}
 table, tr, td {border: 1px solid #000 border-collapse: collapse;}
+td {vertical-align: top;}
 
 /* Отступы */
 
@@ -191,7 +192,7 @@ input[type="file"] {border: 0;}
 .menu {
 	height: 40px;
 	position: relative;
-	z-index: 10;
+	z-index: 8;
 }
 
 .menu div {
