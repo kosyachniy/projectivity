@@ -9,6 +9,7 @@ from json import dumps
 from random import randint
 from os import listdir
 
+
 def del_key(dic, key='_id'):
 	del dic[key]
 	return dic
@@ -26,7 +27,13 @@ def max_image(url):
 				k = j
 	return k+1
 
-#! сделать функцию загрузки изображений
+def load_image(url, data):
+	data = base64.b64decode(data)
+	id = max_image(url)
+	with open(url+'/%d.jpg' % id, 'wb') as file:
+		file.write(data)
+	return id
+
 
 @app.route('/', methods=['POST'])
 def process():
@@ -151,19 +158,14 @@ def process():
 
 			if 'photo' in x:
 				try:
-					z = base64.b64decode(x['photo'])
+					photo = load_image('app/static/load/users', x['photo'])
 
 				#Ошибка загрузки фотографии
 				except:
 					return '7'
 
 				else:
-					y = max_image('app/static/load/users')
-					with open('app/static/load/users/%d.jpg' % y, 'wb') as file:
-						file.write(z)
-
-					i['photo'] = y
-					db['users'].save(i)
+					db['users'].save(photo)
 
 			return '0'
 
@@ -193,51 +195,34 @@ def process():
 			except:
 				id = 1
 
-			user = None
+			if 'owners' in x: del x['owners']
 			if 'token' in x:
 				i = db['tokens'].find_one({'token': x['token']})
-				if i: user = [i['id'],]
+				if i: x['owners'] = [i['id'],]
 
-			#Сделать загрузку фото после сохранения соревнования
+			query = {'id': id}
+			for i in ('name', 'description', 'cont', 'time', 'durability', 'author', 'quantity', 'type', 'prize', 'url', 'geo', 'stage', 'owners'):
+				if i in x: query[i] = x[i]
+			db['competions'].insert(query)
+
 			if 'images' in x:
 				images = []
-				for i in x['images']
+
+				for i in x['images']:
 					try:
-						z = base64.b64decode(i)
+						image = load_image('app/static/load/competions', i)
 
 					#Ошибка загрузки изображения
 					except:
 						return '4'
 
 					else:
-						y = max_image('app/static/load/competions')
-						with open('app/static/load/competions/%d.jpg' % y, 'wb') as file:
-							file.write(z)
+						images.append(image)
 
-						images.append(y)
-			else:
-				images = []
+				query = db['competions'].find_one({'id': id}) #оптимизировать
+				query['images'] = images
+				db['competions'].save(query)
 
-			#! вынести добавление полей в for
-
-
-			db['competions'].insert({
-				'id': id,
-				'name': x['name'],
-				'description': x['description'] if 'description' in x else None,
-				'cont': x['cont'] if 'cont' in x else None,
-				'time': x['time'] if 'time' in x else None,
-				'durability': x['durability'] if 'durability' in x else None,
-				'author': x['author'] if 'author' in x else None,
-				'quantity': x['quantity'] if 'quantity' in x else None,
-				'type': x['type'] if 'type' in x else None,
-				'prize': x['prize'] if 'prize' in x else None,
-				'url': x['url'] if 'url' in x else None,
-				'geo': x['geo'] if 'geo' in x else None,
-				'stage': x['stage'] if 'stage' in x else None,
-				'images': images,
-				'owners': user,
-			})
 			return 'id%d' % id
 
 #Изменение соревнования
@@ -269,6 +254,7 @@ def process():
 			if not admin and id not in owners:
 				return '6'
 
+			#! добавлять пользователей, которые могут редактировать
 			pass
 
 #Получить соревнования
