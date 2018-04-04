@@ -11,7 +11,7 @@ def participants():
 	return render_template('participants.html',
 		title = 'Участники',
 		description = 'Участники, набор команды, поиск людей в команду',
-		url = 'competions',
+		url = 'participants',
 		users = x,
 		user = {'login': session['login'] if 'token' in session else None},
 	)

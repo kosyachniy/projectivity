@@ -1,0 +1,31 @@
+{% extends "main.html" %}
+{% block cont %}
+
+<style>
+image {width: 200px;}
+</style>
+
+<h2 class="title2">Личная информация</h2>
+<table>
+	<tr>
+		<td>
+			<image src="static/load/users/{{i.id}}.jpg">
+		</td>
+		<td>
+			{{i.name}} {{i.surname}} &nbsp; (@{{i.login}})<br>
+			Почта: {{i.mail}}<br>
+			Рейтинг: {{i.rating}}
+		</td>
+	</tr>
+</table>
+
+<h2 class="title2">Описание</h2>
+{{i.description}}<br>
+
+<h2 class="title2">История</h2>
+<история соревнований><br>
+
+<h2 class="title2">Ещё</h2>
+<список пользователей><br>
+
+{% endblock %}

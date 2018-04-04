@@ -308,6 +308,22 @@ def process():
 			num = x['num'] if 'num' in x else None
 			return dumps([del_key(i) for i in db['users'].find({'rating': {'$exists': True}}).sort('id', -1)[0:num]])
 
+#Получить участника
+		elif x['cm'] == 'participants.get':
+			#Не все поля заполнены
+			if not on(x, ('id',)) and not on(x, ('login',)):
+				return '3'
+
+			if 'id' in x:
+				query = db['users'].find_one({'id': x['id']})
+			else:
+				query = db['users'].find_one({'login': x['login']})
+
+			if 'admin' in query: del query['admin']
+			del query['password']
+
+			return dumps(query)
+
 #news
 #search
 

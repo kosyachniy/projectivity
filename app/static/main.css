@@ -347,13 +347,13 @@ input[type="file"] {border: 0;}
 
 	.notes2 .back {
 		width: calc(100% - 4vw);
-		padding: 20px 2vw 20px 2vw;
+		padding: 10px 2vw 10px 2vw;
 		margin: 24vw 0 0 0;
-		height: calc(16vw - 40px);
+		height: calc(16vw - 20px);
 	}
 
 	.notes2 td:first-child {
-		font-size: 6vw;
+		font-size: 5vw;
 	}
 
 	.notes2 td:last-child {
