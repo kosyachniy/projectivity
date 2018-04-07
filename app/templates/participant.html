@@ -2,11 +2,11 @@
 {% block cont %}
 
 <style>
-img {width: 200px;}
+.profile img {width: 200px;}
 </style>
 
 <h2 class="title2">Личная информация</h2>
-<table>
+<table class="profile">
 	<tr>
 		<td>
 			<img src="/static/{% if participant.photo %}load/users/{{participant.photo}}{% else %}photo{% endif %}.jpg">

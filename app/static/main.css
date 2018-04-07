@@ -91,6 +91,7 @@ input[type="file"] {border: 0;}
 .header img {
 	height: 100%;
 	margin: 0 1.7vw 0 1.7vw;
+	cursor: pointer;
 }
 
 .header a div, .expand div {
@@ -112,6 +113,7 @@ input[type="file"] {border: 0;}
 	left: 55vw;
 	top: 0;
 	z-index: 10;
+	display: block;
 }
 
 .expand div {
@@ -182,14 +184,11 @@ input[type="file"] {border: 0;}
 
 .menu {
 	width: 90vw;
-	border: 1px solid;
+	border: 1px solid #000;
 	border-radius: 15px;
 	font-size: 20px;
 	text-align: center;
 	margin: 20px 0 0 5vw;
-}
-
-.menu {
 	height: 40px;
 	position: relative;
 	z-index: 8;
