@@ -201,6 +201,8 @@ def process():
 			query = {'id': id}
 			for i in ('name', 'description', 'cont', 'time', 'durability', 'author', 'quantity', 'type', 'prize', 'url', 'geo', 'stage', 'owners'):
 				if i in x: query[i] = x[i]
+
+			query['show'] = 0
 			db['competions'].insert(query)
 
 			if 'images' in x:
@@ -251,6 +253,8 @@ def process():
 			#Нет прав на редактирование соревнования
 			if not admin and id not in owners:
 				return '6'
+
+			#Подтверждения соревнования от имени админов или официальных представительств
 
 			#! owners - добавлять пользователей, которые могут редактировать
 

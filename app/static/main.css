@@ -422,3 +422,12 @@ input[type="file"] {border: 0;}
 @media all and (min-width: 480px) {
 	.info {display: none;}
 }
+
+/* Блоки 
+
+.block {
+	width: 90vw;
+	margin: 0 0 0 5vw;
+}
+
+*/

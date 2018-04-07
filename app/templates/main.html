@@ -28,12 +28,16 @@ Projectivity
 
 </head>
 <body>
-	<script type="text/javascript">
+	<script>
 function change() {
-	if (document.getElementById('menu').style.display == 'block')
-		document.getElementById('menu').style.display = 'none';
-	else
-		document.getElementById('menu').style.display = 'block';
+	if (screen.width <= 480) {
+		if (document.getElementById('menu').style.display == 'block')
+			document.getElementById('menu').style.display = 'none';
+		else
+			document.getElementById('menu').style.display = 'block';
+	} else {
+		document.location.href = '/';
+	}
 }
 	</script>
 
