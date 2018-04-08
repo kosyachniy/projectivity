@@ -1,17 +1,19 @@
-from flask import render_template, session, request
-from app import app
+from flask import render_template, session, request, redirect
+from app import app, LINK
 
 from requests import post
 from json import loads
 
 @app.route('/cabinet')
 def cabinet():
-	#получить параметры
-	#получить пользователя
+	if 'token' in session:
+		return render_template('cabinet.html',
+			title = 'Личный кабинет',
+			description = 'Личный кабинет, настройки, аккаунт, профиль',
+			url = 'cabinet',
+			user = {'login': session['login']},
+			profile = loads(post(LINK, json={'cm': 'participants.get', 'token': session['token']}).text),
+		)
 
-	return render_template('cabinet.html',
-		title = 'Личный кабинет',
-		description = 'Личный кабинет, настройки, аккаунт, профиль',
-		url = 'cabinet',
-		user = {'login': session['login'] if 'token' in session else None},
-	)
+	else:
+		return redirect(LINK + 'login?url=cabinet')

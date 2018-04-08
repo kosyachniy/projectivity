@@ -5,8 +5,8 @@ app.config.from_object('config')
 
 LINK = 'http://167.99.128.56/'
 
-def get_url(url):
-	if not url: url = 'competions'
+def get_url(url, rep='competions'):
+	if not url: url = rep
 	if url == 'index': url = ''
 	return redirect(LINK + url)
 

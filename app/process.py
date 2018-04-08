@@ -41,7 +41,7 @@ def process():
 
 	#Определение пользователя
 	if 'token' in x:
-		user = db['tokens'].find_one({'token': x['token']})
+		user = db['tokens'].find_one({'token': x['token']})['id']
 	else:
 		user = None
 
@@ -320,13 +320,15 @@ def process():
 #Получить участника
 		elif x['cm'] == 'participants.get':
 			#Не все поля заполнены
-			if not on(x, ('id',)) and not on(x, ('login',)):
+			if not on(x, ('id',)) and not on(x, ('login',)) and not user:
 				return '3'
 
 			if 'id' in x:
 				query = db['users'].find_one({'id': x['id']})
-			else:
+			elif 'login' in x:
 				query = db['users'].find_one({'login': x['login']})
+			else:
+				query = db['users'].find_one({'id': user})
 
 			if 'admin' in query: del query['admin']
 			del query['password']
