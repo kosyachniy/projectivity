@@ -14,4 +14,9 @@ def competions():
 		url = 'competions',
 		competions = x,
 		user = {'login': session['login'] if 'token' in session else None},
+		organizer = ('Яндекс', 'Mail.Ru', 'CSC', 'Epam', 'Changellenge', 'Google', 'Microsoft', 'Intel'),
+		specialization = ('IT', 'Бизнес-задачи', 'Смешанные'),
+		type = ('Хакатон', 'Стажировка', 'Конференция', 'Стартап', 'Олимпиада'),
+		city = ('Санкт-Петербург', 'Москва'),
+		stage = ('Отборочный', 'Полуфинал', 'Финал'),
 	)
