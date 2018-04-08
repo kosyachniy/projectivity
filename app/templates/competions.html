@@ -4,8 +4,15 @@
 <div class="info" onclick="change(this);">↑ Нажми на лого ↑</div>
 
 <div class="menu">
-	<div>Организатор{% for i in organizer %}<a href=""><div>{{i}}</div></a>{% endfor %}</div><div>Специализация{% for i in specialization %}<a href=""><div>{{i}}</div></a>{% endfor %}</div><div id="del">Тип{% for i in type %}<a href=""><div>{{i}}</div></a>{% endfor %}</div><div id="del">Город{% for i in city %}<a href=""><div>{{i}}</div></a>{% endfor %}</div><div>Этап{% for i in stage %}<a href=""><div>{{i}}</div></a>{% endfor %}</div>
+	<div>Организатор{% for i in organizer %}<a href="?org={{i}}"><div>{{i}}</div></a>{% endfor %}</div><div>Специализация{% for i in specialization %}<a href="?spec={{i}}"><div>{{i}}</div></a>{% endfor %}</div><div id="del">Тип{% for i in type %}<a href="?type={{i}}"><div>{{i}}</div></a>{% endfor %}</div><div id="del">Город{% for i in city %}<a href="?city={{i}}"><div>{{i}}</div></a>{% endfor %}</div><div>Этап{% for i in stage %}<a href="?stage={{i}}"><div>{{i}}</div></a>{% endfor %}</div>
 </div>
+<div class="c7">
+	<div class="c8">
+		<form action="/sys/search.php" method="post"><input placeholder="Поиск" name="search"></form>
+	</div><div onclick="change(this);" class="c2">
+		<div>Расширенный поиск</div>
+	</div><div style="display: none;" class="c4">
+</div></div>
 
 <h2 class="title2">Соревнования</h2>
 <div class="notes1">
