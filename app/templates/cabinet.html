@@ -4,14 +4,14 @@
 <h2 class="title2">Обновить аватарку</h2>
 <загрузка изображений><br>
 
-<form action="settings{% if url %}?url={{ url }}{% endif %}" method="post">
+<form action="settings?url={{url}}" method="post">
 
 <h2 class="title2">Личная информация</h2>
 	<input type="text" name="name" {% if profile.name %}value="{{profile.name}}"{% else %}placeholder="Имя"{% endif %}>
 	<input type="text" name="surname" {% if profile.surname %}value="{{profile.surname}}"{% else %}placeholder="Фамилия"{% endif %}>
 
 <h2 class="title2">Описание</h2>
-	<textarea name="description" placeholder="Имя">{% if profile.description %}{{profile.description}}{% endif %}</textarea>
+	<textarea name="description" placeholder="Описание">{% if profile.description %}{{profile.description}}{% endif %}</textarea>
 
 <h2 class="title2">Контакты</h2>
 	<input type="text" name="mail" value="{{profile.mail}}">

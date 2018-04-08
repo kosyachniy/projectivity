@@ -21,3 +21,4 @@ from app import competions
 from app import participants
 from app import participant
 from app import cabinet
+from app import settings

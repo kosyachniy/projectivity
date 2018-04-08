@@ -1,8 +1,7 @@
-from flask import session, request, render_template
-from app import app, LINK, get_url
+from flask import session, request, render_template, redirect
+from app import app, LINK
 
 from requests import post
-from time import sleep
 
 @app.route('/signup', methods=['POST'])
 def signup():
@@ -19,4 +18,4 @@ def signup():
 	session['token'] = req
 	session['login'] = x['login']
 
-	return get_url(request.args.get('url'))
+	return redirect(LINK + 'cabinet?url=' + request.args.get('url'))

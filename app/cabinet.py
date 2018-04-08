@@ -6,11 +6,13 @@ from json import loads
 
 @app.route('/cabinet')
 def cabinet():
+	x = request.args.get('url')
+
 	if 'token' in session:
 		return render_template('cabinet.html',
 			title = 'Личный кабинет',
 			description = 'Личный кабинет, настройки, аккаунт, профиль',
-			url = 'cabinet',
+			url = x if x else 'cabinet',
 			user = {'login': session['login']},
 			profile = loads(post(LINK, json={'cm': 'participants.get', 'token': session['token']}).text),
 		)
