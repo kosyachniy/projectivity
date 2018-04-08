@@ -4,7 +4,7 @@
 <div class="info" onclick="change(this);">↑ Нажми на лого ↑</div>
 
 <div class="menu">
-	<div>Специализация<a href=""><div>IT</div></a><a href=""><div>Менеджмент</div></a><a href=""><div>Искусство</div></a><a href=""><div>Экономика</div></a><a href=""><div>Химия</div></a><a href=""><div>Физика</div></a><a href=""><div>Математика</div></a><a href=""><div>История</div></a></div><div>Город<a href=""><div>Санкт-Петербург</div></a><a href=""><div>Москва</div></a></div><div>Опыт<a href=""><div>Участие в конкурсах</div></a><a href=""><div>Призовые места</div></a><a href=""><div>Первые места</div></a><a href=""><div>Имеет работу</div></a></div><div id="del">Тип участия<a href=""><div>Хакатон</div></a><a href=""><div>Стажировка</div></a><a href=""><div>Конференция</div></a><a href=""><div>Стартап</div></a><a href=""><div>Олимпиада</div></a></div><div id="del">Рейтинг<a><div>Раздел в разработке</div></a></div>
+	<div>Специализация{% for i in specialization %}<a href=""><div>{{i}}</div></a>{% endfor %}</div><div>Город{% for i in city %}<a href=""><div>{{i}}</div></a>{% endfor %}</div><div>Опыт{% for i in experience %}<a href=""><div>{{i}}</div></a>{% endfor %}</div><div id="del">Тип участия{% for i in type %}<a href=""><div>{{i}}</div></a>{% endfor %}</div><div id="del">Рейтинг{% if rating %}{% for i in rating %}<a href=""><div>{{i}}</div></a>{% endfor %}{% else %}<a><div>Раздел в разработке</div></a>{% endif %}</div>
 </div>
 <!--
 <div class="c7">

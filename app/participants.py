@@ -14,4 +14,9 @@ def participants():
 		url = 'participants',
 		users = x,
 		user = {'login': session['login'] if 'token' in session else None},
+		specialization = ('IT', 'Менеджмент', 'Искусство', 'Экономика', 'Химия', 'Физика', 'Математика', 'История'),
+		city = ('Санкт-Петербург', 'Москва'),
+		experience = ('Участие в конкурсах', 'Призовые места', 'Первые места', 'Имеет работу'),
+		type = ('Хакатон', 'Стажировка', 'Конференция', 'Стартап', 'Олимпиада'),
+		rating = None,
 	)

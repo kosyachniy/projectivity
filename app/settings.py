@@ -16,7 +16,7 @@ def settings():
 
 	req = post(LINK, json=req).text
 
-	if len(req) < 3:
+	if req != '0' and len(req) < 3:
 		return render_template('message.html', cont=req)
 
 	return get_url(request.args.get('url'))
