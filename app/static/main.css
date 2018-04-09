@@ -234,11 +234,25 @@ input[type="file"] {border: 0;}
 
 /* Расширение меню */
 
-.exp-menu {border: 1px solid #000; border-radius: 15px;}
+.exp-menu {
+	width: 100%;
+	border: 1px solid #000;
+	border-radius: 0 0 15px 15px;
+	border-top: 0;
+}
 
-.exp-menu div {height: 30px; padding: 10px 0 0 0;}
+.exp-menu div {
+	height: 30px;
+	padding: 10px 10px 0 10px;
+}
 
-.exp-menu input {border: 0 0 0 1px; border-radius: 0;}
+.exp-menu input {
+	border: 0;
+	border-radius: 0;
+	border-left: 1px solid #000;
+	margin: 0;
+	padding: 10px 0 0 0;
+}
 
 /* Списки */
 
