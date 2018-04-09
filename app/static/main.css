@@ -255,7 +255,7 @@ input[type="file"] {border: 0;}
 	padding: 10px 10px 8px 10px;
 }
 
-.exp-menu form input:last-child {border-radius: 0 0 15px 0;}
+.exp-menu input:last-child {border-radius: 0 0 15px 0;}
 
 /* Списки */
 
