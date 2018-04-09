@@ -391,7 +391,7 @@ input[type="file"] {border: 0;}
 	border: 0;
 }
 
-.notes2 tr, .notes td {
+.notes2 tr, .notes2 td {
 	border: 0;
 }
 
@@ -444,8 +444,8 @@ input[type="file"] {border: 0;}
 }
 
 .notes3 a > div {
-	width: 16vw;
-	height: 16vw;
+	width: 14vw;
+	height: 14vw;
 	margin: 2vw;
 	background: no-repeat;
 	-moz-background-size: 100%;
@@ -462,7 +462,7 @@ input[type="file"] {border: 0;}
 	background: rgba(0, 0, 0, 0.6);
 	text-align: center;
 	color: #fff;
-	font-size: 1.8vw;
+	font-size: 1.6vw;
 	vertical-align: middle;
 	display: flex;
 	align-items: center;
