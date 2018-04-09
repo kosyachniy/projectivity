@@ -6,6 +6,7 @@
 </style>
 
 <h2 class="title2">Личная информация</h2>
+<div class="block">
 <table class="profile">
 	<tr>
 		<td>
@@ -18,16 +19,23 @@
 		</td>
 	</tr>
 </table>
+</div>
 
 {% if participant.description %}
 <h2 class="title2">Описание</h2>
+<div class="block">
 {{participant.description}}<br>
+</div>
 {% endif %}
 
 <h2 class="title2">История</h2>
+<div class="block">
 <история соревнований><br>
+</div>
 
 <h2 class="title2">Ещё</h2>
+<div class="block">
 <список пользователей><br>
+</div>
 
 {% endblock %}

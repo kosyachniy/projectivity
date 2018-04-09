@@ -6,29 +6,42 @@
 </style>
 
 <h2 class="title2">Информация</h2>
+<div class="block">
 {% for i in competion.photo %}<img src="/static/load/competions/{{i}}.jpg">{% endfor %}
 
 {{competion.name}} &nbsp; (id: {{competion.id}})<br>
-{% if competion.url %}<a href="{{competion.url}}">{{competion.url}}</a><br>{% endif %}<br>
-{% if competion.description %}{{competion.description}}<br><br>{% endif %}
-{% if competion.cont %}{{competion.cont}}<br>{% endif %}
+{% if competion.url %}<a href="{{competion.url}}">{{competion.url}}</a><br>{% endif %}
+{% if competion.description %}<br>{{competion.description}}<br>{% endif %}
+{% if competion.cont %}<br>{{competion.cont}}<br>{% endif %}
+</div>
 
-<h2 class="title2">О соревновании</h2>
+{% if competion.type or competion.stage or competion.quantity or competion.prize %}<h2 class="title2">О соревновании</h2>
+<div class="block">
 {% if competion.type %}{{competion.type}}<br>{% endif %}
 {% if competion.stage %}Этап: {{competion.stage}}<br>{% endif %}
 {% if competion.quantity %}Количество участников: {{competion.quantity}}<br>{% endif %}
 {% if competion.prize %}Главный приз: {{competion.prize}}<br>{% endif %}
+</div>
+{% endif %}
 
+{% if competion.time or competion.durability or competion.geo %}
 <h2 class="title2">Проведение</h2>
+<div class="block">
 {% if competion.time %}Начало: {{competion.time}}<br>{% endif %}
 {% if competion.durability %}Длительность: {{competion.durability}}<br>{% endif %}
 {% if competion.geo %}Место проведения: {{competion.geo}}<br>{% endif %}
+</div>
+{% endif %}
 
 <h2 class="title2">Организатор</h2>
+<div class="block">
 {% if competion.author %}{{competion.author}}<br>{% endif %}
 <история соревнований><br>
+</div>
 
 <h2 class="title2">Ещё</h2>
+<div class="block">
 <список соревнований><br>
+</div>
 
 {% endblock %}
