@@ -175,10 +175,6 @@ input[type="file"] {border: 0;}
 	}
 }
 
-@media all and (min-width: 480px) {
-	.expand {display: block;}
-}
-
 .header a div:hover, .expand > a:hover {
 	background-color: #fff;
 	color: #000;
@@ -199,9 +195,11 @@ input[type="file"] {border: 0;}
 }
 
 .menu div {
-	padding: 10px 0 12px 0;
+	padding: 10px 0 10px 0;
 	width: 20%;
 }
+
+.menu > div {padding-bottom: 12px;}
 
 .menu div a div {background: #c0c0c0;}
 
@@ -234,11 +232,11 @@ input[type="file"] {border: 0;}
 	.menu div {width: 33%;}
 	}
 
-.menu div:hover ~ .menu {border-radius: 0;}
-
 /* Расширение меню */
 
+.exp-menu input {border: 0;}
 
+.exp-menu + .menu {border-radius: 0;}
 
 /* Списки */
 

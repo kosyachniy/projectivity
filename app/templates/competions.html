@@ -5,7 +5,9 @@
 
 <div class="menu">
 	<div>Организатор{% for i in organizer %}<a href="?org={{i}}"><div>{{i}}</div></a>{% endfor %}</div><div>Специализация{% for i in specialization %}<a href="?spec={{i}}"><div>{{i}}</div></a>{% endfor %}</div><div id="del">Тип{% for i in type %}<a href="?type={{i}}"><div>{{i}}</div></a>{% endfor %}</div><div id="del">Город{% for i in city %}<a href="?city={{i}}"><div>{{i}}</div></a>{% endfor %}</div><div>Этап{% for i in stage %}<a href="?stage={{i}}"><div>{{i}}</div></a>{% endfor %}</div>
-	<hr>
+</div>
+<div class="exp-menu">
+	<!--<hr>!-->
 	Добавить соревнование
 	<form action="search" method="post"><input placeholder="Поиск" name="search"></form>
 </div>
