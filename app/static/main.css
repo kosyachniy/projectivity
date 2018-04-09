@@ -234,6 +234,8 @@ input[type="file"] {border: 0;}
 
 /* Расширение меню */
 
+.exp-menu div {width: 30px; padding: 10px 0 0 0;}
+
 .exp-menu input {border: 0;}
 
 .exp-menu + .menu {border-radius: 0;}

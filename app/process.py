@@ -300,8 +300,9 @@ def process():
 				return '3'
 
 			x = db['competions'].find_one({'id': x['id']})
-			print(x)
-			return x
+			del x['_id']
+			if 'owners' in x: del x['owners']
+			return dumps(x)
 
 #Список пользователей
 		elif x['cm'] == 'participants.gets':
