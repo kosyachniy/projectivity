@@ -444,8 +444,8 @@ input[type="file"] {border: 0;}
 }
 
 .notes3 a > div {
-	width: 18vw;
-	height: 18vw;
+	width: 16vw;
+	height: 16vw;
 	margin: 2vw;
 	background: no-repeat;
 	-moz-background-size: 100%;
@@ -462,8 +462,14 @@ input[type="file"] {border: 0;}
 	background: rgba(0, 0, 0, 0.6);
 	text-align: center;
 	color: #fff;
-	font-size: 1.5vw;
+	font-size: 1.8vw;
 	vertical-align: middle;
+	display: flex;
+	align-items: center;
+}
+
+.notes3 p {
+	width: 100%;
 }
 
 /* Информационное сообщение */

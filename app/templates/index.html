@@ -20,7 +20,7 @@
 <h2 class="title2"><a href="participants">Участники &nbsp; &nbsp; <font color="blue">Смотреть все ></font></a></h2>
 <div class="block"><div class="notes3">
 
-{% for i in users %}<a href="participants/{{i.login}}"><div style="background-image: url(static/{% if i.photo %}load/users/{{i.photo}}{% else %}photo{% endif %}.jpg);"><div class="back"><p>{{i.name}} {{i.surname}}<br> &nbsp; @{{i.login}}<br>{{i.rating}}</p></div></div></a>{% endfor %}
+{% for i in users %}<a href="participants/{{i.login}}"><div style="background-image: url(static/{% if i.photo %}load/users/{{i.photo}}{% else %}photo{% endif %}.jpg);"><div class="back"><p>{{i.name}} {{i.surname}}<br>@{{i.login}}<br>{{i.rating}}</p></div></div></a>{% endfor %}
 
 </div></div>
 
