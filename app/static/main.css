@@ -440,7 +440,7 @@ input[type="file"] {border: 0;}
 
 .notes3 {
 	width: 100%;
-	margin: 40px 0 40px 0;
+	margin: 20px 0 20px 0;
 }
 
 .notes3 a > div {
@@ -462,7 +462,7 @@ input[type="file"] {border: 0;}
 	background: rgba(0, 0, 0, 0.6);
 	text-align: center;
 	color: #fff;
-	font-size: 1.6vw;
+	font-size: 1.4vw;
 	vertical-align: middle;
 	display: flex;
 	align-items: center;
@@ -470,6 +470,18 @@ input[type="file"] {border: 0;}
 
 .notes3 p {
 	width: 100%;
+}
+
+@media all and (max-width: 650px) {
+	.notes3 a > div {
+		width: 40vw;
+		height: 40vw;
+		margin: 5vw;
+	}
+
+	.notes3 .back {
+		font-size: 4vw;
+	}
 }
 
 /* Информационное сообщение */
@@ -491,4 +503,10 @@ input[type="file"] {border: 0;}
 .block {
 	width: 90%;
 	margin: 0 0 0 5%;
+}
+
+@media all and (max-width: 650px) {
+	.block {
+		margin: 0;
+	}
 }
