@@ -9,22 +9,23 @@
 {% for i in competion.photo %}<img src="/static/load/competions/{{i}}.jpg">{% endfor %}
 
 {{competion.name}} &nbsp; (id: {{competion.id}})<br>
-<a href="{{competion.url}}">{{competion.url}}</a><br><br>
+{% if competion.url %}<a href="{{competion.url}}">{{competion.url}}</a><br>{% endif %}<br>
 {% if competion.description %}{{competion.description}}<br><br>{% endif %}
 {% if competion.cont %}{{competion.cont}}<br>{% endif %}
 
 <h2 class="title2">О соревновании</h2>
-{{competion.type}}, этап: {{competion.stage}}
-Количество участников: {{competion.quantity}}
-Главный приз: {{competion.prize}}
+{% if competion.type %}{{competion.type}}<br>{% endif %}
+{% if competion.stage %}Этап: {{competion.stage}}<br>{% endif %}
+{% if competion.quantity %}Количество участников: {{competion.quantity}}<br>{% endif %}
+{% if competion.prize %}Главный приз: {{competion.prize}}<br>{% endif %}
 
 <h2 class="title2">Проведение</h2>
-Начало: {{competion.time}}<br>
-Длительность: {{competion.durability}}<br>
-Место проведения: {{competion.geo}}<br>
+{% if competion.time %}Начало: {{competion.time}}<br>{% endif %}
+{% if competion.durability %}Длительность: {{competion.durability}}<br>{% endif %}
+{% if competion.geo %}Место проведения: {{competion.geo}}<br>{% endif %}
 
 <h2 class="title2">Организатор</h2>
-{{competion.author}}<br>
+{% if competion.author %}{{competion.author}}<br>{% endif %}
 <история соревнований><br>
 
 <h2 class="title2">Ещё</h2>

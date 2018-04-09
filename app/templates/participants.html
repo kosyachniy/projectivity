@@ -3,8 +3,10 @@
 
 <div class="info" onclick="change(this);">↑ Нажми на лого ↑</div>
 
+<div class="block">
 <div class="menu">
 	<div>Специализация{% for i in specialization %}<a href="?spec={{i}}"><div>{{i}}</div></a>{% endfor %}</div><div>Город{% for i in city %}<a href="?city={{i}}"><div>{{i}}</div></a>{% endfor %}</div><div>Опыт{% for i in experience %}<a href="?exp={{i}}"><div>{{i}}</div></a>{% endfor %}</div><div id="del">Тип участия{% for i in type %}<a href="?type={{i}}"><div>{{i}}</div></a>{% endfor %}</div><div id="del">Рейтинг{% for i in rating %}<a href="?rate={{i}}"><div>{{i}}</div></a>{% endfor %}</div>
+</div>
 </div>
 
 <h2 class="title2">Участники</h2>

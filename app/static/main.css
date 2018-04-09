@@ -183,12 +183,12 @@ input[type="file"] {border: 0;}
 /* Меню */
 
 .menu {
-	width: 90vw;
+	width: 100%;
 	border: 1px solid #000;
 	border-radius: 15px;
 	font-size: 20px;
 	text-align: center;
-	margin: 20px 0 0 5vw;
+	margin: 20px 0 0 0;
 	height: 40px;
 	position: relative;
 	z-index: 8;
@@ -234,11 +234,9 @@ input[type="file"] {border: 0;}
 
 /* Расширение меню */
 
-.exp-menu div {width: 30px; padding: 10px 0 0 0;}
+.exp-menu div {height: 30px; padding: 10px 0 0 0;}
 
-.exp-menu input {border: 0;}
-
-.exp-menu + .menu {border-radius: 0;}
+.exp-menu input {border: 0; border-radius: 0;}
 
 /* Списки */
 
@@ -434,11 +432,9 @@ input[type="file"] {border: 0;}
 	.info {display: none;}
 }
 
-/* Блоки 
+/* Блоки */
 
 .block {
-	width: 90vw;
-	margin: 0 0 0 5vw;
+	width: 90%;
+	margin: 0 0 0 5%;
 }
-
-*/
