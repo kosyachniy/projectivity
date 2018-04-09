@@ -1,0 +1,33 @@
+{% extends "main.html" %}
+{% block cont %}
+
+<style>
+
+</style>
+
+<h2 class="title2">Информация</h2>
+{% for i in competion.photo %}<img src="/static/load/competions/{{i}}.jpg">{% endfor %}
+
+{{competion.name}} &nbsp; (id: {{competion.id}})<br>
+<a href="{{competion.url}}">{{competion.url}}</a><br><br>
+{% if competion.description %}{{competion.description}}<br><br>{% endif %}
+{% if competion.cont %}{{competion.cont}}<br>{% endif %}
+
+<h2 class="title2">О соревновании</h2>
+{{competion.type}}, этап: {{competion.stage}}
+Количество участников: {{competion.quantity}}
+Главный приз: {{competion.prize}}
+
+<h2 class="title2">Проведение</h2>
+Начало: {{competion.time}}<br>
+Длительность: {{competion.durability}}<br>
+Место проведения: {{competion.geo}}<br>
+
+<h2 class="title2">Организатор</h2>
+{{competion.author}}<br>
+<история соревнований><br>
+
+<h2 class="title2">Ещё</h2>
+<список соревнований><br>
+
+{% endblock %}
