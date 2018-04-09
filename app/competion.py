@@ -5,7 +5,7 @@ from requests import post
 from json import loads
 
 @app.route('/competions/<id>')
-def competions(id):
+def competion(id):
 	x = loads(post(LINK, json={'cm': 'competions.get', 'id': id}).text)
 
 	return render_template('competion.html',
