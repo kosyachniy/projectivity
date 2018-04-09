@@ -15,7 +15,7 @@
 </div>
 
 <h2 class="title2">Соревнования</h2>
-<div class="notes1">
+<div class="block"><div class="notes1">
 
 {% for i in competions %}<a href="competions/{{i.id}}"><div style="background-image: url(static/load/competions/{{i.id}}.jpg);">
 	<div class="back">
@@ -26,6 +26,6 @@
 	</div>
 </div></a>{% endfor %}
 
-</div>
+</div></div>
 
 {% endblock %}

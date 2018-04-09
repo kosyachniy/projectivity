@@ -251,7 +251,7 @@ input[type="file"] {border: 0;}
 	border-radius: 0;
 	border-left: 1px solid #000;
 	margin: 0;
-	padding: 10px 0 0 0;
+	padding: 10px 10px 7px 10px;
 }
 
 /* Списки */
@@ -294,8 +294,8 @@ input[type="file"] {border: 0;}
 /* Статьи 1го порядка */
 
 .notes1 {
-	width: 90vw;
-	margin: 40px 0 40px 5vw;
+	width: 100%;
+	margin: 40px 0 40px 0;
 }
 
 .notes1 a > div {
@@ -360,8 +360,8 @@ input[type="file"] {border: 0;}
 /* Статьи 2го порядка */
 
 .notes2 {
-	width: 90vw;
-	margin: 40px 0 40px 5vw;
+	width: 100%;
+	margin: 40px 0 40px 0;
 }
 
 .notes2 a > div {
