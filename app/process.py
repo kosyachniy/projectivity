@@ -309,13 +309,15 @@ def process():
 			if not on(x, ('id',)):
 				return '3'
 
+
+			x = db['competions'].find_one({'id': x['id']})
+
 			x['access'] = False
 			if user:
 				query = db['users'].find_one({'id': user})
 				if query and 'admin' in query and query['admin'] > 1:
 					x['access'] = True
 
-			x = db['competions'].find_one({'id': x['id']})
 			del x['_id']
 			if 'owners' in x:
 				if user in x['owners']:
