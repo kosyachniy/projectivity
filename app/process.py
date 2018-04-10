@@ -162,7 +162,7 @@ def process():
 
 			if 'photo' in x:
 				try:
-					photo = load_image('app/static/load/users', x['photo'], 'base64' if 'type_img' not in x else x['type_img'])
+					photo = load_image('app/static/load/users', x['photo']) #, 'base64' if 'type_img' not in x else x['type_img']
 
 				#Ошибка загрузки фотографии
 				except:
