@@ -3,8 +3,8 @@ from app import app, LINK
 
 from requests import post
 
-@app.route('/settings', methods=['POST'])
-def settings():
+@app.route('/edit', methods=['POST'])
+def edit():
 	x = request.form
 
 	id = request.args.get('id')
