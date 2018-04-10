@@ -17,7 +17,7 @@
 <h2 class="title2">Соревнования</h2>
 <div class="block"><div class="notes1">
 
-{% for i in competions %}<a href="competions/{{i.id}}"><div style="background-image: url(static/{% if i.images %}load/competions/{{i.images[-1]}}{% else %}photo{% endif %}}.jpg);">
+{% for i in competions %}<a href="competions/{{i.id}}"><div style="background-image: url(/static/{% if i.images %}load/competions/{{i.images[-1]}}{% else %}photo{% endif %}}.jpg);">
 	<div class="back">
 		<div class="title">
 			{{i.name}}

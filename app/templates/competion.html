@@ -18,7 +18,7 @@
 
 	{% if competion.access %}<form action="edit?id={{competion.id}}" method="post">{% endif%}
 
-	{% if competion.access %}<input type="text" name="name" value="{{profile.name}}">{% else %}{{competion.name}}{% endif %} &nbsp; (id: {{competion.id}})<br>
+	{% if competion.access %}<input type="text" name="name" value="{{competion.name}}">{% else %}{{competion.name}}{% endif %} &nbsp; (id: {{competion.id}})<br>
 	{% if competion.url %}<a href="{{competion.url}}">{{competion.url}}</a><br>{% endif %}
 	{% if competion.description %}<br>{{competion.description}}<br>{% endif %}
 	{% if competion.cont %}<br>{{competion.cont}}<br>{% endif %}
