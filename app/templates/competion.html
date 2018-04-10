@@ -7,48 +7,55 @@
 
 <h2 class="title2">Информация</h2>
 <div class="block">
-{% for i in competion.images %}<img src="/static/load/competions/{{i}}.jpg">{% endfor %}
-<br>
-{% if competion.access %}
-<form action="/image?id={{competion.id}}" method="post" enctype="multipart/form-data">
-	<input type="file" name="file">
-	<input type="submit" value="Добавить">
-</form><br>
-{% endif %}
+	{% for i in competion.images %}<img src="/static/load/competions/{{i}}.jpg">{% endfor %}
+	<br>
+	{% if competion.access %}
+	<form action="/image?id={{competion.id}}" method="post" enctype="multipart/form-data">
+		<input type="file" name="file">
+		<input type="submit" value="Добавить">
+	</form><br>
+	{% endif %}
 
-{{competion.name}} &nbsp; (id: {{competion.id}})<br>
-{% if competion.url %}<a href="{{competion.url}}">{{competion.url}}</a><br>{% endif %}
-{% if competion.description %}<br>{{competion.description}}<br>{% endif %}
-{% if competion.cont %}<br>{{competion.cont}}<br>{% endif %}
+	{% if competion.access %}<form action="edit?id={{competion.id}}" method="post">{% endif%}
+
+	{% if competion.access %}<input type="text" name="name" value="{{profile.name}}">{% else %}{{competion.name}}{% endif %} &nbsp; (id: {{competion.id}})<br>
+	{% if competion.url %}<a href="{{competion.url}}">{{competion.url}}</a><br>{% endif %}
+	{% if competion.description %}<br>{{competion.description}}<br>{% endif %}
+	{% if competion.cont %}<br>{{competion.cont}}<br>{% endif %}
 </div>
 
 {% if competion.type or competion.stage or competion.quantity or competion.prize %}<h2 class="title2">О соревновании</h2>
 <div class="block">
-{% if competion.type %}{{competion.type}}<br>{% endif %}
-{% if competion.stage %}Этап: {{competion.stage}}<br>{% endif %}
-{% if competion.quantity %}Количество участников: {{competion.quantity}}<br>{% endif %}
-{% if competion.prize %}Главный приз: {{competion.prize}}<br>{% endif %}
+	{% if competion.type %}{{competion.type}}<br>{% endif %}
+	{% if competion.stage %}Этап: {{competion.stage}}<br>{% endif %}
+	{% if competion.quantity %}Количество участников: {{competion.quantity}}<br>{% endif %}
+	{% if competion.prize %}Главный приз: {{competion.prize}}<br>{% endif %}
 </div>
 {% endif %}
 
 {% if competion.time or competion.durability or competion.geo %}
 <h2 class="title2">Проведение</h2>
 <div class="block">
-{% if competion.time %}Начало: {{competion.time}}<br>{% endif %}
-{% if competion.durability %}Длительность: {{competion.durability}}<br>{% endif %}
-{% if competion.geo %}Место проведения: {{competion.geo}}<br>{% endif %}
+	{% if competion.time %}Начало: {{competion.time}}<br>{% endif %}
+	{% if competion.durability %}Длительность: {{competion.durability}}<br>{% endif %}
+	{% if competion.geo %}Место проведения: {{competion.geo}}<br>{% endif %}
 </div>
 {% endif %}
 
 <h2 class="title2">Организатор</h2>
 <div class="block">
-{% if competion.author %}{{competion.author}}<br>{% endif %}
+	{% if competion.author %}{{competion.author}}<br>{% endif %}
+
+{% if competion.access %}<input type="submit" value="Сохранить"></form></div>{% else %}
+
 <история соревнований><br>
 </div>
 
 <h2 class="title2">Ещё</h2>
 <div class="block">
-<список соревнований><br>
+	<список соревнований><br>
 </div>
+
+{% endif%}
 
 {% endblock %}

@@ -1,8 +1,14 @@
 {% extends "main.html" %}
 {% block cont %}
 
+<style>
+.block img {width: 200px;}
+</style>
+
 <h2 class="title2">Обновить аватарку</h2>
 <div class="block">
+	<img src="/static/{% if participant.photo %}load/users/{{participant.photo}}{% else %}photo{% endif %}.jpg"><br>
+
 	<form action="avatar" method="post" enctype="multipart/form-data">
 		<input type="file" name="file">
 		<input type="submit" value="Обновить">
