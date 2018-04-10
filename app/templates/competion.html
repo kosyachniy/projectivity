@@ -10,12 +10,11 @@
 {% for i in competion.photo %}<img src="/static/load/competions/{{i}}.jpg">{% endfor %}
 <br>
 {% if competion.access %}
-<form action="image" method="post" enctype="multipart/form-data">
+<form action="/image" method="post" enctype="multipart/form-data">
 	<input type="file" name="file">
 	<input type="submit" value="Добавить">
-</form>
+</form><br>
 {% endif %}
-
 
 {{competion.name}} &nbsp; (id: {{competion.id}})<br>
 {% if competion.url %}<a href="{{competion.url}}">{{competion.url}}</a><br>{% endif %}
