@@ -272,15 +272,19 @@ def process():
 				images = []
 
 				for i in x['images']:
-					try:
-						image = load_image('app/static/load/competions', i)
+					if len(i) > 100: #!
+						try:
+							image = load_image('app/static/load/competions', i)
 
-					#Ошибка загрузки изображения
-					except:
-						return '7'
+						#Ошибка загрузки изображения
+						except:
+							return '7'
+
+						else:
+							images.append(image)
 
 					else:
-						images.append(image)
+						images.append(i)
 
 				query['images'] = images
 				db['competions'].save(query)
@@ -305,9 +309,18 @@ def process():
 			if not on(x, ('id',)):
 				return '3'
 
+			x['access'] = False
+			if user:
+				query = db['users'].find_one({'id': user})
+				if query and 'admin' in query and query['admin'] > 1:
+					x['access'] = True
+
 			x = db['competions'].find_one({'id': x['id']})
 			del x['_id']
-			if 'owners' in x: del x['owners']
+			if 'owners' in x:
+				if user in x['owners'].split():
+					x['access'] = True
+				del x['owners']
 			return dumps(x)
 
 #Список пользователей
