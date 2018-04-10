@@ -16,7 +16,7 @@
 	</form><br>
 	{% endif %}
 
-	{% if competion.access %}<form action="edit?id={{competion.id}}" method="post">{% endif%}
+	{% if competion.access %}<form action="edit?id={{competion.id}}" method="post">{% endif %}
 
 	{% if competion.access %}<input type="text" name="name" value="{{competion.name}}">{% else %}{{competion.name}}{% endif %} &nbsp; (id: {{competion.id}})<br>
 	{% if competion.url %}<a href="{{competion.url}}">{{competion.url}}</a><br>{% endif %}
@@ -45,17 +45,15 @@
 <h2 class="title2">Организатор</h2>
 <div class="block">
 	{% if competion.author %}{{competion.author}}<br>{% endif %}
+	{% if competion.access %}<input type="submit" value="Сохранить"></form>
+</div>{% else %}
+	<история соревнований><br>
+	</div>
 
-{% if competion.access %}<input type="submit" value="Сохранить"></form></div>{% else %}
-
-<история соревнований><br>
+	<h2 class="title2">Ещё</h2>
+	<div class="block">
+		<список соревнований><br>
 </div>
-
-<h2 class="title2">Ещё</h2>
-<div class="block">
-	<список соревнований><br>
-</div>
-
 {% endif%}
 
 {% endblock %}
