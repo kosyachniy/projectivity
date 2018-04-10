@@ -23,5 +23,6 @@ from app import participants
 from app import participant
 from app import cabinet
 from app import settings
+from app import edit
 from app import avatar
 from app import image
