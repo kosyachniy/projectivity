@@ -47,300 +47,309 @@ def process():
 	else:
 		user = None
 
+	try:
 #Регистрация
-	if x['cm'] == 'profile.reg':
-		#Не все поля заполнены
-		if not on(x, ('login', 'pass', 'mail')):
-			return '3'
+		if x['cm'] == 'profile.reg':
+			#Не все поля заполнены
+			if not on(x, ('login', 'pass', 'mail')):
+				return '3'
 
-		x['login'] = x['login'].lower()
+			x['login'] = x['login'].lower()
 
-		#Логин существует
-		if len(list(db['users'].find({'login': x['login']}))):
-			return '5'
+			#Логин существует
+			if len(list(db['users'].find({'login': x['login']}))):
+				return '5'
 
-		#Недопустимый логин
-		if not 3 <= len(x['login']) <= 20 or len(findall('[^a-z0-9]', x['login'])) or not len(findall('[a-z]', x['login'])):
-			return '4'
+			#Недопустимый логин
+			if not 3 <= len(x['login']) <= 20 or len(findall('[^a-z0-9]', x['login'])) or not len(findall('[a-z]', x['login'])):
+				return '4'
 
-		#Почта зарегистрирована
-		if len(list(db['users'].find({'mail': x['mail']}))):
-			return '8'
+			#Почта зарегистрирована
+			if len(list(db['users'].find({'mail': x['mail']}))):
+				return '8'
 
-		#Недопустимый пароль
-		if not 6 <= len(x['pass']) <= 40 or len(findall('[^a-zA-z0-9!@#$%^&*()-_+=;:,./?\|`~\[\]{}]', x['pass'])) or not len(findall('[a-zA-Z]', x['pass'])) or not len(findall('[0-9]', x['pass'])):
-			return '6'
+			#Недопустимый пароль
+			if not 6 <= len(x['pass']) <= 40 or len(findall('[^a-zA-z0-9!@#$%^&*()-_+=;:,./?\|`~\[\]{}]', x['pass'])) or not len(findall('[a-zA-Z]', x['pass'])) or not len(findall('[0-9]', x['pass'])):
+				return '6'
 
-		#Это не почта
-		if match('.+@.+\..+', x['mail']) == None:
-			return '7'
-
-		#Неправильное имя
-		if 'name' in x and not x['name'].isalpha():
-			return '9'
-
-		#Неправильная фамилия
-		if 'surname' in x and not x['surname'].isalpha():
-			return '10'
-
-		try:
-			id = db['users'].find().sort('id', -1)[0]['id'] + 1
-		except:
-			id = 1
-
-		db['users'].insert({
-			'id': id,
-			'login': x['login'],
-			'password': md5(bytes(x['pass'], 'utf-8')).hexdigest(),
-			'mail': x['mail'],
-			'name': x['name'].title() if 'name' in x else None,
-			'surname': x['surname'].title() if 'surname' in x else None,
-			'rating': 0,
-		})
-
-		token = generate()
-		db['tokens'].insert({'token': token, 'id': id, 'time': time.time()})
-
-		return token
-
-#Авторизация
-	elif x['cm'] == 'profile.auth':
-		#Не все поля заполнены
-		if not on(x, ('login', 'pass')):
-			return '3'
-
-		x['login'] = x['login'].lower()
-
-		#Логин не существует
-		if not len(list(db['users'].find({'login': x['login']}))):
-			return '4'
-
-		i = db['users'].find_one({'login': x['login'], 'password': md5(bytes(x['pass'], 'utf-8')).hexdigest()})
-		if i:
-			id = i['id']
-
-		#Неправильный пароль
-		else:
-			return '5'
-
-		token = generate()
-		db['tokens'].insert({'token': token, 'id': id, 'time': time.time()})
-
-		return token
-
-#Изменение личной информации
-	elif x['cm'] == 'profile.settings':
-		#Не все поля заполнены
-		if not on(x, ('token',)):
-			return '3'
-
-		i = db['tokens'].find_one({'token': x['token']})
-		if i:
-			id = i['id']
-
-		#Несуществует токен
-		else:
-			return '4'
-
-		#Неправильное имя
-		if not x['name'].isalpha():
-			return '5'
-
-		#Неправильная фамилия
-		if not x['surname'].isalpha():
-			return '6'
-
-		i = db['users'].find_one({'id': id})
-
-		if 'name' in x: i['name'] = x['name'].title()
-		if 'surname' in x: i['surname'] = x['surname'].title()  
-		if 'description' in x: i['description'] = x['description']
-		db['users'].save(i)
-
-		if 'photo' in x:
-			try:
-				photo = load_image('app/static/load/users', x['photo']) #, 'base64' if 'type_img' not in x else x['type_img']
-
-			#Ошибка загрузки фотографии
-			except:
+			#Это не почта
+			if match('.+@.+\..+', x['mail']) == None:
 				return '7'
 
+			#Неправильное имя
+			if 'name' in x and not x['name'].isalpha():
+				return '9'
+
+			#Неправильная фамилия
+			if 'surname' in x and not x['surname'].isalpha():
+				return '10'
+
+			try:
+				id = db['users'].find().sort('id', -1)[0]['id'] + 1
+			except:
+				id = 1
+
+			db['users'].insert({
+				'id': id,
+				'login': x['login'],
+				'password': md5(bytes(x['pass'], 'utf-8')).hexdigest(),
+				'mail': x['mail'],
+				'name': x['name'].title() if 'name' in x else None,
+				'surname': x['surname'].title() if 'surname' in x else None,
+				'rating': 0,
+			})
+
+			token = generate()
+			db['tokens'].insert({'token': token, 'id': id, 'time': time.time()})
+
+			return token
+
+#Авторизация
+		elif x['cm'] == 'profile.auth':
+			#Не все поля заполнены
+			if not on(x, ('login', 'pass')):
+				return '3'
+
+			x['login'] = x['login'].lower()
+
+			#Логин не существует
+			if not len(list(db['users'].find({'login': x['login']}))):
+				return '4'
+
+			i = db['users'].find_one({'login': x['login'], 'password': md5(bytes(x['pass'], 'utf-8')).hexdigest()})
+			if i:
+				id = i['id']
+
+			#Неправильный пароль
 			else:
-				db['users'].save(photo)
+				return '5'
 
-		return '0'
+			token = generate()
+			db['tokens'].insert({'token': token, 'id': id, 'time': time.time()})
 
-#Закрытие сессии
-	elif x['cm'] == 'profile.exit':
-		#Не все поля заполнены
-		if not on(x, ('token',)):
-			return '3'
+			return token
 
-		i = db['tokens'].find_one({'token': x['token']})
-		if i:
-			db['tokens'].remove(i)
-			return '0'
+#Изменение личной информации
+		elif x['cm'] == 'profile.settings':
+			#Не все поля заполнены
+			if not on(x, ('token',)):
+				return '3'
 
-		#? Несуществующий токен
-		else:
-			return '4'
+			i = db['tokens'].find_one({'token': x['token']})
+			if i:
+				id = i['id']
 
-#Добавление соревнований
-	elif x['cm'] == 'competions.add':
-		#Не все поля заполнены
-		if not on(x, ('name',)):
-			return '3'
-
-		try:
-			id = db['competions'].find().sort('id', -1)[0]['id'] + 1
-		except:
-			id = 1
-
-		if 'owners' in x: del x['owners']
-		if user: x['owners'] = [user,]
-
-		query = {'id': id}
-		for i in ('name', 'description', 'cont', 'time', 'durability', 'author', 'quantity', 'type', 'prize', 'url', 'geo', 'stage', 'owners'):
-			if i in x: query[i] = x[i]
-
-		query['show'] = 0
-		db['competions'].insert(query)
-
-		if 'images' in x:
-			images = []
-
-			for i in x['images']:
-				try:
-					image = load_image('app/static/load/competions', i)
-
-				#Ошибка загрузки изображения
-				except:
-					return '4'
-
-				else:
-					images.append(image)
-
-			query = db['competions'].find_one({'id': id}) #оптимизировать
-			query['images'] = images
-			db['competions'].save(query)
-
-		return 'id%d' % id
-
-#Изменение соревнования
-	elif x['cm'] == 'competions.edit':
-		#Не все поля заполнены
-		if not on(x, ('token', 'id')):
-			return '3'
-
-		i = db['tokens'].find_one({'token': x['token']})
-		if i:
-			id = i['id']
+			#Несуществует токен
+			else:
+				return '4'
 
 			i = db['users'].find_one({'id': id})
-			admin = i['admin'] if 'admin' in i else 0
 
-		#Несуществует токен
-		else:
-			return '4'
+			if 'name' in x:
+				#Неправильное имя
+				if not x['name'].isalpha():
+					return '5'
 
-		query = db['competions'].find_one({'id': x['id']})
-		if query:
-			owners = query['owners']
+				i['name'] = x['name'].title()
 
-		#Несуществующий конкурс
-		else:
-			return '5'
+			if 'surname' in x:
+				#Неправильная фамилия
+				if not x['surname'].isalpha():
+					return '6'
 
-		#Нет прав на редактирование соревнования
-		if not admin and id not in owners:
-			return '6'
+				i['surname'] = x['surname'].title()
 
-		#Подтверждения соревнования от имени админов или официальных представительств
+			if 'description' in x: i['description'] = x['description']
+			db['users'].save(i)
 
-		#! owners - добавлять пользователей, которые могут редактировать
-
-		for i in ('name', 'description', 'cont', 'time', 'durability', 'author', 'quantity', 'type', 'prize', 'url', 'geo', 'stage'): #, 'owners'
-			if i in x: query[i] = x[i]
-		db['competions'].save(query)
-
-		if 'images' in x:
-			images = []
-
-			for i in x['images']:
+			if 'photo' in x:
 				try:
-					image = load_image('app/static/load/competions', i)
+					photo = load_image('app/static/load/users', x['photo']) #, 'base64' if 'type_img' not in x else x['type_img']
 
-				#Ошибка загрузки изображения
+				#Ошибка загрузки фотографии
 				except:
 					return '7'
 
 				else:
-					images.append(image)
+					db['users'].save(photo)
 
-			query['images'] = images
+			return '0'
+
+#Закрытие сессии
+		elif x['cm'] == 'profile.exit':
+			#Не все поля заполнены
+			if not on(x, ('token',)):
+				return '3'
+
+			i = db['tokens'].find_one({'token': x['token']})
+			if i:
+				db['tokens'].remove(i)
+				return '0'
+
+			#? Несуществующий токен
+			else:
+				return '4'
+
+#Добавление соревнований
+		elif x['cm'] == 'competions.add':
+			#Не все поля заполнены
+			if not on(x, ('name',)):
+				return '3'
+
+			try:
+				id = db['competions'].find().sort('id', -1)[0]['id'] + 1
+			except:
+				id = 1
+
+			if 'owners' in x: del x['owners']
+			if user: x['owners'] = [user,]
+
+			query = {'id': id}
+			for i in ('name', 'description', 'cont', 'time', 'durability', 'author', 'quantity', 'type', 'prize', 'url', 'geo', 'stage', 'owners'):
+				if i in x: query[i] = x[i]
+
+			query['show'] = 0
+			db['competions'].insert(query)
+
+			if 'images' in x:
+				images = []
+
+				for i in x['images']:
+					try:
+						image = load_image('app/static/load/competions', i)
+
+					#Ошибка загрузки изображения
+					except:
+						return '4'
+
+					else:
+						images.append(image)
+
+				query = db['competions'].find_one({'id': id}) #оптимизировать
+				query['images'] = images
+				db['competions'].save(query)
+
+			return 'id%d' % id
+
+#Изменение соревнования
+		elif x['cm'] == 'competions.edit':
+			#Не все поля заполнены
+			if not on(x, ('token', 'id')):
+				return '3'
+
+			i = db['tokens'].find_one({'token': x['token']})
+			if i:
+				id = i['id']
+
+				i = db['users'].find_one({'id': id})
+				admin = i['admin'] if 'admin' in i else 0
+
+			#Несуществует токен
+			else:
+				return '4'
+
+			query = db['competions'].find_one({'id': x['id']})
+			if query:
+				owners = query['owners']
+
+			#Несуществующий конкурс
+			else:
+				return '5'
+
+			#Нет прав на редактирование соревнования
+			if not admin and id not in owners:
+				return '6'
+
+			#Подтверждения соревнования от имени админов или официальных представительств
+
+			#! owners - добавлять пользователей, которые могут редактировать
+
+			for i in ('name', 'description', 'cont', 'time', 'durability', 'author', 'quantity', 'type', 'prize', 'url', 'geo', 'stage'): #, 'owners'
+				if i in x: query[i] = x[i]
 			db['competions'].save(query)
 
-		return '0'
+			if 'images' in x:
+				images = []
+
+				for i in x['images']:
+					try:
+						image = load_image('app/static/load/competions', i)
+
+					#Ошибка загрузки изображения
+					except:
+						return '7'
+
+					else:
+						images.append(image)
+
+				query['images'] = images
+				db['competions'].save(query)
+
+			return '0'
 
 #Получить соревнования
-	elif x['cm'] == 'competions.gets':
-		num = x['num'] if 'num' in x else None
+		elif x['cm'] == 'competions.gets':
+			num = x['num'] if 'num' in x else None
 
-		competions = []
-		for i in db['competions'].find().sort('id', -1)[0:num]:
-			if 'owners' in i: del i['owners'] #! добавить индикатор есть-нет право на редактирование
-			del i['_id']
+			competions = []
+			for i in db['competions'].find().sort('id', -1)[0:num]:
+				if 'owners' in i: del i['owners'] #! добавить индикатор есть-нет право на редактирование
+				del i['_id']
 
-			competions.append(i)
-		return dumps(competions)
+				competions.append(i)
+			return dumps(competions)
 
 #Получить соревнование
-	elif x['cm'] == 'competions.get':
-		#Не все поля заполнены
-		if not on(x, ('id',)):
-			return '3'
+		elif x['cm'] == 'competions.get':
+			#Не все поля заполнены
+			if not on(x, ('id',)):
+				return '3'
 
-		x = db['competions'].find_one({'id': x['id']})
-		del x['_id']
-		if 'owners' in x: del x['owners']
-		return dumps(x)
+			x = db['competions'].find_one({'id': x['id']})
+			del x['_id']
+			if 'owners' in x: del x['owners']
+			return dumps(x)
 
 #Список пользователей
-	elif x['cm'] == 'participants.gets':
-		num = x['num'] if 'num' in x else None
+		elif x['cm'] == 'participants.gets':
+			num = x['num'] if 'num' in x else None
 
-		participants = []
-		for i in db['users'].find({'rating': {'$exists': True}}).sort('id', -1)[0:num]:
-			del i['password']
-			del i['_id']
-			del i['mail']
-			if 'description' in i: del i['description']
+			participants = []
+			for i in db['users'].find({'rating': {'$exists': True}}).sort('id', -1)[0:num]:
+				del i['password']
+				del i['_id']
+				del i['mail']
+				if 'description' in i: del i['description']
 
-			participants.append(i)
-		return dumps(participants)
+				participants.append(i)
+			return dumps(participants)
 
 #Получить участника
-	elif x['cm'] == 'participants.get':
-		#Не все поля заполнены
-		if not on(x, ('id',)) and not on(x, ('login',)) and not user:
-			return '3'
+		elif x['cm'] == 'participants.get':
+			#Не все поля заполнены
+			if not on(x, ('id',)) and not on(x, ('login',)) and not user:
+				return '3'
 
-		if 'id' in x:
-			query = db['users'].find_one({'id': x['id']})
-		elif 'login' in x:
-			query = db['users'].find_one({'login': x['login']})
-		else:
-			query = db['users'].find_one({'id': user})
+			if 'id' in x:
+				query = db['users'].find_one({'id': x['id']})
+			elif 'login' in x:
+				query = db['users'].find_one({'login': x['login']})
+			else:
+				query = db['users'].find_one({'id': user})
 
-		if 'admin' in query: del query['admin']
-		del query['password']
-		del query['_id']
+			if 'admin' in query: del query['admin']
+			del query['password']
+			del query['_id']
 
-		return dumps(query)
+			return dumps(query)
 
 #news
 #search
 #! если удалить пользователя - новый возможно будет с заниженным id и нарушатся связи в бд
 
-	else:
-		return '2'
+		else:
+			return '2'
+
+	#Серверная ошибка
+	except:
+		return '1'
