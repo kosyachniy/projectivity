@@ -3,11 +3,13 @@ from app import app, LINK
 
 from requests import post
 import base64
+from time import sleep
 
 @app.route('/avatar', methods=['POST'])
 def avatar():
 	x = request.files['file']
 	print(x, dir(x))
+	sleep(300)
 	x = base64.b64encode(x)
 
 	if 'token' not in session:
