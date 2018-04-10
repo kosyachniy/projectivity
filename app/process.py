@@ -159,7 +159,6 @@ def process():
 			db['users'].save(i)
 
 			if 'photo' in x:
-				print('OK'*100)
 				try:
 					photo = load_image('app/static/load/users', x['photo']) #, 'base64' if 'type_img' not in x else x['type_img']
 
