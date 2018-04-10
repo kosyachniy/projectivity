@@ -318,7 +318,7 @@ def process():
 			x = db['competions'].find_one({'id': x['id']})
 			del x['_id']
 			if 'owners' in x:
-				if user in x['owners'].split():
+				if user in x['owners']:
 					x['access'] = True
 				del x['owners']
 			return dumps(x)
