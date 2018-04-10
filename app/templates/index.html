@@ -6,7 +6,7 @@
 <h2 class="title2"><a href="competions">Соревнования &nbsp; &nbsp; <font color="blue">Смотреть все ></font></a></h2>
 <div class="block"><div class="notes1">
 
-{% for i in competions %}<a href="competions/{{i.id}}"><div style="background-image: url(static/load/competions/{{i.images[0]}}.jpg);">
+{% for i in competions %}<a href="competions/{{i.id}}"><div style="background-image: url(static/{% if i.images %}load/competions/{{i.images[0]}}{% else %}photo{% endif %}.jpg);">
 	<div class="back">
 		<div class="title">
 			{{i.name}}

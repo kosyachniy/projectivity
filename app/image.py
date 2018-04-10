@@ -14,7 +14,8 @@ def image():
 	if not id or 'token' not in session:
 		return render_template('message.html', cont='3')
 
-	images = json.loads(post(LINK, json={'cm': 'competions.get', 'id': int(id), 'token': session['token']}).text)['images']
+	images = json.loads(post(LINK, json={'cm': 'competions.get', 'id': int(id), 'token': session['token']}).text)
+	images = images['images'] if 'images' in images else []
 	images.append(x)
 
 	req = post(LINK, json={'cm': 'competions.edit', 'id': int(id), 'token': session['token'], 'images': images}).text
