@@ -7,7 +7,7 @@ import base64
 @app.route('/avatar', methods=['POST'])
 def avatar():
 	x = request.files['file'].stream.read()
-	x = str(base64.b64encode(x))
+	x = str(base64.b64encode(x))[1:]
 
 	if 'token' not in session:
 		return render_template('message.html', cont='3')
