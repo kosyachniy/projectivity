@@ -3,7 +3,10 @@
 
 <h2 class="title2">Обновить аватарку</h2>
 <div class="block">
-	<загрузка изображений><br>
+	<form action="avatar" method="post" enctype="multipart/form-data">
+		<input type="file" name="file">
+		<input type="submit" value="Обновить">
+	</form>
 </div>
 
 <form action="settings?url={{url}}" method="post">

@@ -23,8 +23,10 @@ def max_image(url):
 				k = j
 	return k+1
 
-def load_image(url, data):
-	data = base64.b64decode(data)
+def load_image(url, data, type='base64'):
+	if type == 'base64':
+		data = base64.b64decode(data)
+
 	id = max_image(url)
 	with open(url+'/%d.jpg' % id, 'wb') as file:
 		file.write(data)
@@ -44,6 +46,8 @@ def process():
 		user = db['tokens'].find_one({'token': x['token']})['id']
 	else:
 		user = None
+
+
 
 	try:
 #Регистрация
@@ -158,7 +162,7 @@ def process():
 
 			if 'photo' in x:
 				try:
-					photo = load_image('app/static/load/users', x['photo'])
+					photo = load_image('app/static/load/users', x['photo'], 'base64' if 'type_img' not in x else x['type_img'])
 
 				#Ошибка загрузки фотографии
 				except:
