@@ -36,7 +36,7 @@ def load_image(url, data, type='base64'):
 @app.route('/', methods=['POST'])
 def process():
 	x = request.json
-	print(x)
+	#print(x)
 
 	if 'cm' not in x:
 		return '2'

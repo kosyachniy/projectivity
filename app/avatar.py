@@ -14,7 +14,7 @@ def avatar():
 
 	req = post(LINK, json={'cm': 'profile.settings', 'token': session['token'], 'photo': x}).text
 
-	if len(req) < 3:
+	if req != '0' and len(req) < 3:
 		return render_template('message.html', cont=req)
 
 	return redirect(LINK + 'cabinet')
