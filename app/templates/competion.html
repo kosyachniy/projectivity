@@ -19,32 +19,41 @@
 	{% if competion.access %}<form action="/edit?id={{competion.id}}" method="post">{% endif %}
 
 	{% if competion.access %}<input type="text" name="name" value="{{competion.name}}">{% else %}{{competion.name}}{% endif %} &nbsp; (id: {{competion.id}})<br>
-	{% if competion.url %}<a href="{{competion.url}}">{{competion.url}}</a><br>{% endif %}
-	{% if competion.description %}<br>{{competion.description}}<br>{% endif %}
-	{% if competion.cont %}<br>{{competion.cont}}<br>{% endif %}
+
+	{% if competion.access %}<input type="text" name="url" {% if competion.url %}value="{{competion.url}}"{% else %}placeholder="Ссылка"{% endif %}>{% else %}{% if competion.url %}<a href="{{competion.url}}">{{competion.url}}</a><br>{% endif %}{% endif %}
+
+	{% if competion.access %}<textarea name="description"{% if competion.description %}>{{competion.description}}{% else %}placeholder="Краткое описание">{% endif %}</textarea>{% else %}{% if competion.description %}<br>{{competion.description}}<br>{% endif %}{% endif %}
+
+	{% if competion.access %}<textarea name="cont"{% if competion.cont %}>{{competion.cont}}{% else %}placeholder="Полное описание">{% endif %}</textarea>{% else %}{% if competion.cont %}<br>{{competion.cont}}<br>{% endif %}{% endif %}
 </div>
 
-{% if competion.type or competion.stage or competion.quantity or competion.prize %}<h2 class="title2">О соревновании</h2>
+{% if competion.type or competion.stage or competion.quantity or competion.prize or competion.access %}<h2 class="title2">О соревновании</h2>
 <div class="block">
-	{% if competion.type %}{{competion.type}}<br>{% endif %}
-	{% if competion.stage %}Этап: {{competion.stage}}<br>{% endif %}
-	{% if competion.quantity %}Количество участников: {{competion.quantity}}<br>{% endif %}
-	{% if competion.prize %}Главный приз: {{competion.prize}}<br>{% endif %}
+	{% if competion.access %}<input type="text" name="type" {% if competion.type %}value="{{competion.type}}"{% else %}placeholder="Тип мероприятия"{% endif %}>{% else %}{% if competion.type %}{{competion.type}}<br>{% endif %}{% endif %}
+
+	{% if competion.access %}<input type="text" name="stage" {% if competion.stage %}value="{{competion.stage}}"{% else %}placeholder="Этап"{% endif %}>{% else %}{% if competion.stage %}Этап: {{competion.stage}}<br>{% endif %}{% endif %}
+
+	{% if competion.access %}<input type="text" name="quantity" {% if competion.quantity %}value="{{competion.quantity}}"{% else %}placeholder="Количество участников"{% endif %}>{% else %}{% if competion.quantity %}Количество участников: {{competion.quantity}}<br>{% endif %}{% endif %}
+
+	{% if competion.access %}<input type="text" name="prize" {% if competion.prize %}value="{{competion.prize}}"{% else %}placeholder="Главный приз"{% endif %}>{% else %}{% if competion.prize %}Главный приз: {{competion.prize}}<br>{% endif %}{% endif %}
 </div>
 {% endif %}
 
-{% if competion.time or competion.durability or competion.geo %}
+{% if competion.time or competion.durability or competion.geo or competion.access %}
 <h2 class="title2">Проведение</h2>
 <div class="block">
-	{% if competion.time %}Начало: {{competion.time}}<br>{% endif %}
-	{% if competion.durability %}Длительность: {{competion.durability}}<br>{% endif %}
-	{% if competion.geo %}Место проведения: {{competion.geo}}<br>{% endif %}
+	{% if competion.access %}<input type="text" name="time" {% if competion.time %}value="{{competion.time}}"{% else %}placeholder="Начало"{% endif %}>{% else %}{% if competion.time %}Начало: {{competion.time}}<br>{% endif %}{% endif %}
+
+	{% if competion.access %}<input type="text" name="durability" {% if competion.durability %}value="{{competion.durability}}"{% else %}placeholder="Длительность"{% endif %}>{% else %}{% if competion.durability %}Длительность: {{competion.durability}}<br>{% endif %}{% endif %}
+
+	{% if competion.access %}<input type="text" name="geo" {% if competion.geo %}value="{{competion.geo}}"{% else %}placeholder="Место проведения"{% endif %}>{% else %}{% if competion.geo %}Место проведения: {{competion.geo}}<br>{% endif %}{% endif %}
 </div>
 {% endif %}
 
 <h2 class="title2">Организатор</h2>
 <div class="block">
-	{% if competion.author %}{{competion.author}}<br>{% endif %}
+	{% if competion.access %}<input type="text" name="author" {% if competion.author %}value="{{competion.author}}"{% else %}placeholder="Организатор"{% endif %}>{% else %}{% if competion.author %}{{competion.author}}<br>{% endif %}{% endif %}
+
 	{% if competion.access %}<input type="submit" value="Сохранить"></form>
 </div>{% else %}
 	<история соревнований><br>
