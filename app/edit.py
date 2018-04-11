@@ -13,7 +13,7 @@ def edit():
 		return render_template('message.html', cont='3')
 
 	req = {'cm': 'competions.edit', 'id': int(id), 'token': session['token']}
-	for i in ('name',):
+	for i in ('name', 'description', 'cont', 'time', 'durability', 'author', 'quantity', 'type', 'prize', 'url', 'geo', 'stage'): #, 'owners'
 		if i in x: req[i] = x[i]
 
 	req = post(LINK, json=req).text
