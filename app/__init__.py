@@ -3,7 +3,7 @@ from flask import Flask, redirect
 app = Flask(__name__)
 app.config.from_object('config')
 
-LINK = 'http://167.99.128.56/'
+LINK = 'http://0.0.0.0:80/'
 
 def get_url(url, rep='competions'):
 	if not url: url = rep
