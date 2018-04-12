@@ -265,11 +265,11 @@ def process():
 			if not admin and id not in owners:
 				return '6'
 
-			#Подтверждения соревнования от имени админов или официальных представительств
+			#Отображение соревнования в списке
+			if not query['show'] and 'show' in x and x['show'] and admin < 2:
+				return '8'
 
-			#! owners - добавлять пользователей, которые могут редактировать
-
-			for i in ('name', 'description', 'cont', 'time', 'durability', 'author', 'quantity', 'type', 'prize', 'url', 'geo', 'stage'): #, 'owners'
+			for i in ('name', 'description', 'cont', 'time', 'durability', 'author', 'quantity', 'type', 'prize', 'url', 'geo', 'stage', 'show', 'owners'):
 				if i in x: query[i] = x[i]
 			db['competions'].save(query)
 
