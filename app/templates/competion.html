@@ -8,7 +8,7 @@
 
 <h2 class="title2">Информация</h2>
 <div class="block">
-	<div style="text-align: center;">{% for i in competion.images %}<img src="/static/load/competions/{{i}}.jpg">{% endfor %}</div>
+	<div style="text-align: center; width: 100%;">{% for i in competion.images %}<img src="/static/load/competions/{{i}}.jpg">{% endfor %}</div>
 	<br>
 	{% if competion.access %}
 	<form action="/image?id={{competion.id}}" method="post" enctype="multipart/form-data">
