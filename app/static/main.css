@@ -378,6 +378,8 @@ input[type="file"] {border: 0;}
 	margin: 20px 1vw 0 1vw;
 }
 
+.notes2 a:last-child > div {margin-right: 0;}
+
 .notes2 .back {
 	width: calc(100% - 2vw);
 	height: calc(6vw - 20px);
@@ -454,6 +456,8 @@ input[type="file"] {border: 0;}
 	background-size: 100%;
 	border-radius: 50%;
 }
+
+.notes3 a:last-child > div {margin-right: 0;}
 
 .notes3 .back {
 	width: 100%;
