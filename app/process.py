@@ -42,7 +42,7 @@ def process():
 		return '2'
 
 	#Убираем лишние отступы
-	for i in x and type(x[i]) == str: x[i] = x[i].strip()
+	for i in x: if type(x[i]) == str: x[i] = x[i].strip()
 
 	#Определение пользователя
 	if 'token' in x:
