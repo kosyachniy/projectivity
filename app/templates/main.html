@@ -5,6 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<link rel="stylesheet" type="text/css" href="/static/main.css">
+	<script src="/static/main.js"></script>
 
 	<title>
 
@@ -28,19 +29,6 @@ Projectivity
 
 </head>
 <body>
-	<script>
-function change() {
-	if (screen.width <= 480) {
-		if (document.getElementById('menu').style.display == 'block')
-			document.getElementById('menu').style.display = 'none';
-		else
-			document.getElementById('menu').style.display = 'block';
-	} else {
-		document.location.href = '/';
-	}
-}
-	</script>
-
 	<div class="header" onclick="change(this);">
 		<img src="/static/logo.png" >
 		<a href="/"><div>Главная</div></a>

@@ -36,7 +36,7 @@ font {
 </div><div class="login">
 	<font>Войти</font>
 	<form action="signin{% if url %}?url={{ url }}{% endif %}" method="post">
-		<input placeholder="Логин" name="login" required>
+		<input placeholder="Логин" name="login" required autofocus>
 		<input type="password" placeholder="Пароль" name="pass" required>
 		<input type="submit" value="Войти">
 	</form>

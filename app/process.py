@@ -9,6 +9,7 @@ from json import dumps
 from random import randint
 from os import listdir
 
+#! если удалить пользователя - новый возможно будет с заниженным id и нарушатся связи в бд
 
 generate = lambda length=32: ''.join([chr(randint(48, 123)) for i in range(length)])
 on = lambda x, y: all([i in x for i in y])
@@ -363,9 +364,17 @@ def process():
 
 			return dumps(query)
 
-#news
-#search
-#! если удалить пользователя - новый возможно будет с заниженным id и нарушатся связи в бд
+#Получить новости
+		elif x['cm'] == 'news.gets':
+			pass
+
+#Получить новость
+		elif x['cm'] == 'news.get':
+			pass
+
+#Поиск
+		elif x['cm'] == 'search':
+			pass
 
 		else:
 			return '2'
