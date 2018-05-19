@@ -1,12 +1,14 @@
-<!Doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-	<meta name="apple-mobile-web-app-capable" content="yes">
-	<link rel="stylesheet" type="text/css" href="/static/main.css">
-	<script src="/static/main.js"></script>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
+	<meta name="apple-mobile-web-app-capable" content="yes">
 	<title>
 
 {% if title %}
@@ -20,15 +22,46 @@ Projectivity
 	<meta name="author" content="Poloz Alexey (polozhev@mail.ru)">
 
 {% if description %}
-<meta name="keywords" content="{{description}}">
-<meta name="description" content="{{description}}">
+	<meta name="keywords" content="{{description}}">
+	<meta name="description" content="{{description}}">
 {% else %}
-<meta name="keywords" content="Сервис поиска сокомандников на конкурсы, стартапы и конференции">
-<meta name="description" content="Сервис поиска сокомандников на конкурсы, стартапы и конференции">
+	<meta name="keywords" content="Сервис поиска сокомандников на конкурсы, стартапы и конференции">
+	<meta name="description" content="Сервис поиска сокомандников на конкурсы, стартапы и конференции">
 {% endif %}
-
+	<!-- <link rel="stylesheet" type="text/css" href="/static/main.css"> -->
+	<script src="/static/main.js"></script>
 </head>
 <body>
+
+<!--
+1) Изменить округлённость
+2) Сделать кнопки навигации в полную ширину (другие margin)
+3) Убрать кнопку при сужении (при нажатии на логотип)
+4) Убирать блоки при сужении md, а не lg (убрать margin md-lg)
+5) Изменить ширину полосы (взять из main.css)
+ -->
+
+<nav class="navbar navbar-expand-lg bg-dark navbar-dark fixed-top">
+	<a class="navbar-brand" href="#">
+		<img src="/static/logo.png" alt="Logo" style="height: 29px;">
+	</a>
+	<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navb">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="collapse navbar-collapse" id="navb">
+		<ul class="navbar-nav mr-auto">
+			<li class="nav-item active"><a class="nav-link" href="/">Главная</a></li>
+			<li class="nav-item"><a class="nav-link" href="/competions">Соревнования</a></li>
+			<li class="nav-item"><a class="nav-link" href="/participants">Участники</a></li>
+		</ul>
+		<form class="form-inline my-2 my-lg-0">
+			<input class="form-control mr-sm-2" type="text" placeholder="Поиск">
+		</form>
+	</div>
+</nav>
+
+
+<!--
 	<div class="header" onclick="change(this);">
 		<img src="/static/logo.png" >
 		<a href="/"><div>Главная</div></a>
@@ -54,7 +87,7 @@ Projectivity
 		<a href="/competions">Соревнования</a>
 		<a href="/participants">Участники</a>
 	</div>
-
+!-->
 {% block cont %}{% endblock %}
 
 </body>
