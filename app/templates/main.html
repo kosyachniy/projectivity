@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -30,6 +30,44 @@ Projectivity
 {% endif %}
 	<!-- <link rel="stylesheet" type="text/css" href="/static/main.css"> -->
 	<script src="/static/main.js"></script>
+
+	<style>
+		/* Основное */
+		body {
+			margin-top: 57px;
+		}
+
+		a, a:hover, a:active, a:visited {text-decoration: none; color: #000;}
+
+		div, a {	
+			background: center no-repeat;
+			-moz-background-size: 100%;
+			-webkit-background-size: 100%;
+			-o-background-size: 100%;
+			background-size: 100%;
+		}
+
+		/* Свои элементы */
+
+		.space {
+			margin: 25px;
+		}
+
+		.notes1 a {
+			height: 350px;
+			text-align: center;
+		}
+
+		.notes2 a {
+			height: 150px;
+			margin: 5px;
+		}
+
+		/* Замена стилей BootStrap */
+		h1 {
+			padding-top: 15px;
+		}
+	</style>
 </head>
 <body>
 
@@ -50,44 +88,25 @@ Projectivity
 	</button>
 	<div class="collapse navbar-collapse" id="navb">
 		<ul class="navbar-nav mr-auto">
-			<li class="nav-item active"><a class="nav-link" href="/">Главная</a></li>
-			<li class="nav-item"><a class="nav-link" href="/competions">Соревнования</a></li>
-			<li class="nav-item"><a class="nav-link" href="/participants">Участники</a></li>
+			<li class="nav-item{% if 'index' in url %} active{% endif %}"><a class="nav-link" href="/">Главная</a></li>
+			<li class="nav-item{% if 'competions' in url %} active{% endif %}"><a class="nav-link" href="/competions">Соревнования</a></li>
+			<li class="nav-item{% if 'participants' in url %} active{% endif %}"><a class="nav-link" href="/participants">Участники</a></li>
 		</ul>
-		<form class="form-inline my-2 my-lg-0">
-			<input class="form-control mr-sm-2" type="text" placeholder="Поиск">
+		<form class="form-inline my-2 my-lg-0" action="/search" method="post">
+			<input class="form-control mr-sm-2" type="text" name="search" placeholder="Поиск">
 		</form>
 	</div>
 </nav>
 
 
 <!--
-	<div class="header" onclick="change(this);">
-		<img src="/static/logo.png" >
-		<a href="/"><div>Главная</div></a>
-		<a href="/competions"><div>Соревнования</div></a>
-		<a href="/participants"><div>Участники</div></a>
-
-	</div>
-
-	<div class="expand" id="menu">
-		<form action="/search" method="post">
-			<input placeholder="Поиск" name="search">
-		</form>
-		<div>
-
 {% if user.login %}
 <a href="/cabinet">{{user.login}}</a> &nbsp;<a href="/out" class="del">Выйти</a>
 {% else %}
 <a class="del">Гость &nbsp;</a><a href="/login{% if url %}?url={{ url }}{% endif %}">Войти</a>
 {% endif %}
-
-		</div>
-		<a href="/">Главная</a>
-		<a href="/competions">Соревнования</a>
-		<a href="/participants">Участники</a>
-	</div>
 !-->
+
 {% block cont %}{% endblock %}
 
 </body>

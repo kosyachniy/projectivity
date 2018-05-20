@@ -1,10 +1,16 @@
 {% extends "main.html" %}
 {% block cont %}
 
-<div class="info" onclick="change(this);">↑ Нажми на лого ↑</div>
+<!-- <div class="info" onclick="change(this);">↑ Нажми на лого ↑</div> !-->
 
-<h2 class="title2"><a href="competions">Соревнования &nbsp; &nbsp; <font color="blue">Смотреть все ></font></a></h2>
-<div class="block"><div class="notes1">
+<div class="space"><a href="competions"><h1>Соревнования <span class="badge badge-secondary">Смотреть все ></span></h1></a></div><a href="competions">
+
+<div class="row notes1">
+{% for i in competions %}<a href="competions/{{i.id}}" class="col-md-6" style="background-image: url(/static/{% if i.images %}load/competions/{{i.images[-1]}}{% else %}photo{% endif %}.jpg);">{{i.name}} {{i.author}}</a>{% endfor %}
+</div>
+
+
+<!-- <div class="block"><div class="notes1">
 
 {% for i in competions %}<a href="competions/{{i.id}}"><div style="background-image: url(/static/{% if i.images %}load/competions/{{i.images[-1]}}{% else %}photo{% endif %}.jpg);">
 	<div class="back">
@@ -15,30 +21,18 @@
 	</div>
 </div></a>{% endfor %}
 
+</div></div> -->
+
+<div class="space"><a href="participants"><h1>Участники <span class="badge badge-secondary">Смотреть все ></span></h1></a></div>
+
+<div class="space"><div class="row notes2">
+{% for i in users %}<a href="participants/{{i.login}}" class="col-sm-3" style="background-image: url(/static/{% if i.photo %}load/users/{{i.photo}}{% else %}photo{% endif %}.jpg);">{{i.surname}} {{i.name}}<br>@{{i.login}}</a>{% endfor %}
 </div></div>
 
-<h2 class="title2"><a href="participants">Участники &nbsp; &nbsp; <font color="blue">Смотреть все ></font></a></h2>
-<div class="block"><div class="notes3">
+<!-- <div class="block"><div class="notes3">
 
 {% for i in users %}<a href="participants/{{i.login}}"><div style="background-image: url(/static/{% if i.photo %}load/users/{{i.photo}}{% else %}photo{% endif %}.jpg);"><div class="back"><p>{{i.surname}} {{i.name}}<br>@{{i.login}}</p></div></div></a>{% endfor %}
 
-</div></div>
-
-<!--
-<div class="block"><div class="notes2">
-
-{% for i in users %}<a href="participants/{{i.login}}"><div style="background-image: url(static/{% if i.photo %}load/users/{{i.photo}}{% else %}photo{% endif %}.jpg);">
-	<div class="back">
-		<table>
-			<tr>
-				<td>{{i.name}} {{i.surname}}<br> &nbsp; @{{i.login}}</td>
-				<td>{{i.rating}}</td>
-			</tr>
-		</table>
-	</div>
-</div></a>{% endfor %}
-
-</div></div>
-!-->
+</div></div> -->
 
 {% endblock %}
