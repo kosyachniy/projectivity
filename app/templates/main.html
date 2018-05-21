@@ -73,6 +73,10 @@ Projectivity
 
 		/**/
 
+		form {
+			width: 100%;
+		}
+
 		input {
 			border: 0;
 			padding: 0;
@@ -96,8 +100,25 @@ Projectivity
 			padding: 0 15px 0 15px;
 		}
 
+		.u-logo img {
+			height: 27.5px;
+		}
+
 		.u-expand {
 			width: calc(100% - 250px);
+		}
+
+		.u-search {
+			width: calc(100% - 250px);
+			font-size: 18px;
+		}
+
+		.u-user {
+			width: 250px;
+			color: #fff;
+			text-align: right;
+			font-size: 18px;
+			padding: 0 15px 0 15px;
 		}
 
 		.u-header input {
@@ -114,16 +135,21 @@ Projectivity
 		::-moz-placeholder {color: #fff;}
 		:-ms-input-placeholder {color: #fff;}
 
-		.u-header input:hover, .u-header input:active, .u-header input:focus {
+		.u-header input:hover, .u-header input:focus {
 			background-color: #fff;
 			text-align: left;
 			color: #23527c;
 		}
 
-		:hover::-webkit-input-placeholder {color: #23527c;}
-		:hover:-moz-placeholder {color: #23527c;}
-		:hover::-moz-placeholder {color: #23527c;}
-		:hover:-ms-input-placeholder {color: #23527c;}
+		:hover::-webkit-input-placeholder {color: #23527c; text-align: center;}
+		:hover:-moz-placeholder {color: #23527c; text-align: center;}
+		:hover::-moz-placeholder {color: #23527c; text-align: center;}
+		:hover:-ms-input-placeholder {color: #23527c; text-align: center;}
+
+		:focus::-webkit-input-placeholder {color: #23527c; text-align: center;}
+		:focus:-moz-placeholder {color: #23527c; text-align: center;}
+		:focus::-moz-placeholder {color: #23527c; text-align: center;}
+		:focus:-ms-input-placeholder {color: #23527c; text-align: center;}
 
 		.u-header a {
 			color: #fff;
@@ -138,16 +164,18 @@ Projectivity
 		}
 
 		@media all and (max-width: 700px) {
-			.u-logo {
+			.u-logo, .u-search, .u-user {
 				width: 100%;
 				text-align: center;
 			}
 
 			.u-expand {
-				position: relative;
+				position: fixed;
 				width: 100%;
-				height: calc(100% - 55px);
+				height: calc(100vh - 55px);
 				top: 55px;
+				left: 0;
+				background-color: #183f4e;
 			}
 		}
 	</style>
@@ -163,12 +191,12 @@ Projectivity
  -->
 
 <div class="u-header"><div class="u-logo">
-		<img src="/static/logo.png" style="height: 27.5px;">
-	</div><div class="u-expand"><div style="width: calc(100% - 250px); font-size: 18px; /*padding-top: 18.5px; *//*height: 36.5px;*/">
-		<form style="width: 100%;" action="/search" method="post">
+		<img src="/static/logo.png">
+	</div><div class="u-expand"><div class="u-search">
+		<form action="/search" method="post">
 			<input style="width: 100%;" type="search" name="search" placeholder="Поиск">
 		</form>
-	</div><div style="width: 250px; color: #fff; text-align: right; font-size: 18px; /*padding-top: 18.5px; *//*height: 36.5px;*/ padding: 0 15px 0 15px;">
+	</div><div class="u-user">
 
 {% if user.login %}
 <a href="/cabinet">{{user.login}}</a> &nbsp;<a href="/out" class="del">Выйти</a>
