@@ -6,14 +6,22 @@
 	--main-first: #183f4e;
 	--main-second: #23527c;
 	--main-third: #2d5767;
-/*	--main-third: #e4a160;
+	--main-fourth: #e4a160;
+	--main-fifth: #f0bd86;
 }*/
 
-:root {
+/*:root {
 	--main-first: #4f5a6e;
 	--main-second: #424b5f;
 	--main-third: #3a4357;
 	--main-fourth: #a7b3cb;
+}*/
+
+:root {
+	--main-first: #495467;
+	--main-second: #e1e5eb;
+	--main-third: #3a4357;
+	--main-fourth: #3a4357;
 }
 
 body {
@@ -143,36 +151,36 @@ div, a, input, img, form {
 	border-radius: 15px;
 	padding: 7px 10px 7px 10px;
 	background-color: var(--main-first);
-	color: #fff;
+	color: var(--main-fourth);
 	text-align: center;
 	border: 0;
 	margin: 0;
 	font-size: 18px;
 }
 
-::-webkit-input-placeholder {color: #fff;}
-:-moz-placeholder {color: #fff;}
-::-moz-placeholder {color: #fff;}
-:-ms-input-placeholder {color: #fff;}
+::-webkit-input-placeholder {color: var(--main-fourth);}
+:-moz-placeholder {color: var(--main-fourth);}
+::-moz-placeholder {color: var(--main-fourth);}
+:-ms-input-placeholder {color: var(--main-fourth);}
 
 .u-header input:hover, .u-header input:focus {
-	background-color: #fff;
+	background-color: var(--main-third);
 	text-align: left;
-	color: var(--main-second);
+	color: var(--main-fourth);
 }
 
-:hover::-webkit-input-placeholder {color: var(--main-second); text-align: center;}
-:hover:-moz-placeholder {color: var(--main-second); text-align: center;}
-:hover::-moz-placeholder {color: var(--main-second); text-align: center;}
-:hover:-ms-input-placeholder {color: var(--main-second); text-align: center;}
+:hover::-webkit-input-placeholder {color: var(--main-fourth); text-align: center;}
+:hover:-moz-placeholder {color: var(--main-fourth); text-align: center;}
+:hover::-moz-placeholder {color: var(--main-fourth); text-align: center;}
+:hover:-ms-input-placeholder {color: var(--main-fourth); text-align: center;}
 
-:focus::-webkit-input-placeholder {color: var(--main-second); text-align: center;}
-:focus:-moz-placeholder {color: var(--main-second); text-align: center;}
-:focus::-moz-placeholder {color: var(--main-second); text-align: center;}
-:focus:-ms-input-placeholder {color: var(--main-second); text-align: center;}
+:focus::-webkit-input-placeholder {color: var(--main-fourth); text-align: center;}
+:focus:-moz-placeholder {color: var(--main-fourth); text-align: center;}
+:focus::-moz-placeholder {color: var(--main-fourth); text-align: center;}
+:focus:-ms-input-placeholder {color: var(--main-fourth); text-align: center;}
 
 .u-user a {
-	color: #fff;
+	color: var(--main-fourth);
 }
 
 .u-menu {
@@ -191,11 +199,12 @@ div, a, input, img, form {
 	padding: 15px;
 	width: 100%;
 	border-radius: 15px;
+	color: var(--main-second);
 }
 
 .u-menu a:hover {
 	background-color: var(--main-first);
-	color: #fff;
+	color: var(--main-fourth);
 }
 
 
@@ -247,7 +256,7 @@ div, a, input, img, form {
 	}
 
 	.u-menu a {
-		color: #fff;
+		color: var(--main-fourth);
 		text-align: center;
 	}
 
