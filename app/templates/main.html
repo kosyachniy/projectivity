@@ -3,10 +3,12 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+!-->
 
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<title>
@@ -28,214 +30,40 @@ Projectivity
 	<meta name="keywords" content="Сервис поиска сокомандников на конкурсы, стартапы и конференции">
 	<meta name="description" content="Сервис поиска сокомандников на конкурсы, стартапы и конференции">
 {% endif %}
-	<!-- <link rel="stylesheet" type="text/css" href="/static/main.css"> -->
+	<link rel="stylesheet" type="text/css" href="/static/main.css">
 	<script src="/static/main.js"></script>
-
-	<style>
-		/* Основное */
-/*		body {
-			margin-top: 57px;
-		}*/
-		div, body {margin: 0; padding: 0; vertical-align: top; line-height: 1rem;}
-
-		a, a:hover, a:active, a:visited {text-decoration: none; color: #000;}
-
-		div, a {	
-			display: inline-block;
-			background: center no-repeat;
-			-moz-background-size: 100%;
-			-webkit-background-size: 100%;
-			-o-background-size: 100%;
-			background-size: 100%;
-		}
-
-		/* Свои элементы */
-
-		.space {
-			margin: 25px;
-		}
-
-		.notes1 a {
-			height: 350px;
-			text-align: center;
-		}
-
-		.notes2 a {
-			height: 150px;
-			margin: 5px;
-		}
-
-		/* Замена стилей BootStrap */
-
-		h1 {
-			padding-top: 15px;
-		}
-
-		/**/
-
-		form {
-			width: 100%;
-		}
-
-		input {
-			border: 0;
-			padding: 0;
-			outline: none;
-		}
-
-		.u-header {
-			width: 100%;
-			height: 55px;
-			background-color: #183F4E; /*#000;*/
-		}
-
-		.u-header div {
-			height: 55px;
-			line-height: 55px;
-		}
-
-		.u-logo {
-			width: 250px;
-			cursor: pointer;
-			padding: 0 15px 0 15px;
-		}
-
-		.u-logo img {
-			height: 27.5px;
-		}
-
-		.u-expand {
-			width: calc(100% - 250px);
-		}
-
-		.u-search {
-			width: calc(100% - 250px);
-			font-size: 18px;
-		}
-
-		.u-user {
-			width: 250px;
-			color: #fff;
-			text-align: right;
-			font-size: 18px;
-			padding: 0 15px 0 15px;
-		}
-
-		.u-header input {
-			height: 35px;
-			border-radius: 15px;
-			padding: 7px 10px 7px 10px;
-			background-color: #183f4e; /*#23527c;*/
-			color: #fff;
-			text-align: center;
-		}
-
-		::-webkit-input-placeholder {color: #fff;}
-		:-moz-placeholder {color: #fff;}
-		::-moz-placeholder {color: #fff;}
-		:-ms-input-placeholder {color: #fff;}
-
-		.u-header input:hover, .u-header input:focus {
-			background-color: #fff;
-			text-align: left;
-			color: #23527c;
-		}
-
-		:hover::-webkit-input-placeholder {color: #23527c; text-align: center;}
-		:hover:-moz-placeholder {color: #23527c; text-align: center;}
-		:hover::-moz-placeholder {color: #23527c; text-align: center;}
-		:hover:-ms-input-placeholder {color: #23527c; text-align: center;}
-
-		:focus::-webkit-input-placeholder {color: #23527c; text-align: center;}
-		:focus:-moz-placeholder {color: #23527c; text-align: center;}
-		:focus::-moz-placeholder {color: #23527c; text-align: center;}
-		:focus:-ms-input-placeholder {color: #23527c; text-align: center;}
-
-		.u-header a {
-			color: #fff;
-		}
-
-		@media all and (min-width: 1100px) {
-			.u-header {
-				/*width: 1100px;*/
-				padding-left: calc(50% - 550px);
-				padding-right: calc(50% - 550px);
-			}
-		}
-
-		@media all and (max-width: 700px) {
-			.u-logo, .u-search, .u-user {
-				width: 100%;
-				text-align: center;
-			}
-
-			.u-expand {
-				position: fixed;
-				width: 100%;
-				height: calc(100vh - 55px);
-				top: 55px;
-				left: 0;
-				background-color: #183f4e;
-			}
-		}
-	</style>
 </head>
 <body>
 
-<!--
-1) Изменить округлённость
-2) Сделать кнопки навигации в полную ширину (другие margin)
-3) Убрать кнопку при сужении (при нажатии на логотип)
-4) Убирать блоки при сужении md, а не lg (убрать margin md-lg)
-5) Изменить ширину полосы (взять из main.css)
- -->
-
-<div class="u-header"><div class="u-logo">
+<div class="u-header">
+	<div class="u-logo" onclick="change();">
 		<img src="/static/logo.png">
-	</div><div class="u-expand"><div class="u-search">
-		<form action="/search" method="post">
-			<input style="width: 100%;" type="search" name="search" placeholder="Поиск">
-		</form>
-	</div><div class="u-user">
+	</div><div class="u-expand" style="display: inline-block;">
+		<div class="u-search">
+			<form action="/search" method="post">
+				<input type="search" name="search" placeholder="Поиск">
+			</form>
+		</div><div class="u-user">
 
-{% if user.login %}
-<a href="/cabinet">{{user.login}}</a> &nbsp;<a href="/out" class="del">Выйти</a>
-{% else %}
-<a class="del">Гость &nbsp;</a><a href="/login{% if url %}?url={{ url }}{% endif %}">Войти</a>
-{% endif %}
+	{% if user.login %}
+	<a href="/cabinet">{{user.login}}</a> &nbsp;<a href="/out" class="del">Выйти</a>
+	{% else %}
+	<a class="del">Гость &nbsp;</a><a href="/login{% if url %}?url={{ url }}{% endif %}">Войти</a>
+	{% endif %}
 
-	</div></div></div>
-
-<!--
-<nav class="navbar navbar-expand-lg bg-dark navbar-dark fixed-top">
-	<a class="navbar-brand" href="#">
-		<img src="/static/logo.png" style="height: 29px;">
-	</a>
-	<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navb">
-		<span class="navbar-toggler-icon"></span>
-	</button>
-	<div class="collapse navbar-collapse" id="navb">
-		<ul class="navbar-nav mr-auto">
-			<li class="nav-item{% if 'index' in url %} active{% endif %}"><a class="nav-link" href="/">Главная</a></li>
-			<li class="nav-item{% if 'competions' in url %} active{% endif %}"><a class="nav-link" href="/competions">Соревнования</a></li>
-			<li class="nav-item{% if 'participants' in url %} active{% endif %}"><a class="nav-link" href="/participants">Участники</a></li>
-		</ul>
-		<form class="form-inline my-2 my-lg-0" action="/search" method="post">
-			<input class="form-control mr-sm-2" type="text" name="search" placeholder="Поиск">
-		</form>
+		</div><div class="u-menu">
+			<div><a href="/">Главная</a></div>
+			<div><a href="/competions">Соревнования</a></div>
+			<div><a href="/participants">Участники</a></div>
+			<div><a href="/about">О нас</a></div>
+		</div>
 	</div>
-</nav>
-!-->
+</div>
 
-<!--
-{% if user.login %}
-<a href="/cabinet">{{user.login}}</a> &nbsp;<a href="/out" class="del">Выйти</a>
-{% else %}
-<a class="del">Гость &nbsp;</a><a href="/login{% if url %}?url={{ url }}{% endif %}">Войти</a>
-{% endif %}
-!-->
+<div class="u-body">
 
 {% block cont %}{% endblock %}
 
+</div>
 </body>
 </html>

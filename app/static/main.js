@@ -1,9 +1,9 @@
-function change(min_width=425) {
-	if (screen.width <= 425) {
-		if (document.getElementById('menu').style.display == 'block')
-			document.getElementById('menu').style.display = 'none';
+function change(min_width=700) {
+	if (document.body.clientWidth <= min_width) {
+		if (document.getElementsByClassName('u-expand')[0].style.display == 'inline-block')
+			document.getElementsByClassName('u-expand')[0].style.display = 'none';
 		else
-			document.getElementById('menu').style.display = 'block';
+			document.getElementsByClassName('u-expand')[0].style.display = 'inline-block';
 	} else {
 		document.location.href = '/';
 	}
