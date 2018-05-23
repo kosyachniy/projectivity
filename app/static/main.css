@@ -134,6 +134,7 @@ input[type="file"] {border: 0;}
 
 .u-expand {
 	width: calc(100% - 250px);
+	display: inline-block;
 }
 
 .u-search {
@@ -269,6 +270,7 @@ input[type="file"] {border: 0;}
 		left: 0;
 		background-color: var(--main);
 		text-align: center;
+		display: none;
 	}
 
 	.u-search input {

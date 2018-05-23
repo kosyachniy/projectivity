@@ -53,7 +53,7 @@ Projectivity
 			<text id="_Source_" data-name="{Source}" class="cls-1" x="-0.727" y="197.008">{Source}</text>
 		</svg>
 
-	</div><div class="u-expand" style="display: inline-block;">
+	</div><div class="u-expand">
 		<div class="u-search">
 			<form action="/search" method="post">
 				<input type="search" name="search" placeholder="Поиск">
@@ -76,26 +76,6 @@ Projectivity
 </div>
 
 <div class="u-body">
-
-<script type="text/javascript">
-$(function() {
-	$(window).resize(hideHeader);
-});
-
-var x = document.body.clientWidth;
-
-function hideHeader() {
-	var y = document.body.clientWidth;
-
-	if (x <= 700 && y > 700) {
-		$('.expand').append('<div>включить показание хедера</div>');
-	} else if (y <= 700 && x > 700) {
-		$('.expand').append('<div>выключить хедер</div>');
-	}
-
-	x = y;
-}
-</script>
 
 {% block cont %}{% endblock %}
 
