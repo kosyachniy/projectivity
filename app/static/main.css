@@ -36,7 +36,7 @@ hr {border: 1px solid #000; width: 100%;}
 a, a:hover, a:active, a:visited {text-decoration: none; color: #000;}
 table, tr, td {border: 1px solid #000; border-collapse: collapse;}
 div, table, tr, td, hr {margin: 0; padding: 0;}
-body, div, form, td {vertical-align: top;}
+body, div, td {vertical-align: top;}
 
 div, a, input, img, form {
 	box-sizing: border-box;
@@ -51,10 +51,14 @@ div, a, input, img, form {
 
 /* Формы */
 
-form {width: 100%;}
+form {
+	width: 100%;
+	vertical-align: middle;
+	text-align: center;
+}
 
 input, textarea {
-	display: block;
+	display: inline-block;
 	vertical-align: middle;
 	width: 100%;
 	font-size: 20px;
@@ -68,7 +72,7 @@ input, textarea {
 }
 
 input[type="submit"] {
-	width: calc(100%);
+	width: 100%;
 	margin-top: 15px;
 	background-color: #c0c0c0;
 	cursor: pointer;
@@ -173,10 +177,10 @@ input[type="file"] {border: 0;}
 }*/
 /**/
 
-::-webkit-input-placeholder {color: var(--font-black);}
-:-moz-placeholder {color: var(--font-black);}
-::-moz-placeholder {color: var(--font-black);}
-:-ms-input-placeholder {color: var(--font-black);}
+.u-header input::-webkit-input-placeholder {color: var(--font-black);}
+.u-header input:-moz-placeholder {color: var(--font-black);}
+.u-header input::-moz-placeholder {color: var(--font-black);}
+.u-header input:-ms-input-placeholder {color: var(--font-black);}
 
 .u-header input:hover, .u-header input:focus {
 	background-color: var(--search-hover);
@@ -184,15 +188,15 @@ input[type="file"] {border: 0;}
 	color: var(--font-white);
 }
 
-:hover::-webkit-input-placeholder {color: var(--font-white); text-align: center;}
-:hover:-moz-placeholder {color: var(--font-white); text-align: center;}
-:hover::-moz-placeholder {color: var(--font-white); text-align: center;}
-:hover:-ms-input-placeholder {color: var(--font-white); text-align: center;}
+.u-header input:hover::-webkit-input-placeholder {color: var(--font-white); text-align: center;}
+.u-header input:hover:-moz-placeholder {color: var(--font-white); text-align: center;}
+.u-header input:hover::-moz-placeholder {color: var(--font-white); text-align: center;}
+.u-header input:hover:-ms-input-placeholder {color: var(--font-white); text-align: center;}
 
-:focus::-webkit-input-placeholder {color: var(--font-white); text-align: center;}
-:focus:-moz-placeholder {color: var(--font-white); text-align: center;}
-:focus::-moz-placeholder {color: var(--font-white); text-align: center;}
-:focus:-ms-input-placeholder {color: var(--font-white); text-align: center;}
+.u-header input:focus::-webkit-input-placeholder {color: var(--font-white); text-align: center;}
+.u-header input:focus:-moz-placeholder {color: var(--font-white); text-align: center;}
+.u-header input:focus::-moz-placeholder {color: var(--font-white); text-align: center;}
+.u-header input:focus:-ms-input-placeholder {color: var(--font-white); text-align: center;}
 
 .u-user a {
 	color: var(--font-black);
@@ -281,6 +285,10 @@ input[type="file"] {border: 0;}
 		color: var(--font-black);
 	}
 
+	.u-menu a:hover {
+		color: var(--font-white);
+	}
+
 	.u-body {
 		left: 0;
 		width: 100%;
@@ -291,11 +299,10 @@ input[type="file"] {border: 0;}
 /* Информационное сообщение */
 
 .info {
-	width: 100vw;
+	width: 100%;
 	color: #505050;
 	font-size: 15px;
 	text-align: center;
-	margin: 10px 0 -10px 0;
 }
 
 @media all and (min-width: 481px) {

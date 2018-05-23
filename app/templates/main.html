@@ -3,6 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <!-- 
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -75,6 +76,26 @@ Projectivity
 </div>
 
 <div class="u-body">
+
+<script type="text/javascript">
+$(function() {
+	$(window).resize(hideHeader);
+});
+
+var x = document.body.clientWidth;
+
+function hideHeader() {
+	var y = document.body.clientWidth;
+
+	if (x <= 700 && y > 700) {
+		$('.expand').append('<div>включить показание хедера</div>');
+	} else if (y <= 700 && x > 700) {
+		$('.expand').append('<div>выключить хедер</div>');
+	}
+
+	x = y;
+}
+</script>
 
 {% block cont %}{% endblock %}
 
