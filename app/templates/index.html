@@ -3,11 +3,15 @@
 
 <div class="info" onclick="change(this);">↑ Нажми на лого ↑</div>
 
-<div class="space"><a href="competions"><h1>Соревнования <span class="badge badge-secondary">Смотреть все ></span></h1></a></div><a href="competions">
+<a href="competions"><div class="u-title">Соревнования</div></a>
 
-<div class="row notes1">
-{% for i in competions %}<a href="competions/{{i.id}}" class="col-md-6" style="background-image: url(/static/{% if i.images %}load/competions/{{i.images[-1]}}{% else %}photo{% endif %}.jpg);">{{i.name}} {{i.author}}</a>{% endfor %}
+<div class="u-notes">
+{% for i in competions %}<a href="competions/{{i.id}}"><div><div style="background-image: url(/static/{% if i.images %}load/competions/{{i.images[-1]}}{% else %}photo{% endif %}.jpg);"></div>{{i.name}} {{i.author}}</div></a>{% endfor %}
 </div>
+
+<script>
+place('.u-notes')
+</script>
 
 
 <!-- <div class="block"><div class="notes1">
@@ -23,11 +27,11 @@
 
 </div></div> -->
 
-<div class="space"><a href="participants"><h1>Участники <span class="badge badge-secondary">Смотреть все ></span></h1></a></div>
+<a href="participants"><div class="u-title">Участники</div></a>
 
-<div class="space"><div class="row notes2">
-{% for i in users %}<a href="participants/{{i.login}}" class="col-sm-3" style="background-image: url(/static/{% if i.photo %}load/users/{{i.photo}}{% else %}photo{% endif %}.jpg);">{{i.surname}} {{i.name}}<br>@{{i.login}}</a>{% endfor %}
-</div></div>
+<div class="u-notes">
+{% for i in users %}<a href="participants/{{i.login}}"><div><div style="background-image: url(/static/{% if i.photo %}load/users/{{i.photo}}{% else %}photo{% endif %}.jpg);"></div>{{i.surname}} {{i.name}}<br>@{{i.login}}</div></a>{% endfor %}
+</div>
 
 <!-- <div class="block"><div class="notes3">
 

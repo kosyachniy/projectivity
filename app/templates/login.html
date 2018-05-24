@@ -2,8 +2,11 @@
 {% block cont %}
 
 <style>
-.login {width: 40%; padding: 0 5% 0 5%;}
-.login:last-child {padding: 0 0 0 5%;}
+.u-signup, .u-signin {
+	width: 50%;
+	padding: 0 5% 0 5%;
+}
+
 font {
 	font-size: 1.7rem;
 	font-weight: bold;
@@ -13,15 +16,18 @@ font {
 	padding: 20px 0 15px 0;
 }
 
-@media all and (max-width: 800px) {
-	.login {
-		width: 90%;
-		padding: 0 0 0 7%;
+.u-alert {
+	margin-top: 20px;
+}
+
+@media all and (max-width: 850px) {
+	.u-signup, .u-signin {
+		width: 100%;
 	}
 }
 </style>
 
-<div class="login">
+<div class="u-signup">
 	<font>Зарегистрироваться</font>
 	<form action="signup{% if url %}?url={{ url }}{% endif %}" method="post">
 		<input type="text" name="name" placeholder="Имя" required>
@@ -31,17 +37,33 @@ font {
 		<input type="password" name="pass" placeholder="Пароль" readonly onfocus="this.removeAttribute('readonly')" required>
 		<input type="submit" value="Зарегистрироваться">
 	</form>
-	<br><br>
-	Нажимая кнопку "Зарегистрироваться", Вы автоматически соглашаетесь с <a href="privacy" style="color: blue;">условиями сайта</a>.
-</div><div class="login">
+	<div class="u-alert">
+		Нажимая кнопку «Зарегистрироваться», Вы автоматически соглашаетесь с <a href="privacy" style="color: blue;">условиями сайта</a>.
+	</div>
+</div><div class="u-signin">
 	<font>Войти</font>
 	<form action="signin{% if url %}?url={{ url }}{% endif %}" method="post">
 		<input placeholder="Логин" name="login" required autofocus>
 		<input type="password" placeholder="Пароль" name="pass" required>
 		<input type="submit" value="Войти">
 	</form>
-	<br><br>
-	Регистр учитывается
+	<div class="u-alert">
+	Регистр пароля учитывается
+	</div>
+	<div class="u-alert u-caps">
+	</div>
+	<script>
+
+$('body').keypress(function(e) { 
+	var s = String.fromCharCode(e.which);
+	if (s.toUpperCase() === s && s.toLowerCase() !== s && !e.shiftKey) {
+		$('.u-caps').html('Включён Caps Lock!');
+	} else {
+		$('.u-caps').html('');
+	}
+});
+
+	</script>
 	<br><br>
 	</div>
 

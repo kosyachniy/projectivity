@@ -24,6 +24,10 @@
 	--menu-hover: #e1e5eb;
 	--font-black: #a7b3cb;
 	--font-white: #3a4357;
+	--font: #3a4357; /*#000;*/
+	--border: #e1e5eb; /*#c0c0c0;*/
+	--border-active: #a0acc4; /*#00bfff;*/
+	--border-submit: #00e600;
 }
 
 body {
@@ -32,9 +36,9 @@ body {
 	font: 19px Myriad; /* Arsenal-Bold Helvetica Arial Calibri Avenir Next Regular */
 }
 
-hr {border: 1px solid #000; width: 100%;}
-a, a:hover, a:active, a:visited {text-decoration: none; color: #000;}
-table, tr, td {border: 1px solid #000; border-collapse: collapse;}
+hr {border: 1px solid var(--font); width: 100%;}
+body, input, a, a:hover, a:active, a:visited {text-decoration: none; color: var(--font);}
+table, tr, td {border: 1px solid var(--font); border-collapse: collapse;}
 div, table, tr, td, hr {margin: 0; padding: 0;}
 body, div, td {vertical-align: top;}
 
@@ -65,7 +69,7 @@ input, textarea {
 	border-radius: 15px;
 	margin: 7px;
 	padding: 7px 10px 7px 10px;
-	border: 1px solid #c0c0c0;
+	border: 1px solid var(--border);
 	appearance: none;
 	-webkit-appearance: none;
 	-moz-appearance: none;
@@ -74,23 +78,23 @@ input, textarea {
 input[type="submit"] {
 	width: 100%;
 	margin-top: 15px;
-	background-color: #c0c0c0;
+	background-color: var(--border);
 	cursor: pointer;
 }
 
 input[type="submit"]:hover {
 	background-color: #fff;
-	border: 1px solid #00bfff;
+	border: 1px solid var(--border-active);
 }
 
 textarea:focus, input:focus {outline: none;}
 
 input:hover, input:active, input:focus, textarea, textarea:active, textarea:focus {
-	border: 1px solid #00bfff;
+	border: 1px solid var(--border-active);
 	background-color: #fff;
 }
 
-input:valid:not(input[type="submit"]) {border: 1px solid #00e600;}
+input:valid:not(input[type="submit"]) {border: 1px solid var(--border-submit);}
 
 input[type="checkbox"] {
 	width: 20px;
@@ -309,4 +313,13 @@ input[type="file"] {border: 0;}
 
 @media all and (min-width: 481px) {
 	.info {display: none;}
+}
+
+
+/* Статьи */
+
+.u-title {
+	font-size: 30px;
+	font-weight: bold;
+	padding: 15px;
 }
