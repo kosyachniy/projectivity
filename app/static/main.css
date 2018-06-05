@@ -193,6 +193,7 @@ input[type="file"] {border: 0;}
 	color: var(--font-white);
 }
 
+/*
 .u-header input:hover::-webkit-input-placeholder {color: var(--font-white); text-align: center;}
 .u-header input:hover:-moz-placeholder {color: var(--font-white); text-align: center;}
 .u-header input:hover::-moz-placeholder {color: var(--font-white); text-align: center;}
@@ -202,6 +203,65 @@ input[type="file"] {border: 0;}
 .u-header input:focus:-moz-placeholder {color: var(--font-white); text-align: center;}
 .u-header input:focus::-moz-placeholder {color: var(--font-white); text-align: center;}
 .u-header input:focus:-ms-input-placeholder {color: var(--font-white); text-align: center;}
+*/
+
+.u-header input::-webkit-input-placeholder {
+	position: relative;
+	-webkit-transition: padding 0.5s;
+	transition: padding 0.5s;
+}
+
+.u-header input:-moz-placeholder {
+	position: relative;
+	-moz-transition: padding 0.5s;
+	transition: padding 0.5s;
+}
+
+.u-header input::-moz-placeholder {
+	position: relative;
+	-moz-transition: padding 0.5s;
+	transition: padding 0.5s;
+}
+
+.u-header input:-ms-input-placeholder {
+	position: relative;
+	-ms-transition: padding 0.5s;
+	transition: padding 0.5s;
+}
+
+.u-header input:hover::-webkit-input-placeholder, .u-header input:focus::-webkit-input-placeholder {
+	text-align: left;
+}
+
+.u-header input:hover:-moz-placeholder, .u-header input:focus:-moz-placeholder{
+	text-align: left;
+}
+
+.u-header input:hover::-moz-placeholder, .u-header input:focus::-moz-placeholder{
+	text-align: left;
+}
+
+.u-header input:hover:-ms-input-placeholder, .u-header input:focus:-ms-input-placeholder{
+	text-align: left;
+}
+
+/*
+.u-header input:hover::-webkit-input-placeholder, .u-header input:focus::-webkit-input-placeholder {
+	padding-left: 100px;
+}
+
+.u-header input:hover:-moz-placeholder, .u-header input:focus:-moz-placeholder{
+	padding-left: 100px;
+}
+
+.u-header input:hover::-moz-placeholder, .u-header input:focus::-moz-placeholder{
+	padding-left: 100px;
+}
+
+.u-header input:hover:-ms-input-placeholder, .u-header input:focus:-ms-input-placeholder{
+	padding-left: 100px;
+}
+*/
 
 .u-user a {
 	color: var(--font-black);
