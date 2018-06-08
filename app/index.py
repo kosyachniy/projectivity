@@ -7,14 +7,17 @@ from json import loads
 @app.route('/', methods=['GET'])
 @app.route('/index')
 def index():
-	competions = loads(post(LINK, json={'cm': 'competions.gets', 'num': 2}).text)
-	users = loads(post(LINK, json={'cm': 'participants.gets', 'num': 5}).text)
+	categories = loads(post(LINK, json={'method': 'categories.gets'}).text)
+	user = loads(post(LINK, json={'method': 'users.get', 'id': session['id']}).text) if 'id' in session else {'id': 0, 'admin': 2}
+
+	articles = loads(post(LINK, json={'method': 'articles.gets', 'count': 6}).text)
 
 	return render_template('index.html',
 		title = 'Главная',
 		description = '',
 		url = 'index',
-		competions = competions,
-		users = users,
-		user = {'login': session['login'] if 'token' in session else None},
+		categories = categories,
+		user = user,
+
+		articles = articles,
 	)
