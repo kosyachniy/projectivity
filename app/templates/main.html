@@ -61,7 +61,7 @@ Projectivity
 			<a class="del">Гость &nbsp;</a><a href="/login{% if url %}?url={{ url }}{% endif %}">Войти</a>
 {% endif %}
 
-		</div><div class="u-menu">
+		</div><div class="u-menu{% if without_menu %} u-without-menu{% endif %}">
 			<div><a href="/"{% if url == 'index' %} class="u-selected"{% endif %}>Главная</a></div>
 
 {% for i in categories %}
@@ -89,7 +89,7 @@ Projectivity
 	</div>
 </div>
 
-<div class="u-body">
+<div class="u-body{% if without_menu %} u-without-menu{% endif %}">
 
 {% block cont %}{% endblock %}
 

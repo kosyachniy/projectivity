@@ -33,7 +33,7 @@ def articles(cat, sub=''):
 	return render_template('articles.html',
 		title = title,
 		description = '',
-		url = category,
+		url = cat + '/' + sub,
 		categories = categories,
 		user = user,
 		category = category,

@@ -9,7 +9,7 @@
 	--search-hover: #fff;
 
 	--menu-active: #eaeef6;
-	--menu-hover: #e1e5eb;
+	--menu-hover: #eaeef6; /*#e1e5eb;*/
 
 	--font-black: #a7b3cb;
 	--font-white: #3a4357;
@@ -207,6 +207,10 @@ input[type="file"] {border: 0;}
 	padding: 15px 15px 15px 15px;
 }
 
+.u-menu.u-without-menu {
+	display: none;
+}
+
 .u-menu div {
 	width: 100%;
 }
@@ -229,7 +233,7 @@ input[type="file"] {border: 0;}
 	height: calc(1em + 14px);
 }
 
-.u-menu a.u-selected {
+.u-menu:not(:hover) a.u-selected {
 	background-color: var(--menu-active);
 }
 
@@ -248,6 +252,11 @@ input[type="file"] {border: 0;}
 	width: calc(100% - 250px);
 }
 
+.u-body.u-without-menu {
+	width: 100%;
+	left: 0;
+}
+
 
 @media all and (min-width: 1100px) {
 	.u-header {
@@ -263,6 +272,11 @@ input[type="file"] {border: 0;}
 	.u-body {
 		left: calc(50% - 300px);
 		width: 850px;
+	}
+
+	.u-body.u-without-menu {
+		width: 1100px;
+		left: calc(50% - 550px);
 	}
 }
 
@@ -291,6 +305,10 @@ input[type="file"] {border: 0;}
 	.u-menu {
 		position: static;
 		width: 100%;
+	}
+
+	.u-menu.u-without-menu {
+		display: block;
 	}
 
 	.u-menu a {
